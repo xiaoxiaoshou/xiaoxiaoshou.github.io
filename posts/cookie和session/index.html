@@ -1,0 +1,1296 @@
+
+
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="renderer" content="webkit"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<meta name="generator" content="Hugo 0.78.2 with theme icarus"/>
+<meta name="google-site-verification" content="Your googleVerification code"/>
+<meta name="baidu-site-verification" content="Your baiduVerification code"/>
+
+<meta name="author" content="pikachues"/>
+<meta name="description" content="HTTP 协议是一种无状态协议，即每次服务端接收到客户端的请求时，都是一个全新的请求，服务器并不知道客户端的历史请求记录；Session和Cooki"/>
+<meta name="keywords" content=""/>
+
+<title>Cookie和Session - eRunn&#39;s Blog</title>
+
+
+<meta name="application-name" content="eRunn&#39;s Blog" />
+<meta name="msapplication-TileImage" content="img/favicon.ico" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="eRunn&#39;s Blog" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http:\/\/blog.dpf114.top\/posts\/cookie%E5%92%8Csession\/"
+    },
+    "headline": "eRunn\u0027s Blog",
+    "image": [],
+    "dataPublished": "2020-08-23T22:14:55\u002b08:00",
+    "dataModified": "2020-08-23T22:14:55\u002b08:00",
+    "author": {
+        "@type": "Person",
+        "name": "pikachues"
+    },
+    "description": "HTTP 协议是一种无状态协议，即每次服务端接收到客户端的请求时，都是一个全新的请求，服务器并不知道客户端的历史请求记录；Session和Cooki"
+}
+</script>
+
+
+<link rel="canonical" href="http://blog.dpf114.top/posts/cookie%E5%92%8Csession/"/>
+<link rel="alternate" href="http://blog.dpf114.top/index.xml" title="eRunn&#39;s Blog" type="application/rss+xml"/>
+<link rel="icon" href="/img/favicon.ico"/>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-light.min.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source&#43;Code&#43;Pro"/>
+
+<link rel="stylesheet" href="/css/default.css"/>
+
+
+    
+    
+        
+        
+        
+        
+
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"/>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"/>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+
+
+
+</head>
+<body class="is-3-column">
+<nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand justify-content-center">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    eRunn&#39;s Blog
+                
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                
+                
+                    <a class="navbar-item "
+                       href="/">主页</a>
+                
+                    <a class="navbar-item "
+                       href="/archives">归档</a>
+                
+                    <a class="navbar-item "
+                       href="/categories">分类</a>
+                
+                    <a class="navbar-item "
+                       href="/tags">标签</a>
+                
+                    <a class="navbar-item "
+                       href="/about">关于</a>
+                
+            </div>
+            <div class="navbar-end">
+                
+                    
+                        <a class="navbar-item" target="_blank" title="github" href="https://github.com/xiaoxiaoshou" rel="noopener">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    
+                
+                
+                    <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                        <i class="fas fa-list-ul"></i>
+                    </a>
+                
+                
+                    <a class="navbar-item search" title="搜索" href="javascript:;">
+                        <i class="fas fa-search"></i>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen">
+                
+    <div class="card">
+    
+    <article class="card-content article" role="article">
+        
+            <div class="article-meta is-size-7 is-uppercase level is-mobile">
+                <div class="level-left">
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-23T22:14:55&#43;08:00"
+                                  title="2020-08-23T22:14:55&#43;08:00">2020-08-23</time>发表
+                        </span>
+                    
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-23T22:14:55&#43;08:00"
+                                  title="2020-08-23T22:14:55&#43;08:00">2020-08-23</time>更新
+                        </span>
+                    
+                    
+                    
+                        <span class="level-item">
+                            
+                            <a class="link-muted" href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a>
+                        </span>
+                    
+                    
+                        <span class="level-item">5 分钟读完 (大约2200个字)</span>
+                    
+                    
+                        <span class="level-item" id="busuanzi_container_page_pv">
+                            <span id="busuanzi_value_page_pv">0</span>次访问
+                        </span>
+                    
+                </div>
+            </div>
+        
+        <h1 class="title is-3 is-size-4-mobile">Cookie和Session</h1>
+        <div class="content"><p>HTTP 协议是一种<code>无状态协议</code>，即每次服务端接收到客户端的请求时，都是一个全新的请求，服务器并不知道客户端的历史请求记录；Session和Cookie的主要目的就是为了弥补HTTP的无状态特性。</p>
+<!-- more -->
+<h1 id="1session-是什么">1.Session 是什么？</h1>
+<p>客户端请求服务端，服务端会为这次请求开辟一块<code>内存空间</code>，这个对象便是Session对象。Session弥补了HTTP无状态特性，服务器可以利用Session存储客户端在同一个会话期间的一些操作记录。</p>
+<h1 id="2session如何判断是否是同一会话">2.Session如何判断是否是同一会话</h1>
+<p>服务器第一次接收到请求时，开辟了一块Session空间（创建了Session对象），同时生成一个sessionId，并通过响应头Set-Cookie：JSESIONID=XXXXXXX命令，向客户端发送要求设置Cookie的响应；客户端收到响应后，在本机客户端设置了一个JSESIONID=XXXXXXX的Cookie信息，该Cookie的过期时间为浏览器会话结束；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200821235311918.png" alt="image-20200821235311918"></p>
+<p>接下来客户端每次向同一个网站发送请求时，请求头都会带上Cookie信息（包含cookieId）,然后服务器通过读取请求头中的Cookie信息，获取名称为JSESSIONID的值，得到此次请求的sessionId。</p>
+<h1 id="3session-的缺点">3.Session 的缺点</h1>
+<p>分布式程序部署的情况下，多个服务之间Session不能共享。通常解决办法为存储的数据库(Redis里)或者用jwt。</p>
+<h1 id="4-cookie-是什么">4. Cookie 是什么？</h1>
+<p>HTTP协议中的Cookie包括<code>Web Cookie</code>和<code>浏览器Cookie</code>，它是服务器发送到Web浏览器的一小块数据。服务器发送到浏览器的Cookie，浏览器会进行存储，并与下一个请求一起发送到服务器。通常，它用于判断两个请求是否来自于同一个浏览器，例如用户保持登录状态。</p>
+<p>Cookie主要用于下面三个目的：</p>
+<ul>
+<li>
+<p>会话管理</p>
+<p>登录、购物车、游戏得分或者服务器应该记住的其他内容</p>
+</li>
+<li>
+<p>个性化</p>
+<p>用户偏好、主题或者其他设置</p>
+</li>
+<li>
+<p>追踪</p>
+<p>记录分析用户行为</p>
+</li>
+</ul>
+<p>Cookie曾经用于一般的客户端存储。虽然这是合法的，因为它们是在客户端存储数据的唯一办法，但如今建议使用现代存储API。Cookie随每个请求异同发送，因此它们可能会降低性能。</p>
+<h1 id="5创建cookie">5.创建Cookie</h1>
+<p>当接收到客户端发出的HTTP请求时，服务器会发送带有响应的Set-Cookie标头，Cookie通常由浏览器存储，然后将Cookie与HTTP标头一同向服务器发出请求。</p>
+<h2 id="set-cookie和cookie标头">Set-Cookie和Cookie标头</h2>
+<p><code>Set-Cookie</code>HTTP响应标头将cookie从服务器发送到用户代理。下面是一个发送Cookie的例子</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200822100104195.png" alt="image-20200822100104195"></p>
+<p>此标头告诉客户端存储Cookie。</p>
+<p>客户端存储Cookie之后，客户端每次发送新请求，浏览器将使用Cookie头将以前存储的Cookie发送回服务器。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200822100330922.png" alt="image-20200822100330922"></p>
+<p>有两种类型的Cookies（Cookies与Cookie无区别，为了协助完整辨认使用者在浏览器我叫Cookies），一种是Session Cookies(临时Cookies)，一种是Persistent Cookies(永久性Cookies)，如果Cookie到期日期，则将其视为会话Cookie。会话Cookie存储在内存中，永远不会写入磁盘，当浏览器关闭后Cookie将永久丢失。如果Cookie包含有效期，则将其视为持久性Cookie，在到期指定日期，Cookie将从磁盘中删除。</p>
+<p>还有一种是<code>Cookie的Secure和HttpOnly标记</code>，下面依次介绍</p>
+<h2 id="会话cookies">会话Cookies</h2>
+<p>上面实例穿件的是会话Cookie，会话Cookie有个特征，客户端关闭时Cookie会删除，因为他没有指定<code>Expires</code>或<code>Max-Age</code>指令。</p>
+<p>但是，Web浏览器可能会使用会话还原，这回使大多数会话保持永久状态，就想从未关闭过浏览器一样。</p>
+<h2 id="永久性cookies">永久性Cookies</h2>
+<p>永久性Cookie不会再客户端关闭时期关闭，而是在<code>特定日期（Expire是）</code>或<code>特定时间长度（Max-Age）</code>外过期。例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Set</span><span class="o">-</span><span class="nx">Cookie</span><span class="o">:</span> <span class="nx">id</span><span class="o">=</span><span class="nx">a3fWa</span><span class="p">;</span> <span class="nx">Expires</span><span class="o">=</span><span class="nx">Wed</span><span class="p">,</span> <span class="mi">21</span> <span class="nx">Oct</span> <span class="mi">2015</span> <span class="mi">07</span><span class="o">:</span><span class="mi">28</span><span class="o">:</span><span class="mi">00</span> <span class="nx">GMT</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="cookie-的secure和httponly标记">Cookie 的Secure和HttpOnly标记</h2>
+<p>安全的Cookie需要经过HTTPS协议通过加密的方式发送到服务器。即使是安全的也不应该将敏感信息存储在cookie中，因为他们本质上是不安全的，并且此标记不能提供真正的保护。</p>
+<h3 id="httponly的作用">HttpOnly的作用</h3>
+<ul>
+<li>会话Cookie中缺少HttpOnly属性会导致攻击者可以通过程序（JS脚本、Applet等）获取用户的Cookie信息，造成用户Cookie信息泄露，增加攻击者的跨站脚本攻击威胁。</li>
+<li>HttpOnly是微软对Cookie做的扩展，该值指定Cookie是否可通过客户端脚本访问。</li>
+<li>如果在Cookie中没有设置HttpOnly属性为True，可能导致Cookie被窃取。窃取的Cookie可以包含标识站点用户的敏感信息，如ASP.NET会话ID或Forms身份验证票证，攻击者可以重播窃取的Cookie，以便伪装成用户获取敏感信息，进行跨站脚本攻击等。</li>
+</ul>
+<h1 id="6cookie的作用域">6.Cookie的作用域</h1>
+<p><code>Domain</code>和<code>Path</code>标识定义了Cookie的作用域：即Cookie应该发给哪些URL。</p>
+<p><code>Domain</code>标识制定了哪些主机可以接受Cookie。如果不指定，默认为当前主机(不包含子域名)。如果指定了<code>Domain</code>，则一般包含子域名。</p>
+<p>例如，如果设置<code>Domain=mozilla.org</code>，则Cookie也包含在子域名中（如developer.mozilla.org）。</p>
+<p>例如，设置<code>Path=/docs</code>,则以下地址会匹配</p>
+<ul>
+<li>
+<p><code>/docs</code></p>
+</li>
+<li>
+<p><code>/docs/Web</code></p>
+</li>
+<li>
+<p><code>/docs/Web/HTTP</code></p>
+</li>
+<li>
+<p><code>/docs....</code></p>
+</li>
+</ul>
+</div>
+        
+            <div class="article-licensing box">
+    <div class="licensing-title">
+        <p>Cookie和Session</p>
+        <p><a href="http://blog.dpf114.top/posts/cookie%E5%92%8Csession/">http://blog.dpf114.top/posts/cookie%E5%92%8Csession/</a></p>
+    </div>
+    <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>作者</h6>
+                        <p>pikachues</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>发布于</h6>
+                        <p>2020-08-23</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>更新于</h6>
+                        <p>2020-08-23</p>
+                    </div>
+                </div>
+            
+            <div class="level-item is-narrow">
+                <div>
+                    <h6>许可协议</h6>
+                    <p>
+                        
+                            <a class="" title="CC BY-NC 4.0" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">
+                                CC BY-NC 4.0
+                            </a>
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        
+            <div class="article-tags size-small mb-4">
+                <span class="mr-2">#</span><a class="link-muted mr-2" href="/tags/HTTP" rel="tag">HTTP</a></div>
+        
+        
+
+    </article>
+</div>
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+                
+
+    <a class="button donate" data-type="alipay">
+        <span class="icon is-small">
+            <i class="fab fa-alipay"></i>
+        </span>
+        <span>支付宝</span>
+        <span class="qrcode">
+            <img src="/img/alipay.png" alt="支付宝">
+        </span>
+    </a>
+
+
+                
+            
+                
+                
+
+    <a class="button donate" data-type="wechat">
+        <span class="icon is-small">
+            <i class="fab fa-weixin"></i>
+        </span>
+        <span>微信</span>
+        <span class="qrcode">
+            <img src="/img/wechat.png" alt="微信">
+        </span>
+    </a>
+
+
+                
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+    <nav class="post-navigation mt-4 level is-mobile">
+        
+            <div class="level-start">
+                <a class="article-nav-prev level level-item link-muted" href="http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/">
+                    <i class="level-item fas fa-chevron-left"></i>
+                    <span class="level-item">与HTTP相关的组件</span>
+                </a>
+            </div>
+        
+        
+            <div class="level-end">
+                <a class="article-nav-next level level-item link-muted" href="http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/">
+                    <span class="level-item">jwt和Session cookies（临时cookies）</span>
+                    <i class="level-item fas fa-chevron-right"></i>
+                </a>
+            </div>
+        
+    </nav>
+
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="title is-5">评论</h3>
+        
+        
+
+
+    
+    <div id="valine-thread" class="content"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@1.4.14/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+          el: '#valine-thread',
+          app_id: "GeG3Ob5TvK8CJKXmJI8hc7fA-MdYXbMMI",
+          app_key: "ePVOGzkm0LD03BtB3UM4pbEp",
+          placeholder: "发表你的意见，让我们一起交流，共同提高..."
+        });
+    </script>
+
+
+        
+    </div>
+</div>
+
+
+
+
+            </div>
+            
+
+    <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1 is-sticky">
+        
+            
+            
+                
+                
+<div class="card widget" data-type="profile">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered flex-shrink-1">
+                <div>
+                    <figure class="image is-128x128 mx-auto mb-2">
+                        <img class="avatar is-rounded"
+                             src="/img/pikachues.jpg"
+                             alt="Pikachues">
+                    </figure>
+                    <p class="title is-size-4 is-block" style="line-height: inherit">Pikachues</p>
+                    <p class="is-size-6 is-block">Better Luck Tomorrow</p>
+                    
+                        <p class="is-size-6 is-flex justify-content-center">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>China</span>
+                        </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">文章</p>
+                    <a href="/archives"><p class="title">16</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">分类</p>
+                    <a href="/categories"><p class="title">4</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">标签</p>
+                    <a href="/tags"><p class="title">8</p></a>
+                </div>
+            </div>
+        </nav>
+        
+            <div class="level">
+                <a class="level-item button is-primary is-rounded" href="https://github.com/xiaoxiaoshou"
+                   target="_blank" rel="noopener">关注我</a>
+            </div>
+        
+        <div class="level is-mobile">
+            
+                <a class="level-item button is-transparent is-marginless" title="Mail" href="mailto:446933040@qq.com"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            
+                <a class="level-item button is-transparent is-marginless" title="RSS" href="/index.xml"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-rss"></i>
+                </a>
+            
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+    <div class="card widget" id="toc" data-type="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">目录</h3>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#set-cookie和cookie标头">Set-Cookie和Cookie标头</a></li>
+    <li><a href="#会话cookies">会话Cookies</a></li>
+    <li><a href="#永久性cookies">永久性Cookies</a></li>
+    <li><a href="#cookie-的secure和httponly标记">Cookie 的Secure和HttpOnly标记</a>
+      <ul>
+        <li><a href="#httponly的作用">HttpOnly的作用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </div>
+        </div>
+        <style>
+        .menu-list > li > a.is-active + .menu-list {display: block;}
+        .menu-list > li > a + .menu-list {display: none;}
+        </style>
+        <script type="text/javascript" src="/js/toc.js" defer></script>
+    </div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="categories">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">分类</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/http%e5%8d%8f%e8%ae%ae/">
+                            <span class="level-start">
+                                <span class="level-item">http协议</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/python/">
+                            <span class="level-start">
+                                <span class="level-item">python</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/ssm/">
+                            <span class="level-start">
+                                <span class="level-item">ssm</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/%e7%bd%91%e7%bb%9c/">
+                            <span class="level-start">
+                                <span class="level-item">网络</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="tags">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">标签</h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/http/">
+                            <span class="tag">http</span>
+                            <span class="tag">11</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/https/">
+                            <span class="tag">https</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/htts/">
+                            <span class="tag">htts</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/jwt/">
+                            <span class="tag">jwt</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/python%e5%9f%ba%e7%a1%80/">
+                            <span class="tag">python基础</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/springmvc/">
+                            <span class="tag">springmvc</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e4%b8%b4%e6%97%b6cookies/">
+                            <span class="tag">临时cookies</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e5%b1%80%e5%9f%9f%e7%bd%91/">
+                            <span class="tag">局域网</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="recent-posts">
+    <div class="card-content">
+        <h3 class="menu-label">最新文章</h3>
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-25T22:14:55&#43;08:00'>2020-08-25</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/">与HTTP相关的组件</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/">jwt和Session cookies（临时cookies）</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/cookie%E5%92%8Csession/">Cookie和Session</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-22T22:14:55&#43;08:00'>2020-08-22</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/https/">HTTPS</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-19T22:14:55&#43;08:00'>2020-08-19</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">HTTP跨域请求</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="archives">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">归档</h3>
+            <ul class="menu-list">
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-08">
+                            <span class="level-start">
+                                <span class="level-item">2020年 8月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-03">
+                            <span class="level-start">
+                                <span class="level-item">2020年 3月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">3</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="links">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">链接</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="https://gohugo.io" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">Hugo</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    gohugo.io
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="https://blog.csdn.net/qq_41262903" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">CSDN</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    blog.csdn.net
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+        
+            
+            
+        
+        
+            <div class="column-right-shadow is-hidden-widescreen "></div>
+        
+    </div>
+
+
+    <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 ">
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </div>
+
+
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start">
+                
+                <a class="footer-logo is-block mb-2" href="/">
+                    
+                        eRunn&#39;s Blog
+                    
+                </a>
+
+                <p class="is-size-7">
+                    <span>&copy; 2020 pikachues</span>&nbsp;&nbsp;Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>&nbsp;&&nbsp;<a href="https://github.com/iMaple/hugo-theme-icarus/" target="_blank" rel="noopener">Icarus</a>
+
+                    
+                    <br>
+                    <span>
+                        <img style="width: 60px;height: 21px;" src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/ypy_logo5.png">
+                        <a href="https://console.upyun.com/register/?invite=rknj9xrGD">提供加速服务</a>
+                    </span>
+                    <br>
+                    <span>
+                        <img src="/img/icp.png" alt="">
+                        <a href="https://beian.miit.gov.cn/">湘ICP备2020018013号</a>
+                    </span>
+                </p>
+
+            </div>
+            <div class="level-end">
+                <div class="field has-addons">
+                    
+                        <p class="control">
+                            <a class="button is-transparent is-large" title="Creative Commons" href="https://creativecommons.org/" target="_blank" rel="noopener">
+                                <i class="fab fa-creative-commons"></i>
+                            </a>
+                        </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script>moment.locale("zh-cn");</script>
+
+<script>
+    var IcarusThemeSettings = {
+      article: {
+        highlight: {
+          clipboard:  true ,
+          fold: "unfolded"
+        }
+      },
+      toc: {
+        index:  true 
+      }
+    };
+</script>
+
+<script type="text/javascript" src="/js/column.js"></script>
+
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="/js/animation.js"></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <a id="back-to-top" title="回到顶端" href="javascript:;">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+    <script type="text/javascript" src="/js/back2top.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script>
+    <script>
+    window.addEventListener('load', () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static:  false ,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: '#edeff5',
+            text: '#838391'
+          },
+          button: {
+            background: '#4b81e8'
+          },
+        },
+      });
+    });
+    </script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      'HTML-CSS': {matchFontHeight: false},
+      SVG: {matchFontHeight: false},
+      CommonHTML: {matchFontHeight: false},
+      tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <div id="outdated">
+        <h6>Your browser is out-of-date!</h6>
+        <p>Update your browser to view this website correctly.&nbsp;
+            <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a>
+        </p>
+        <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+          outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'object-fit'
+          });
+        });
+    </script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" async></script>
+
+
+        
+    
+
+    
+    
+
+
+<script type="text/javascript" src="/js/main.js" defer></script>
+
+
+    
+    <div class="searchbox">
+    <div class="searchbox-container">
+        <div class="searchbox-header">
+            <div class="searchbox-input-container">
+                <input class="searchbox-input" type="text" placeholder="想要查找什么..."/>
+            </div>
+            <a class="searchbox-close" href="javascript:;">×</a>
+        </div>
+        <div class="searchbox-body"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/insight.js" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      loadInsight(
+        {contentUrl: '/index.json'},
+        {
+          hint: "想要查找什么...",
+          untitled: "(无标题)",
+          posts: "文章",
+          pages: "页面",
+          categories: "分类",
+          tags: "标签"
+        }
+      );
+    });
+</script>
+
+    
+
+
+</body>
+</html>

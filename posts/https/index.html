@@ -1,0 +1,1344 @@
+
+
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="renderer" content="webkit"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<meta name="generator" content="Hugo 0.78.2 with theme icarus"/>
+<meta name="google-site-verification" content="Your googleVerification code"/>
+<meta name="baidu-site-verification" content="Your baiduVerification code"/>
+
+<meta name="author" content="pikachues"/>
+<meta name="description" content="1.HTTPS为什么会出现 一个新技术的出现必定是为了解决某种问题的。什么问题呢？一个简答的回答就是HTTP的安全性问题。由于HTTP采用明文"/>
+<meta name="keywords" content=""/>
+
+<title>HTTPS - eRunn&#39;s Blog</title>
+
+
+<meta name="application-name" content="eRunn&#39;s Blog" />
+<meta name="msapplication-TileImage" content="img/favicon.ico" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="eRunn&#39;s Blog" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http:\/\/blog.dpf114.top\/posts\/https\/"
+    },
+    "headline": "eRunn\u0027s Blog",
+    "image": [],
+    "dataPublished": "2020-08-22T22:14:55\u002b08:00",
+    "dataModified": "2020-08-22T22:14:55\u002b08:00",
+    "author": {
+        "@type": "Person",
+        "name": "pikachues"
+    },
+    "description": "1.HTTPS为什么会出现 一个新技术的出现必定是为了解决某种问题的。什么问题呢？一个简答的回答就是HTTP的安全性问题。由于HTTP采用明文"
+}
+</script>
+
+
+<link rel="canonical" href="http://blog.dpf114.top/posts/https/"/>
+<link rel="alternate" href="http://blog.dpf114.top/index.xml" title="eRunn&#39;s Blog" type="application/rss+xml"/>
+<link rel="icon" href="/img/favicon.ico"/>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-light.min.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source&#43;Code&#43;Pro"/>
+
+<link rel="stylesheet" href="/css/default.css"/>
+
+
+    
+    
+        
+        
+        
+        
+
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"/>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"/>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+
+
+
+</head>
+<body class="is-3-column">
+<nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand justify-content-center">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    eRunn&#39;s Blog
+                
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                
+                
+                    <a class="navbar-item "
+                       href="/">主页</a>
+                
+                    <a class="navbar-item "
+                       href="/archives">归档</a>
+                
+                    <a class="navbar-item "
+                       href="/categories">分类</a>
+                
+                    <a class="navbar-item "
+                       href="/tags">标签</a>
+                
+                    <a class="navbar-item "
+                       href="/about">关于</a>
+                
+            </div>
+            <div class="navbar-end">
+                
+                    
+                        <a class="navbar-item" target="_blank" title="github" href="https://github.com/xiaoxiaoshou" rel="noopener">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    
+                
+                
+                    <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                        <i class="fas fa-list-ul"></i>
+                    </a>
+                
+                
+                    <a class="navbar-item search" title="搜索" href="javascript:;">
+                        <i class="fas fa-search"></i>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen">
+                
+    <div class="card">
+    
+    <article class="card-content article" role="article">
+        
+            <div class="article-meta is-size-7 is-uppercase level is-mobile">
+                <div class="level-left">
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-22T22:14:55&#43;08:00"
+                                  title="2020-08-22T22:14:55&#43;08:00">2020-08-22</time>发表
+                        </span>
+                    
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-22T22:14:55&#43;08:00"
+                                  title="2020-08-22T22:14:55&#43;08:00">2020-08-22</time>更新
+                        </span>
+                    
+                    
+                    
+                        <span class="level-item">
+                            
+                            <a class="link-muted" href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a>
+                        </span>
+                    
+                    
+                        <span class="level-item">13 分钟读完 (大约6067个字)</span>
+                    
+                    
+                        <span class="level-item" id="busuanzi_container_page_pv">
+                            <span id="busuanzi_value_page_pv">0</span>次访问
+                        </span>
+                    
+                </div>
+            </div>
+        
+        <h1 class="title is-3 is-size-4-mobile">HTTPS</h1>
+        <div class="content"><h1 id="1https为什么会出现">1.HTTPS为什么会出现</h1>
+<p>一个新技术的出现必定是为了解决某种问题的。什么问题呢？一个简答的回答就是HTTP的安全性问题。由于HTTP采用明文传输，①在传输过程中任何人都有可能从中<strong>捕获、修改或者伪造请求发送</strong>，；②HTTP传输过程中<strong>不会验证通信双方的身份</strong>，HTTP信息交换双方可能会遭到伪装；③HTTP传输过程中，接收双方<strong>不会验证报文的完整性</strong></p>
+<!-- more -->
+<h1 id="2什么是https">2.什么是HTTPS</h1>
+<p>回顾之前HTTP的定义：HTTP是一种<code>超文本传输协议􏹒􏴛􏰙􏲺􏲻􏳅􏳆(Hypertext Transfer Protocol)</code>，</p>
+<p><strong>它是一个计算机实际里专门在两点时间传输文字、图片、音频、视频等超文本数据的约定和规范</strong>。</p>
+<p><code>HTTPS</code>的全称<code>Hypertext Transfer Protocol Secure</code>,它用来在计算机网络上的两个端系统之间进行<strong>安全的交换信息</strong>，它相当于在HTTP的基础上加了一个<code>Secure</code>。<code>HTTPS</code>定义：<strong>HTTPS是在一个计算机世界里专门在两点之间安全的传输文字、图片、音频、视频等超文本数据的约定和规范</strong>。HTTPS是HTTP协议的一种扩展，它本身并不保证传输的安全性，那么谁来保证安全性呢？在HTTPS中，使用<code>传输安全性(TLS)</code>或<code>安全套接字层(SSL)</code>对通信协议进行加密，也就是HTTP+SSL(TLS) = HTPPS。</p>
+<h1 id="3https-做了什么">3.HTTPS 做了什么？</h1>
+<p>HTTPS协议提供了是三个关键性指标</p>
+<ul>
+<li>加密(Encryption)：HTTPS通过对数据加密来使其免受窃听者对数据的监听。</li>
+<li>数据一致性(Data integrity)：数据在传输过程中不会被窃听者所修改，用户发送的数据会<strong>完整</strong>的传输到服务端。</li>
+<li>身份认证(Authentication)：指确认对方的真实身份，它可以防止中间人攻击并建立用户信任。</li>
+</ul>
+<p>怎么知道网站用HTTPS还是HTTP呢？看下图可以很容易知道。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818141213669.png" alt="image-20200818141213669"></p>
+<p>除了协议名称和默认端口外(HTTP默认80，HTTPS默认443)，HTTPS协议在语法、语义和HTTP一样，HTTP有的，HTTPS也照单全收。那么，HTTPS如何做到HTTP不能做到的<strong>安全性</strong>呢？关键在于这个<code>S</code>也就是<code>SSL/TLS</code>。</p>
+<h1 id="4什么是ssltls">4.什么是SSL/TLS</h1>
+<h2 id="41-认识ssltls">4.1 认识SSL/TLS</h2>
+<p><code>TLS(Transport Layer Security)</code> 􏰄 是<code>SSL(Secure Socket Layer)</code>的后续版本，它们用于在互联网两台计算机之间身份认证和加密的一种协议。</p>
+<blockquote>
+<p>注意：在互联网中，很多名称都可以进行互换</p>
+</blockquote>
+<p>我们都知道一些在线业务（比如在线支付）最重要的一个步骤是创建一个值得信赖的交易环境，能够让客户安心的进行交易，SSL/TLS就保证了这一点，SSL/TLS通过将称为<code>X.509</code>证书的数字文档将网站和公司的实体信息绑定到<code>加密秘钥</code>来进行工作。每一个秘钥对（key pairs）都有一个<code>私有秘钥（private key）</code>和<code>公有秘钥（public key）</code>私有秘钥是独有的，一般位于服务器上，用于解密由公共秘钥加密过的信息；公有秘钥是公有的，与服务器进行交互的是每个人都可以持有的公有秘钥，用公钥加密过的信息只能由私有秘钥来解密。</p>
+<blockquote>
+<p>什么是 <code>X.509</code>：X.509 是<code>公开密钥</code>证书的标准格式，这个文档将加密密钥与（个人或组织）进行安全的关联。</p>
+<p>X.509 主要应用如下</p>
+<ul>
+<li>SSL/TLS 和 HTTPS 用于经过身份验证和加密的 Web 浏览</li>
+<li>通过 S/MIME 协议签名和加密的电子邮件</li>
+<li>代码签名：它指的是使用数字证书对软件应用程序进行签名以安全分发和安装的过程。</li>
+</ul>
+<p>![image-20200818144100127](/Users/dpf/Library/Application Support/typora-user-images/image-20200818144100127.png)</p>
+<p>通过使用由知名公共证书颁发机构（例如SSL.com）颁发的证书对软件进行数字签名，开发人员可以向最终用户保证他们希望安装的软件是由已知且受信任的开发人员发布；并且签名后未被篡改或损害。</p>
+<ul>
+<li>还可用于文档签名
+<ul>
+<li>还可用于客户端认证</li>
+</ul>
+</li>
+<li>政府签发的电子身份证（详见 <a href="https://www.ssl.com/article/pki-and-digital-certificates-for-government/">https://www.ssl.com/article/pki-and-digital-certificates-for-government/</a>）</li>
+</ul>
+</blockquote>
+<h2 id="42-https的内核是http">4.2 HTTPS的内核是HTTP</h2>
+<p>HTTPS并不是一项新的应用层协议，只是HTTP通信接口和部分SSL和TLS替代而已。通常情况下，HTTP会直接和TCP进行通信。在使用SSL的HTTPS后，则会演变为和SSL进行通信，然后再由SSL和TCP进行通信。也就是说，<strong>HTTPS就是身披了一层SSL的HTTP</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818145450504.png" alt="image-20200818145450504"></p>
+<p>SSL 是一个独立的协议，不只有 HTTP 可以使用，其他应用层协议也可以使用，比如 <code>SMTP(电子邮件协议)</code>、<code>Telnet(远程登录协议)</code> 等都可以使用。</p>
+<h1 id="5探究https">5.探究HTTPS</h1>
+<p>HTTPS非常强，它强在哪里呢？就是它的安全性（加密协议），所以这里探究的就是它的加密协议<code>SSL/TLS</code>。</p>
+<p><code>SSL</code>即<strong>安全套接字层</strong>，它在OSI七层网络模型中处于第五次，SSL在1999年被**IETF（互联网工程组）**更名<code>TLS</code>，即传输安全层，知道现在，TLS一共出现过三个版本，1.1、1.2和1.3，目前最广泛使用的是1.2，接下来的探究都是基于TLS 1.2的版本上的。</p>
+<p>TLS用于两个同心应用程序之间提供保密性和数据完整性。TLS由<strong>记录协议</strong>、<strong>握手协议</strong>、<strong>警告协议</strong>、<strong>变更密码规范协议</strong>、扩展协议等几个自协议组成，综合使用了<strong>对称加密</strong>、<strong>非对称加密</strong>、<strong>身份认证</strong>等许多密码学前沿技术（如果你觉得一项技术很简单，那你只是没有学到位，任何技术都是有美感的，牛逼的人只是欣赏，并不是贬低）。</p>
+<p>说了这么多，我们还没有看到TLS的命名规范，下面举一个TLS的例子来看一下TLS的结构（可以参考 <a href="https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml">https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml</a>）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ECDHE-ECDSA-AES256-GCM-SHA384
+</code></pre></td></tr></table>
+</div>
+</div><p>这是啥意思呢？是不是看起来有点懵，但其实是有套路的，因为TLS的密码套件比较规范，基本格式是：<strong>秘钥交换算法-签名算法-对称加密算法-摘要算法</strong>组成的一个密码串，有时候还有<strong>分组模式</strong>，我们来看一下上面字符串意思：使用 ECDHE 进行密钥交换，使用 ECDSA 进行签名和认证，然后使用 AES 作为对称加密算法，密钥的长度是 256 位，使用 GCM 作为分组模式，最后使用 SHA384 作为摘要算法。</p>
+<p>TLS在根本上使用<strong>对称加密</strong>和<strong>非对称加密两种形式</strong>。</p>
+<h2 id="51-对称加密">5.1 对称加密</h2>
+<p>在了解对称加密之前，我们先来了解一下密码学的东西，在密码学中，有几个概念：明文、密文、加密、解密。</p>
+<ul>
+<li><code>明文(Plaintext)</code>，一般认为明文是有意义的字符或者比特集，或者是通过某种公开编码就能获得的消息。明文通常用 m 或 p 表示</li>
+<li><code>密文(Ciphertext)</code>，对明文进行某种加密后就变成了密文</li>
+<li><code>加密(Encrypt)</code>，把原始的信息（明文）转换为密文的信息变换过程</li>
+<li><code>解密(Decrypt)</code>，把已经加密的信息恢复成明文的过程。</li>
+</ul>
+<p><code>对称加密(Symmetrical Encryption)</code>顾名思义就是指<strong>加密和解密时使用的密钥都是同样的密钥</strong>。只要保证了密钥的安全性，那么整个通信过程也就是具有了机密性。</p>
+<p>TLS 里面有比较多的加密算法可供使用，比如 DES、3DES、AES、ChaCha20、TDEA、Blowfish、RC2、RC4、RC5、IDEA、SKIPJACK 等。目前最常用的是  AES-128, AES-192、AES-256 和 ChaCha20。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818153136541.png" alt="image-20200818153136541"></p>
+<p><code>DES</code> 的全称是 <code>Data Encryption Standard(数据加密标准)</code> ，它是用于数字数据加密的对称密钥算法。尽管其 56 位的短密钥长度使它对于现代应用程序来说太不安全了，但它在加密技术的发展中具有很大的影响力。</p>
+<p><code>3DES</code> 是从原始数据加密标准（DES）衍生过来的加密算法，它在 90 年代后变得很重要，但是后面由于更加高级的算法出现，3DES 变得不再重要。</p>
+<p>AES-128, AES-192 和 AES-256 都是属于 AES ，AES 的全称是<code>Advanced Encryption Standard(高级加密标准)</code>，它是 DES 算法的替代者，安全强度很高，性能也很好，是应用最广泛的对称加密算法。</p>
+<p><code>ChaCha20</code> 是 Google 设计的另一种加密算法，密钥长度固定为 256 位，纯软件运行性能要超过 AES，曾经在移动客户端上比较流行，但 ARMv8 之后也加入了 AES 硬件优化，所以现在不再具有明显的优势，但仍然算得上是一个不错算法。</p>
+<h3 id="加密分组">加密分组</h3>
+<p>对称加密算法还有一个<code>分组模式</code> 的概念，对于 GCM 分组模式，只有和 AES，CAMELLIA 和 ARIA 搭配使用，而 AES 显然是最受欢迎和部署最广泛的选择，它可以让算法用固定长度的密钥加密任意长度的明文。</p>
+<p>最早有 ECB、CBC、CFB、OFB 等几种分组模式，但都陆续被发现有安全漏洞，所以现在基本都不怎么用了。最新的分组模式被称为 <code>AEAD（Authenticated Encryption with Associated Data）</code>，在加密的同时增加了认证的功能，常用的是 GCM、CCM 和 Poly1305。</p>
+<hr>
+<p>对于对称加密看起来似乎很牛逼，但是它也有缺点（安全问题）。从上面我们都知道，对称加密 加密和解密是同一秘钥，加密方对原始数据进行加密后，然后再把秘钥传给解密方才能进行解密，这回造成什么问题呢？这就好比《小兵张嘎》去送信（信已经被加密过），但是嘎子还拿着解密的密码，那嘎子要是在途中被鬼子发现了，那这信可就是被完全的暴露了。所以，对称加密存在风险。</p>
+<h2 id="52-非对称加密">5.2 非对称加密</h2>
+<p><code>非对称加密(Asymmetrical Encryption)</code> 也被称为<code>公钥加密</code>，相对于对称加密来说，非对称加密是一种新的改良加密方式。密钥通过网络传输交换，它能够确保及时密钥被拦截，也不会暴露数据信息。非对称加密中有两个密钥，一个是公钥，一个是私钥，公钥进行加密，私钥进行解密。公开密钥可供任何人使用，私钥只有你自己能够知道。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818160327462.png" alt="image-20200818160327462"></p>
+<p>使用公钥加密的文本只能使用私钥解密，同时，使用私钥加密的文本也可以使用公钥解密。公钥不需要具有安全性，因为公钥需要在网络间进行传输，非对称加密可以解决<code>密钥交换</code>的问题。网站保管私钥，在网上任意分发公钥，你想要登录网站只要用公钥加密就行了，密文只能由私钥持有者才能解密。而黑客因为没有私钥，所以就无法破解密文。</p>
+<p>非对称加密算法的设计要比对称算法难得多（我们不会探讨具体的加密方式），常见的比如 DH、DSA、RSA、ECC 等。</p>
+<p>其中 <code>RSA</code> 加密算法是最重要的、最出名的一个了。例如 <code>DHE_RSA_CAMELLIA128_GCM_SHA256</code>。它的安全性基于 <code>整数分解</code>，使用两个超大素数的乘积作为生成密钥的材料，想要从公钥推算出私钥是非常困难的。</p>
+<p>TLS 是使用<code>对称加密</code>和<code>非对称加密</code> 的混合加密方式来实现机密性。</p>
+<h2 id="53-混合加密">5.3 混合加密</h2>
+<p>RSA 的运算速度非常慢，而 AES 的加密速度比较快，而 TLS 正是使用了这种<code>混合加密</code>方式。在通信刚开始的时候使用非对称算法，比如 RSA、ECDHE ，首先解决<code>密钥交换</code>的问题。然后用随机数产生对称算法使用的<code>会话密钥（session key）</code>，再用<code>公钥加密</code>。对方拿到密文后用<code>私钥解密</code>，取出会话密钥。这样，双方就实现了对称密钥的安全交换。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818161404361.png" alt="image-20200818161404361"></p>
+<p>现在我们使用混合加密的方式实现了机密性，是不是就能够安全的传输数据了呢？还不够，在机密性的基础上还要加上<code>完整性</code>、<code>身份认证</code>的特性，才能实现真正的安全。而实现完整性的主要手段是 <code>摘要算法(Digest Algorithm)</code></p>
+<h2 id="54-摘要算法">5.4 摘要算法</h2>
+<p>如何实现完整性呢？在 TLS 中，实现完整性的手段主要是 <code>摘要算法(Digest Algorithm)</code>。摘要算法你不清楚的话，MD5 你应该清楚，MD5 的全称是 <code>Message Digest Algorithm 5</code>，它是属于<code>密码哈希算法(cryptographic hash algorithm)</code>的一种，MD5 可用于从任意长度的字符串创建 128 位字符串值。尽管 MD5 存在不安全因素，但是仍然沿用至今。MD5 最常用于<code>验证文件</code>的完整性。但是，它还用于其他安全协议和应用程序中，例如 SSH、SSL 和 IPSec。一些应用程序通过向明文加盐值或多次应用哈希函数来增强 MD5 算法。</p>
+<blockquote>
+<p>什么是加盐？在密码学中，<code>盐</code>就是一项随机数据，用作哈希数据，密码或密码的<code>单向</code>函数的附加输入。盐用于保护存储中的密码。例如</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818163421154.png" alt="image-20200818163421154">􏱙􏱚􏰄􏳇􏼯􏵡􏱡􏳈􏲈􏱕􏱣􏰖 􏼯 􏲜􏰄􏰫􏺮􏶆􏴉􏲢􏴞􏰖􏰣􏰢􏺝􏹮􏲢􏴞􏰖􏳈􏲈􏱮􏳈􏲈􏰡 􏴕􏶗 􏼩􏲢􏰡􏼄 􏳇􏲻􏷴􏰍􏼯􏰣􏰲􏳗􏳘􏳍􏳎􏱣􏰡􏳈􏲈􏰍􏴑􏱩</p>
+<p>什么是单向？就是在说这种算法没有密钥可以进行解密，只能进行单向加密，加密后的数据无法解密，不能逆推出原文。</p>
+</blockquote>
+<p>我们再回到摘要算法的讨论上来，其实你可以把摘要算法理解成一种特殊的压缩算法，它能够把任意长度的数据<code>压缩</code>成一种固定长度的字符串，这就好像是给数据加了一把锁。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818163640821.png" alt="image-20200818163640821"></p>
+<p>除了常用的 MD5 是加密算法外，<code>SHA-1(Secure Hash Algorithm 1)</code> 也是一种常用的加密算法，不过 SHA-1 也是不安全的加密算法，在 TLS 里面被禁止使用。目前 TLS 推荐使用的是 SHA-1 的后继者：<code>SHA-2</code>。</p>
+<p>SHA-2 的全称是<code>Secure Hash Algorithm 2</code> ，它在 2001 年被推出，它在 SHA-1 的基础上做了重大的修改，SHA-2 系列包含六个哈希函数，其摘要（哈希值）分别为 224、256、384 或 512 位：<strong>SHA-224, SHA-256, SHA-384, SHA-512</strong>。分别能够生成 28 字节、32 字节、48 字节、64 字节的摘要。</p>
+<p>有了 SHA-2 的保护，就能够实现数据的完整性，哪怕你在文件中改变一个标点符号，增加一个空格，生成的文件摘要也会完全不同，不过 SHA-2 是基于明文的加密方式，还是不够安全，那应该用什么呢？</p>
+<p>安全性更高的加密方式是使用 <code>HMAC</code>，在理解什么是 HMAC 前，你需要先知道一下什么是 MAC。</p>
+<p>MAC 的全称是<code>message authentication code</code>，它通过 MAC 算法从消息和密钥生成，MAC 值允许验证者（也拥有秘密密钥）检测到消息内容的任何更改，从而保护了消息的数据完整性。</p>
+<p>HMAC 是 MAC 更进一步的拓展，它是使用 MAC 值 + Hash 值的组合方式，HMAC 的计算中可以使用任何加密哈希函数，例如 SHA-256 等。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818163739004.png" alt="image-20200818163739004"></p>
+<p>现在我们又解决了完整性的问题，那么就只剩下一个问题了，那就是<code>认证</code>，认证怎么做的呢？我们在向服务器发送数据的过程中，黑客（攻击者）有可能伪装成任何一方来窃取信息。它可以伪装成你，来向服务器发送信息，也可以伪装称为服务器，接受你发送的信息。那么怎么解决这个问题呢？</p>
+<h2 id="55-认证">5.5 认证</h2>
+<p>如何确定你自己的唯一性呢？我们在上面的叙述过程中出现过公钥加密，私钥解密的这个概念。提到的私钥只有你一个人所有，能够辨别唯一性，所以我们可以把顺序调换一下，变成私钥加密，公钥解密。使用私钥再加上摘要算法，就能够实现<code>数字签名</code>，从而实现认证。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818163956803.png" alt="image-20200818163956803"></p>
+<p>到现在，综合使用对称加密、非对称加密和摘要算法，我们已经实现了<strong>加密、数据认证、认证</strong>，那么是不是就安全了呢？非也，这里还存在一个<strong>数字签名的认证问题</strong>。因为私钥是是自己的，公钥是谁都可以发布，所以必须发布经过认证的公钥，才能解决公钥的信任问题。</p>
+<p>所以引入了 <code>CA</code>，CA 的全称是 <code>Certificate Authority</code>，证书认证机构，你必须让 CA 颁布具有认证过的公钥，才能解决公钥的信任问题。</p>
+<p>全世界具有认证的 CA 就几家，分别颁布了 DV、OV、EV 三种，区别在于可信程度。DV 是最低的，只是域名级别的可信，EV 是最高的，经过了法律和审计的严格核查，可以证明网站拥有者的身份（在浏览器地址栏会显示出公司的名字，例如 Apple、GitHub 的网站）。不同的信任等级的机构一起形成了层级关系。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818164318850.png" alt="image-20200818164318850"></p>
+<p>通常情况下，数字证书的申请人将生成由私钥和公钥以及证书<code>签名请求（CSR）</code>组成的密钥对。CSR是一个编码的文本文件，其中包含公钥和其他将包含在证书中的信息（例如域名，组织，电子邮件地址等）。密钥对和 CSR生成通常在将要安装证书的服务器上完成，并且 CSR 中包含的信息类型取决于证书的验证级别。与公钥不同，申请人的私钥是安全的，永远不要向 CA（或其他任何人）展示。</p>
+<p>生成 CSR 后，申请人将其发送给 CA，CA 会验证其包含的信息是否正确，如果正确，则使用颁发的私钥对证书进行数字签名，然后将其发送给申请人。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818164343458.png" alt="image-20200818164343458"></p>
+</div>
+        
+            <div class="article-licensing box">
+    <div class="licensing-title">
+        <p>HTTPS</p>
+        <p><a href="http://blog.dpf114.top/posts/https/">http://blog.dpf114.top/posts/https/</a></p>
+    </div>
+    <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>作者</h6>
+                        <p>pikachues</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>发布于</h6>
+                        <p>2020-08-22</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>更新于</h6>
+                        <p>2020-08-22</p>
+                    </div>
+                </div>
+            
+            <div class="level-item is-narrow">
+                <div>
+                    <h6>许可协议</h6>
+                    <p>
+                        
+                            <a class="" title="CC BY-NC 4.0" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">
+                                CC BY-NC 4.0
+                            </a>
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        
+            <div class="article-tags size-small mb-4">
+                <span class="mr-2">#</span><a class="link-muted mr-2" href="/tags/HTTPS" rel="tag">HTTPS</a><a class="link-muted mr-2" href="/tags/HTTS" rel="tag">HTTS</a></div>
+        
+        
+
+    </article>
+</div>
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+                
+
+    <a class="button donate" data-type="alipay">
+        <span class="icon is-small">
+            <i class="fab fa-alipay"></i>
+        </span>
+        <span>支付宝</span>
+        <span class="qrcode">
+            <img src="/img/alipay.png" alt="支付宝">
+        </span>
+    </a>
+
+
+                
+            
+                
+                
+
+    <a class="button donate" data-type="wechat">
+        <span class="icon is-small">
+            <i class="fab fa-weixin"></i>
+        </span>
+        <span>微信</span>
+        <span class="qrcode">
+            <img src="/img/wechat.png" alt="微信">
+        </span>
+    </a>
+
+
+                
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+    <nav class="post-navigation mt-4 level is-mobile">
+        
+            <div class="level-start">
+                <a class="article-nav-prev level level-item link-muted" href="http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/">
+                    <i class="level-item fas fa-chevron-left"></i>
+                    <span class="level-item">jwt和Session cookies（临时cookies）</span>
+                </a>
+            </div>
+        
+        
+            <div class="level-end">
+                <a class="article-nav-next level level-item link-muted" href="http://blog.dpf114.top/posts/http%E4%BC%98%E7%BC%BA%E7%82%B9/">
+                    <span class="level-item">HTTP优缺点</span>
+                    <i class="level-item fas fa-chevron-right"></i>
+                </a>
+            </div>
+        
+    </nav>
+
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="title is-5">评论</h3>
+        
+        
+
+
+    
+    <div id="valine-thread" class="content"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@1.4.14/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+          el: '#valine-thread',
+          app_id: "GeG3Ob5TvK8CJKXmJI8hc7fA-MdYXbMMI",
+          app_key: "ePVOGzkm0LD03BtB3UM4pbEp",
+          placeholder: "发表你的意见，让我们一起交流，共同提高..."
+        });
+    </script>
+
+
+        
+    </div>
+</div>
+
+
+
+
+            </div>
+            
+
+    <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1 is-sticky">
+        
+            
+            
+                
+                
+<div class="card widget" data-type="profile">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered flex-shrink-1">
+                <div>
+                    <figure class="image is-128x128 mx-auto mb-2">
+                        <img class="avatar is-rounded"
+                             src="/img/pikachues.jpg"
+                             alt="Pikachues">
+                    </figure>
+                    <p class="title is-size-4 is-block" style="line-height: inherit">Pikachues</p>
+                    <p class="is-size-6 is-block">Better Luck Tomorrow</p>
+                    
+                        <p class="is-size-6 is-flex justify-content-center">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>China</span>
+                        </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">文章</p>
+                    <a href="/archives"><p class="title">16</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">分类</p>
+                    <a href="/categories"><p class="title">4</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">标签</p>
+                    <a href="/tags"><p class="title">8</p></a>
+                </div>
+            </div>
+        </nav>
+        
+            <div class="level">
+                <a class="level-item button is-primary is-rounded" href="https://github.com/xiaoxiaoshou"
+                   target="_blank" rel="noopener">关注我</a>
+            </div>
+        
+        <div class="level is-mobile">
+            
+                <a class="level-item button is-transparent is-marginless" title="Mail" href="mailto:446933040@qq.com"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            
+                <a class="level-item button is-transparent is-marginless" title="RSS" href="/index.xml"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-rss"></i>
+                </a>
+            
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+    <div class="card widget" id="toc" data-type="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">目录</h3>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#41-认识ssltls">4.1 认识SSL/TLS</a></li>
+    <li><a href="#42-https的内核是http">4.2 HTTPS的内核是HTTP</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#51-对称加密">5.1 对称加密</a>
+      <ul>
+        <li><a href="#加密分组">加密分组</a></li>
+      </ul>
+    </li>
+    <li><a href="#52-非对称加密">5.2 非对称加密</a></li>
+    <li><a href="#53-混合加密">5.3 混合加密</a></li>
+    <li><a href="#54-摘要算法">5.4 摘要算法</a></li>
+    <li><a href="#55-认证">5.5 认证</a></li>
+  </ul>
+</nav>
+            </div>
+        </div>
+        <style>
+        .menu-list > li > a.is-active + .menu-list {display: block;}
+        .menu-list > li > a + .menu-list {display: none;}
+        </style>
+        <script type="text/javascript" src="/js/toc.js" defer></script>
+    </div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="categories">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">分类</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/http%e5%8d%8f%e8%ae%ae/">
+                            <span class="level-start">
+                                <span class="level-item">http协议</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/python/">
+                            <span class="level-start">
+                                <span class="level-item">python</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/ssm/">
+                            <span class="level-start">
+                                <span class="level-item">ssm</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/%e7%bd%91%e7%bb%9c/">
+                            <span class="level-start">
+                                <span class="level-item">网络</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="tags">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">标签</h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/http/">
+                            <span class="tag">http</span>
+                            <span class="tag">11</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/https/">
+                            <span class="tag">https</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/htts/">
+                            <span class="tag">htts</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/jwt/">
+                            <span class="tag">jwt</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/python%e5%9f%ba%e7%a1%80/">
+                            <span class="tag">python基础</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/springmvc/">
+                            <span class="tag">springmvc</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e4%b8%b4%e6%97%b6cookies/">
+                            <span class="tag">临时cookies</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e5%b1%80%e5%9f%9f%e7%bd%91/">
+                            <span class="tag">局域网</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="recent-posts">
+    <div class="card-content">
+        <h3 class="menu-label">最新文章</h3>
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-25T22:14:55&#43;08:00'>2020-08-25</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/">与HTTP相关的组件</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/">jwt和Session cookies（临时cookies）</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/cookie%E5%92%8Csession/">Cookie和Session</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-22T22:14:55&#43;08:00'>2020-08-22</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/https/">HTTPS</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-19T22:14:55&#43;08:00'>2020-08-19</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">HTTP跨域请求</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="archives">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">归档</h3>
+            <ul class="menu-list">
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-08">
+                            <span class="level-start">
+                                <span class="level-item">2020年 8月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-03">
+                            <span class="level-start">
+                                <span class="level-item">2020年 3月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">3</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="links">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">链接</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="https://gohugo.io" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">Hugo</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    gohugo.io
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="https://blog.csdn.net/qq_41262903" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">CSDN</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    blog.csdn.net
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+        
+            
+            
+        
+        
+            <div class="column-right-shadow is-hidden-widescreen "></div>
+        
+    </div>
+
+
+    <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 ">
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </div>
+
+
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start">
+                
+                <a class="footer-logo is-block mb-2" href="/">
+                    
+                        eRunn&#39;s Blog
+                    
+                </a>
+
+                <p class="is-size-7">
+                    <span>&copy; 2020 pikachues</span>&nbsp;&nbsp;Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>&nbsp;&&nbsp;<a href="https://github.com/iMaple/hugo-theme-icarus/" target="_blank" rel="noopener">Icarus</a>
+
+                    
+                    <br>
+                    <span>
+                        <img style="width: 60px;height: 21px;" src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/ypy_logo5.png">
+                        <a href="https://console.upyun.com/register/?invite=rknj9xrGD">提供加速服务</a>
+                    </span>
+                    <br>
+                    <span>
+                        <img src="/img/icp.png" alt="">
+                        <a href="https://beian.miit.gov.cn/">湘ICP备2020018013号</a>
+                    </span>
+                </p>
+
+            </div>
+            <div class="level-end">
+                <div class="field has-addons">
+                    
+                        <p class="control">
+                            <a class="button is-transparent is-large" title="Creative Commons" href="https://creativecommons.org/" target="_blank" rel="noopener">
+                                <i class="fab fa-creative-commons"></i>
+                            </a>
+                        </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script>moment.locale("zh-cn");</script>
+
+<script>
+    var IcarusThemeSettings = {
+      article: {
+        highlight: {
+          clipboard:  true ,
+          fold: "unfolded"
+        }
+      },
+      toc: {
+        index:  true 
+      }
+    };
+</script>
+
+<script type="text/javascript" src="/js/column.js"></script>
+
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="/js/animation.js"></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <a id="back-to-top" title="回到顶端" href="javascript:;">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+    <script type="text/javascript" src="/js/back2top.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script>
+    <script>
+    window.addEventListener('load', () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static:  false ,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: '#edeff5',
+            text: '#838391'
+          },
+          button: {
+            background: '#4b81e8'
+          },
+        },
+      });
+    });
+    </script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      'HTML-CSS': {matchFontHeight: false},
+      SVG: {matchFontHeight: false},
+      CommonHTML: {matchFontHeight: false},
+      tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <div id="outdated">
+        <h6>Your browser is out-of-date!</h6>
+        <p>Update your browser to view this website correctly.&nbsp;
+            <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a>
+        </p>
+        <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+          outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'object-fit'
+          });
+        });
+    </script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" async></script>
+
+
+        
+    
+
+    
+    
+
+
+<script type="text/javascript" src="/js/main.js" defer></script>
+
+
+    
+    <div class="searchbox">
+    <div class="searchbox-container">
+        <div class="searchbox-header">
+            <div class="searchbox-input-container">
+                <input class="searchbox-input" type="text" placeholder="想要查找什么..."/>
+            </div>
+            <a class="searchbox-close" href="javascript:;">×</a>
+        </div>
+        <div class="searchbox-body"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/insight.js" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      loadInsight(
+        {contentUrl: '/index.json'},
+        {
+          hint: "想要查找什么...",
+          untitled: "(无标题)",
+          posts: "文章",
+          pages: "页面",
+          categories: "分类",
+          tags: "标签"
+        }
+      );
+    });
+</script>
+
+    
+
+
+</body>
+</html>

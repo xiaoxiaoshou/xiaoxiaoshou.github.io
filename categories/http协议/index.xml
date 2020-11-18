@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTTP协议 on eRunn&#39;s Blog</title>
+    <link>http://blog.dpf114.top/categories/http%E5%8D%8F%E8%AE%AE/</link>
+    <description>Recent content in HTTP协议 on eRunn&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>446933040@qq.com (pikachues)</managingEditor>
+    <webMaster>446933040@qq.com (pikachues)</webMaster>
+    <lastBuildDate>Tue, 25 Aug 2020 22:14:55 +0800</lastBuildDate><atom:link href="http://blog.dpf114.top/categories/http%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>与HTTP相关的组件</title>
+      <link>http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/</link>
+      <pubDate>Tue, 25 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/</guid>
+      <description>1.网络模型 网络是一个复杂的系统，不仅包括大量的应用程序、端系统、通信链路、分组交换机等，还有各种各样的协议组成，那么现在我们就来聊一下网络</description>
+    </item>
+    
+    <item>
+      <title>Cookie和Session</title>
+      <link>http://blog.dpf114.top/posts/cookie%E5%92%8Csession/</link>
+      <pubDate>Sun, 23 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/cookie%E5%92%8Csession/</guid>
+      <description>HTTP 协议是一种无状态协议，即每次服务端接收到客户端的请求时，都是一个全新的请求，服务器并不知道客户端的历史请求记录；Session和Cooki</description>
+    </item>
+    
+    <item>
+      <title>jwt和Session cookies（临时cookies）</title>
+      <link>http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/</link>
+      <pubDate>Sun, 23 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/</guid>
+      <description>JSON Web Token简称JWT，它和Session Cookies(临时Cookies)都可以为网站提供用户的身份认证，但是它们不是一回事。 下对对J</description>
+    </item>
+    
+    <item>
+      <title>HTTPS</title>
+      <link>http://blog.dpf114.top/posts/https/</link>
+      <pubDate>Sat, 22 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/https/</guid>
+      <description>1.HTTPS为什么会出现 一个新技术的出现必定是为了解决某种问题的。什么问题呢？一个简答的回答就是HTTP的安全性问题。由于HTTP采用明文</description>
+    </item>
+    
+    <item>
+      <title>HTTP优缺点</title>
+      <link>http://blog.dpf114.top/posts/http%E4%BC%98%E7%BC%BA%E7%82%B9/</link>
+      <pubDate>Wed, 19 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/http%E4%BC%98%E7%BC%BA%E7%82%B9/</guid>
+      <description>1.HTTP的优点 简单灵活易扩展 HTTP最突出的优点是简单、灵活、易于扩展。 HTTP协议比较简单，它的主要组成就是 header+body,头</description>
+    </item>
+    
+    <item>
+      <title>HTTP认证</title>
+      <link>http://blog.dpf114.top/posts/http%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Wed, 19 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/http%E8%AE%A4%E8%AF%81/</guid>
+      <description>HTTP提供了用于访问控制和身份认证的功能，下面对HTTP的权限和认证功能进行介绍。 1.通用HTTP认证框架 RFC 7235 定义了 HTTP 身份认证框架，服务器</description>
+    </item>
+    
+    <item>
+      <title>HTTP跨域请求</title>
+      <link>http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/</link>
+      <pubDate>Wed, 19 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/</guid>
+      <description>1.什么是跨域请求CROS CROS 的全称是 Cross-Origin Resource Sharing(CROS)，中文译为 跨域资源共享，它是一种机制，它使用附加的HTTP标头来告诉浏览器</description>
+    </item>
+    
+    <item>
+      <title>HTTP协议(六)HTTP首部(请求标头)</title>
+      <link>http://blog.dpf114.top/posts/6.http%E9%A6%96%E9%83%A8%E8%AF%B7%E6%B1%82%E6%A0%87%E5%A4%B4/</link>
+      <pubDate>Sat, 15 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/6.http%E9%A6%96%E9%83%A8%E8%AF%B7%E6%B1%82%E6%A0%87%E5%A4%B4/</guid>
+      <description>HTTP协议的请求和响应报文中必定包含HTTP首部，只是我们平时在使用Web的过程中感受不到他。这篇文章我们一起来看看HTTP首部的结构和各</description>
+    </item>
+    
+    <item>
+      <title>HTTP协议(五)与HTTP协作的Web服务器</title>
+      <link>http://blog.dpf114.top/posts/5.%E4%B8%8Ehttp%E5%8D%8F%E4%BD%9C%E7%9A%84web%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Mon, 10 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/5.%E4%B8%8Ehttp%E5%8D%8F%E4%BD%9C%E7%9A%84web%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>一台 Web 服务器可搭建多个独立域名的 Web 网站，也可作为通信路径上的中转服务器提升传输效率。 1.用单台虚拟机实现多个域名 HTTP/1.1规范允许一台</description>
+    </item>
+    
+    <item>
+      <title>HTTP协议(四)返回结果的HTTP状态码</title>
+      <link>http://blog.dpf114.top/posts/4.%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E7%9A%84http%E7%8A%B6%E6%80%81%E7%A0%81/</link>
+      <pubDate>Fri, 07 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/4.%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E7%9A%84http%E7%8A%B6%E6%80%81%E7%A0%81/</guid>
+      <description>HTTP状态码负责表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现错误等工作。 1.状态码类别 状态码的职责是当客户端向服</description>
+    </item>
+    
+    <item>
+      <title>HTTP协议(三)HTTP报文中的HTTP信息</title>
+      <link>http://blog.dpf114.top/posts/3.http%E6%8A%A5%E6%96%87%E4%B8%AD%E7%9A%84http%E4%BF%A1%E6%81%AF/</link>
+      <pubDate>Wed, 05 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/3.http%E6%8A%A5%E6%96%87%E4%B8%AD%E7%9A%84http%E4%BF%A1%E6%81%AF/</guid>
+      <description>HTTP通信过程包括从客户端发往服务器端的请求及从服务器返回客户端的请求。 1.HTTP报文 用于HTTP协议交互的信息称为HTTP报文。请求端</description>
+    </item>
+    
+    <item>
+      <title>HTTP协议(二)简单的HTTP协议</title>
+      <link>http://blog.dpf114.top/posts/2.%E7%AE%80%E5%8D%95%E7%9A%84http%E5%8D%8F%E8%AE%AE/</link>
+      <pubDate>Sun, 02 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/2.%E7%AE%80%E5%8D%95%E7%9A%84http%E5%8D%8F%E8%AE%AE/</guid>
+      <description>1.HTTP协议用于客户端和服务端之间的通信 HTTP 协议和 TCP/IP 协议族内的其他众多的协议相同，用于客户端和服务器之间的通信。 HTTP通信时一定有一个客</description>
+    </item>
+    
+    <item>
+      <title>HTTP协议(一)了解web及网络基础</title>
+      <link>http://blog.dpf114.top/posts/1%E4%BA%86%E8%A7%A3web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Sat, 01 Aug 2020 22:14:55 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/1%E4%BA%86%E8%A7%A3web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid>
+      <description>1.使用HTTP协议访问Web 你知道当我们在网页浏览器(Web browser)的地址栏中输入 URL时，Web 页面是如何呈现的吗? 如上图所示我</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1970 @@
+
+
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="renderer" content="webkit"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<meta name="generator" content="Hugo 0.78.2 with theme icarus"/>
+<meta name="google-site-verification" content="Your googleVerification code"/>
+<meta name="baidu-site-verification" content="Your baiduVerification code"/>
+
+<meta name="author" content="pikachues"/>
+<meta name="description" content="1.什么是跨域请求CROS CROS 的全称是 Cross-Origin Resource Sharing(CROS)，中文译为 跨域资源共享，它是一种机制，它使用附加的HTTP标头来告诉浏览器"/>
+<meta name="keywords" content=""/>
+
+<title>HTTP跨域请求 - eRunn&#39;s Blog</title>
+
+
+<meta name="application-name" content="eRunn&#39;s Blog" />
+<meta name="msapplication-TileImage" content="img/favicon.ico" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="eRunn&#39;s Blog" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http:\/\/blog.dpf114.top\/posts\/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82\/"
+    },
+    "headline": "eRunn\u0027s Blog",
+    "image": [],
+    "dataPublished": "2020-08-19T22:14:55\u002b08:00",
+    "dataModified": "2020-08-19T22:14:55\u002b08:00",
+    "author": {
+        "@type": "Person",
+        "name": "pikachues"
+    },
+    "description": "1.什么是跨域请求CROS CROS 的全称是 Cross-Origin Resource Sharing(CROS)，中文译为 跨域资源共享，它是一种机制，它使用附加的HTTP标头来告诉浏览器"
+}
+</script>
+
+
+<link rel="canonical" href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/"/>
+<link rel="alternate" href="http://blog.dpf114.top/index.xml" title="eRunn&#39;s Blog" type="application/rss+xml"/>
+<link rel="icon" href="/img/favicon.ico"/>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-light.min.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source&#43;Code&#43;Pro"/>
+
+<link rel="stylesheet" href="/css/default.css"/>
+
+
+    
+    
+        
+        
+        
+        
+
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"/>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"/>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+
+
+
+</head>
+<body class="is-3-column">
+<nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand justify-content-center">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    eRunn&#39;s Blog
+                
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                
+                
+                    <a class="navbar-item "
+                       href="/">主页</a>
+                
+                    <a class="navbar-item "
+                       href="/archives">归档</a>
+                
+                    <a class="navbar-item "
+                       href="/categories">分类</a>
+                
+                    <a class="navbar-item "
+                       href="/tags">标签</a>
+                
+                    <a class="navbar-item "
+                       href="/about">关于</a>
+                
+            </div>
+            <div class="navbar-end">
+                
+                    
+                        <a class="navbar-item" target="_blank" title="github" href="https://github.com/xiaoxiaoshou" rel="noopener">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    
+                
+                
+                    <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                        <i class="fas fa-list-ul"></i>
+                    </a>
+                
+                
+                    <a class="navbar-item search" title="搜索" href="javascript:;">
+                        <i class="fas fa-search"></i>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen">
+                
+    <div class="card">
+    
+    <article class="card-content article" role="article">
+        
+            <div class="article-meta is-size-7 is-uppercase level is-mobile">
+                <div class="level-left">
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-19T22:14:55&#43;08:00"
+                                  title="2020-08-19T22:14:55&#43;08:00">2020-08-19</time>发表
+                        </span>
+                    
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-19T22:14:55&#43;08:00"
+                                  title="2020-08-19T22:14:55&#43;08:00">2020-08-19</time>更新
+                        </span>
+                    
+                    
+                    
+                        <span class="level-item">
+                            
+                            <a class="link-muted" href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a>
+                        </span>
+                    
+                    
+                        <span class="level-item">12 分钟读完 (大约5869个字)</span>
+                    
+                    
+                        <span class="level-item" id="busuanzi_container_page_pv">
+                            <span id="busuanzi_value_page_pv">0</span>次访问
+                        </span>
+                    
+                </div>
+            </div>
+        
+        <h1 class="title is-3 is-size-4-mobile">HTTP跨域请求</h1>
+        <div class="content"><h1 id="1什么是跨域请求cros">1.什么是跨域请求CROS</h1>
+<p>CROS 的全称是 <code>Cross-Origin Resource Sharing(CROS)</code>，中文译为 <code>跨域资源共享</code>，它是一种机制，它使用附加的<a href="https://developer.mozilla.org/en-US/docs/Glossary/HTTP">HTTP</a>标头来告诉浏览器以使Web应用程序在一个<a href="https://developer.mozilla.org/en-US/docs/Glossary/origin">来源</a>运行，并从另一个<a href="https://developer.mozilla.org/en-US/docs/Glossary/origin">来源</a>访问选定的资源。Web应用程序请求其来源（域<code>Origin</code>）不同的资源时，将执行跨域HTTP请求。所以说你要判断一个请求是否需要跨域，你只要判断其是否具有相同的域。</p>
+<!-- more -->
+<h1 id="2-origin">2. Origin</h1>
+<p>Web 概念中<code>域(Origin)</code> 的内容由<code>scheme(protocol) - 协议</code>，<code>host(domain) - 主机</code>和用于访问它的 URL <code>port - 端口</code>定义。仅仅当 scheme 、host、port 都匹配时，两个对象才有相同的来源。这种协议相同，域名相同，端口相同的安全策略也被称为 <code>同源策略（Same Origin Policy)</code>。某些操作仅限于具有相同来源的内容，可以使用 CORS 取消此限制。</p>
+<ul>
+<li>下面是跨域问题的例子，看看你是否清楚什么是跨域了</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">(</span>1<span class="o">)</span> http://example.com/app1/index.html
+<span class="o">(</span>2<span class="o">)</span> http://example.com/app2/index.html
+</code></pre></td></tr></table>
+</div>
+</div><p>上面这两个 URL 是否具有跨域问题呢？</p>
+<p>上面两个 URL 是不具有跨域问题的，因为这两个 URL 具有相同的<code>协议(scheme)</code>和<code>主机(host)</code></p>
+<ul>
+<li>那么下面这两个是否具有跨域问题呢？</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">http://Example.com:80
+http://example.com
+</code></pre></td></tr></table>
+</div>
+</div><p>这两个 URL 也不具有跨域问题，为什么不具有，端口不一样啊。其实它们两个端口是一样的。</p>
+<p>或许你会认为这两个 URL 是不一样的，放心，关于一样不一样的论据我给你抛出来了</p>
+<blockquote>
+<p>协议和域名部分是不区分大小写的，但是路径部分则根据服务器平台而定。Windows 和 Mac OS X 系统是不区分大小写的，而采用UNIX和Linux系的服务器系统是区分大小写的，</p>
+</blockquote>
+<p>也就是说上面的 <code>Example.com</code> 和 <code>example.com</code> 其实是一个网址，并且由于两个地址具有相同的 scheme 和 host ，默认情况下服务器通过端口80传递 HTTP 内容，所以上面这两个地址也是相同的。</p>
+<ul>
+<li>下面这两个 URL 地址是否具有跨域问题？</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">http://example.com/app1
+https://example.com/app2
+</code></pre></td></tr></table>
+</div>
+</div><p>这两个 URL 的 scheme 不同，所以这两个 URL 具有跨域问题</p>
+<ul>
+<li>再看下面这三个 URL 是否具有跨域问题</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">http://example.com
+http://www.example.com
+http://myapp.example.com
+</code></pre></td></tr></table>
+</div>
+</div><p>这三个 URL 也是具有跨域问题的，因为它们隶属于不通服务器的主机 host。</p>
+<ul>
+<li>下面这两个 URL 是否具有跨域问题</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">http://example.com
+http://example.com:8080
+</code></pre></td></tr></table>
+</div>
+</div><p>这两个 URL 也是具有跨域问题，因为这两个 URL 的默认端口不一样。</p>
+<h1 id="3同源策略">3.同源策略</h1>
+<p>处于安全的因素，浏览器限制了从脚本发起跨域的 HTTP 请求。 <code>XMLHttpRequest</code> 和其他 <code>Fetch 接口</code> 会遵循 <code>同源策略(same-origin policy)</code>。也就是说使用这些 API 的应用程序想要请求相同的资源，那么他们应该具有相同的来源，除非来自其他来源的响应包括正确的 CORS 标头也可以。</p>
+<p>同源策略是一种很重要的安全策略，它限制了从一个来源加载的文档或脚本如何与另一个来源的资源进行交互。 它有助于隔离潜在的恶意文档，减少可能的攻击媒介。</p>
+<p>我们上面提到，如果两个 URL 具有相同的协议、主机和端口号（如果指定）的话，那么两个 URL 具有相同的来源。下面有一些实例，你判断一下是不是具有相同的来源</p>
+<p>目标来源 <code>http://store.company.com/dir/page.html</code></p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Outcome</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://store.company.com/dir2/other.html">http://store.company.com/dir2&hellip;</a></td>
+<td>相同来源</td>
+<td>只有path不同</td>
+</tr>
+<tr>
+<td><a href="http://store.company.com/dir/inner/another.html">http://store.company.com/dir/&hellip;</a></td>
+<td>相同来源</td>
+<td>只有path不同</td>
+</tr>
+<tr>
+<td><a href="https://store.company.com/page.html">https://store.company.com/pag&hellip;</a></td>
+<td>不同来源</td>
+<td>协议不通</td>
+</tr>
+<tr>
+<td><a href="http://store.company.com/">http://store.company.com</a>:81/dir/page.html</td>
+<td>不同来源</td>
+<td>默认端口不同</td>
+</tr>
+<tr>
+<td><a href="http://news.company.com/dir/page.html">http://news.company.com/dir/p&hellip;</a></td>
+<td>不同来源</td>
+<td>主机不同</td>
+</tr>
+</tbody>
+</table>
+<p>现在我带你认识了两遍不同的源，现在你应该知道如何区分两个 URL 是否属于同一来源了吧！</p>
+<p>好，你现在知道了什么是跨域问题，现在我要问你，哪些请求会产生跨域请求呢？这是我们下面要讨论的问题</p>
+<h1 id="4哪些请求使用cors">4.哪些请求使用CORS？</h1>
+<ol>
+<li>调用 <code>XMLHttpRequest</code></li>
+</ol>
+<p>XMLHttpRequest 是什么？（我是后端程序员，前端不太懂，简单解释下，如果解释的不好，还请前端大佬们不要胖揍我）</p>
+<p>所有的现代浏览器都有一个内置的 <code>XMLHttpReqeust</code> 对象，这个对象可以用于从服务器请求数据。</p>
+<p>XMLHttpReqeust 对于开发人员来说很重要，XMLHttpReqeust 对象可以用来做下面这些事情</p>
+<ul>
+<li>更新网页无需重新刷新页面</li>
+<li>页面加载后从服务器请求数据</li>
+<li>页面加载后从服务端获取数据</li>
+<li>在后台将数据发送到服务器</li>
+</ul>
+<p>使用 XMLHttpRequest(XHR) 对象与服务器进行交互，你可以从 URL 检索数据从而不必刷新整个页面，这使网页可以更新页面的一部分，而不会中断用户的操作。XMLHttpRequest 在 <code>AJAX</code> 异步编程中使用很广泛。</p>
+<ol start="2">
+<li><code> Fetch</code> api。</li>
+</ol>
+<p>Fetch 提供了请求和响应对象（以及其他网络请求）的通用定义。它还提供了相关概念的定义，例如 CORS 和 HTTP Origin 头语义，并在其他地方取代了它们各自的定义。</p>
+<ol>
+<li>Web 字体（用于 CSS 中@ font-face中的跨域字体使用），以便服务器可以部署 TrueType 字体，这些字体只能由允许跨站点加载和使用的网站使用。</li>
+<li>WebGL 纹理</li>
+<li>使用 <code>drawImage()</code> 绘制到画布上的图像/视频帧</li>
+<li>图片的 CSS 形状</li>
+</ol>
+<h1 id="5跨域功能概述">5.跨域功能概述</h1>
+<p>跨域资源共享标准通过添加新的 HTTP 标头来工作，这些标头允许服务器描述允许哪些来源从 Web 浏览器读取信息。另外，对于可能导致服务器数据产生副作用的 HTTP 请求方法（尤其是 GET 或者具有某些 MIME 类型 POST 方法以外 HTTP 方法），该规范要求浏览器<code>预检</code>请求，使用 HTTP OPTIONS 请求方法从服务器请求受支持的方法，然后在服务器<code>批准</code>后发送实际请求。服务器还可以通知客户端是否应与请求一起发送<code>凭据</code>（例如 Cookies 和 HTTP 身份验证）。</p>
+<blockquote>
+<p>CORS故障会导致错误，但是出于安全原因，<em>JavaScript尚无法提供</em>有关错误<em>的详细信息</em>。所有代码都知道发生了错误。确定具体出问题的唯一方法是查看浏览器的控制台以获取详细信息。</p>
+</blockquote>
+<h1 id="6访问控制方案">6.访问控制方案</h1>
+<p>下面跟大家探讨三种方案，这些方案演示了跨域资源共享的工作方式。所有这些示例都使用<a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"><code>XMLHttpRequest</code></a>，可以在任何支持的浏览器中进行跨站点请求。</p>
+<h2 id="61-简单请求">6.1 简单请求</h2>
+<p>有些请求不会触发<code>CORS预检</code>（第二种方案）,“简单请求”是<strong>满足以下所有条件的</strong>请求：</p>
+<ul>
+<li>允许方法：<code>GET</code>、<code>HEAD</code>、<code>POST</code></li>
+<li>除了由用户代理自动设置的标头（例如 Connection、User-Agent 或者在 Fetch 规范中定义为禁止标头名称的其他标头）外，唯一允许手动设置的标头是那些 Fetch 规范将其定义为 <code>CORS安全列出的请求标头</code> ，它们是：
+<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Content-Type（下面会介绍）</li>
+<li>DPR</li>
+<li>Downlink</li>
+<li>Save-Data</li>
+<li>Viewport-Width</li>
+<li>Width</li>
+</ul>
+</li>
+<li>Content-Type 标头的唯一允许的值是
+<ul>
+<li>application/x-www-form-urlencoded</li>
+<li>multipart/form-data</li>
+<li>text/plain</li>
+</ul>
+</li>
+<li>没有在请求中使用的任何 XMLHttpRequestUpload 对象上注册事件侦听器；这些可以使用XMLHttpRequest.upload 属性进行访问。</li>
+<li>请求中未使用 ReadableStream对象。</li>
+</ul>
+<p>例如，假定 web 内容 <code>https://foo.example</code> 想要获取 <code>https://bar.other</code> 域的资源，那么 JavaScript 中的代码可能会像下面这样写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">const <span class="nv">xhr</span> <span class="o">=</span> new XMLHttpRequest<span class="o">()</span><span class="p">;</span>
+const <span class="nv">url</span> <span class="o">=</span> <span class="s1">&#39;https://bar.other/resources/public-data/&#39;</span><span class="p">;</span>
+   
+xhr.open<span class="o">(</span><span class="s1">&#39;GET&#39;</span>, url<span class="o">)</span><span class="p">;</span>
+xhr.onreadystatechange <span class="o">=</span> someHandler<span class="p">;</span>
+xhr.send<span class="o">()</span><span class="p">;</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>这使用 CORS 标头来处理特权，从而在客户端和服务器之间执行某种转换。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200819180613870.png" alt="image-20200819180613870"></p>
+<p>让我们来看看这种情况下浏览器将发送到服务器的内容，并让我们看看服务器如何响应：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">GET /resources/public-data/ HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 <span class="o">(</span>Macintosh<span class="p">;</span> Intel Mac OS X 10.14<span class="p">;</span> rv:71.0<span class="o">)</span> Gecko/20100101 Firefox/71.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.9,*/*<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.8
+Accept-Language: en-us,en<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.5
+Accept-Encoding: gzip,deflate
+Connection: keep-alive
+Origin: https://foo.example
+</code></pre></td></tr></table>
+</div>
+</div><p>注意请求的标头 Origin ，它表明调用来自于 <code>https://foo.example</code>。让我们看看服务器是如何响应的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">HTTP/1.1 <span class="m">200</span> OK
+Date: Mon, <span class="m">01</span> Dec <span class="m">2008</span> 00:23:53 GMT
+Server: Apache/2
+Access-Control-Allow-Origin: *
+Keep-Alive: <span class="nv">timeout</span><span class="o">=</span>2, <span class="nv">max</span><span class="o">=</span><span class="m">100</span>
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+Content-Type: application/xml
+
+<span class="o">[</span>…XML Data…<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>服务端发送 <code>Access-Control-Allow-Origin</code> 作为响应。使用 <code>Origin</code> 标头和 <code>Access-Control-Allow-Origin</code> 展示了最简单的访问控制协议。在这个事例中，服务端使用 <code>Access-Control-Allow-Origin</code> 作为响应，也就说明该资源可以被任何域访问。</p>
+<p>如果位于<code>https://bar.other</code>的资源所有者希望将对资源的访问限制为仅来自<code>https://foo.example</code>的请求，他们应该发送如下响应</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Allow-Origin: https://foo.example
+</code></pre></td></tr></table>
+</div>
+</div><p>现在除了 <code>https://foo.example</code> 之外的任何域都无法以跨域方式访问到 <code>https://bar.other</code> 的资源。</p>
+<h2 id="62--预检请求">6.2  预检请求</h2>
+<p>和上面探讨的简单请求不同，<code>预检</code>请求首先通过 <code>OPTIONS</code> 方法向另一个域上的资源发送 HTTP 请求，用来确定实际请求是否可以安全的发送（是否能够接收对应URL，接收的请求方法有哪些，请求头&hellip;）。跨站点这样被<code>预检</code>，因为它们可能会影响用户数据。</p>
+<p>下面是一个预检事例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">const <span class="nv">xhr</span> <span class="o">=</span> new XMLHttpRequest<span class="o">()</span><span class="p">;</span>
+xhr.open<span class="o">(</span><span class="s1">&#39;POST&#39;</span>, <span class="s1">&#39;https://bar.other/resources/post-here/&#39;</span><span class="o">)</span><span class="p">;</span>
+xhr.setRequestHeader<span class="o">(</span><span class="s1">&#39;X-PINGOTHER&#39;</span>, <span class="s1">&#39;pingpong&#39;</span><span class="o">)</span><span class="p">;</span>
+xhr.setRequestHeader<span class="o">(</span><span class="s1">&#39;Content-Type&#39;</span>, <span class="s1">&#39;application/xml&#39;</span><span class="o">)</span><span class="p">;</span>
+xhr.onreadystatechange <span class="o">=</span> handler<span class="p">;</span>
+xhr.send<span class="o">(</span><span class="s1">&#39;&lt;person&gt;&lt;name&gt;Arun&lt;/name&gt;&lt;/person&gt;&#39;</span><span class="o">)</span><span class="p">;</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的事例创建了一个 XML 请求体用来和 POST 请求一起发送。此外，设置了非标准请求头 <code>X-PINGOTHER</code> ，这个标头不是 HTTP/1.1 的一部分，但通常对 Web 程序很有用。由于请求的 <code>Content-Type</code> 使用 <code>application/xml</code>，并且设置了自定义标头，因此该请求被<code>预检</code>。如下图所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200819181411262.png" alt="image-20200819181411262"></p>
+<p>下面我们来看一下完整的客户端/服务器交互，首先是预检请求/响应</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">OPTIONS /doc HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 <span class="o">(</span>Macintosh<span class="p">;</span> Intel Mac OS X 10.14<span class="p">;</span> rv:71.0<span class="o">)</span> Gecko/20100101 Firefox/71.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.9,*/*<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.8
+Accept-Language: en-us,en<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.5
+Accept-Encoding: gzip,deflate
+Connection: keep-alive
+Origin: http://foo.example
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: X-PINGOTHER, Content-Type
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">HTTP/1.1 <span class="m">204</span> No Content
+Date: Mon, <span class="m">01</span> Dec <span class="m">2008</span> 01:15:39 GMT
+Server: Apache/2
+Access-Control-Allow-Origin: https://foo.example
+Access-Control-Allow-Methods: POST, GET, OPTIONS
+Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+Access-Control-Max-Age: <span class="m">86400</span>
+Vary: Accept-Encoding, Origin
+Keep-Alive: <span class="nv">timeout</span><span class="o">=</span>2, <span class="nv">max</span><span class="o">=</span><span class="m">100</span>
+Connection: Keep-Alive
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的1 -11 行代表预检请求，预检请求使用 <code>OPYIIONS</code> 方法，浏览器根据上面的 JavaScript 代码段所使用的请求参数确定是否需要发送此请求，以便服务器可以响应是否可以使用实际请求参数发送请求。OPTIONS 是一种 HTTP / 1.1方法，用于确定来自服务器的更多信息，并且是一种安全的方法，这意味着它不能用于更改资源。请注意，与 OPTIONS 请求一起，还发送了另外两个请求标头如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Request-Method: POST
+Access-Control-Request-Headers: X-PINGOTHER, Content-Type
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Access-Control-Request-Method</code> 标头作为预检请求的一部分通知服务器，当发送实际请求时，将使用<code>POST</code> 请求方法发送该请求。</p>
+<p><code>Access-Control-Request-Headers</code> 标头通知服务器，当发送请求时，它将与X-PINGOTHER 和 Content-Type 自定义标头一起发送。服务器可以确定这种情况下是否接受请求。</p>
+<p>下面的 1 - 10行是服务器发回的响应，表示<code>POST</code> 请求和 <code>X-PINGOTHER</code> 是可以接受的，我们着重看一下下面这几行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Allow-Origin: http://foo.example
+Access-Control-Allow-Methods: POST, GET, OPTIONS
+Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+Access-Control-Max-Age: <span class="m">86400</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>服务器完成响应表明源 <code>http://foo.example</code> 是可以接受的 URL，能够允许 <code>POST、GET、OPTIONS</code> 进行请求，允许自定义标头 <code>X-PINGOTHER, Content-Type</code>。最后，<code>Access-Control-Max-Age</code> 以秒为单位给出一个值，这个值表示对预检请求的响应可以缓存多长时间，在此期间内无需发送其他预检请求。在这种情况下，86400秒是24小时。请注意，每个浏览器都有一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age">最大内部值</a>，当<code>Access-Control-Max-Age</code>较大时，该<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age">内部值</a>优先。</p>
+<p>完成预检请求后，将发送实际请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">POST /doc HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 <span class="o">(</span>Macintosh<span class="p">;</span> Intel Mac OS X 10.14<span class="p">;</span> rv:71.0<span class="o">)</span> Gecko/20100101 Firefox/71.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.9,*/*<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.8
+Accept-Language: en-us,en<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.5
+Accept-Encoding: gzip,deflate
+Connection: keep-alive
+X-PINGOTHER: pingpong
+Content-Type: text/xml<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+Referer: https://foo.example/examples/preflightInvocation.html
+Content-Length: <span class="m">55</span>
+Origin: https://foo.example
+Pragma: no-cache
+Cache-Control: no-cache
+
+&lt;person&gt;&lt;name&gt;Arun&lt;/name&gt;&lt;/person&gt;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">HTTP/1.1 <span class="m">200</span> OK
+Date: Mon, <span class="m">01</span> Dec <span class="m">2008</span> 01:15:40 GMT
+Server: Apache/2
+Access-Control-Allow-Origin: https://foo.example
+Vary: Accept-Encoding, Origin
+Content-Encoding: gzip
+Content-Length: <span class="m">235</span>
+Keep-Alive: <span class="nv">timeout</span><span class="o">=</span>2, <span class="nv">max</span><span class="o">=</span><span class="m">99</span>
+Connection: Keep-Alive
+Content-Type: text/plain
+
+<span class="o">[</span>Some XML payload<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="63-带凭证的请求">6.3 带凭证的请求</h2>
+<p>XMLHttpRequest 或 Fetch 和 CORS 最有趣的功能就是能够发出知道 HTTP Cookie 和 HTTP 身份验证的 <code>凭证</code> 请求。默认情况下，在跨站点 XMLHttpRequest 或 Fetch 调用中，浏览器将不发送凭据。调用 XMLHttpRequest对象或 Request 构造函数时必须设置一个特定的标志。</p>
+<p>在下面这个例子中，最初从 <code>http://foo.example</code> 加载的内容对设置了 Cookies 的 <code>http://bar.other</code> 上的资源进行了简单的 GET 请求， foo.example 上可能的代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">const <span class="nv">invocation</span> <span class="o">=</span> new XMLHttpRequest<span class="o">()</span><span class="p">;</span>
+const <span class="nv">url</span> <span class="o">=</span> <span class="s1">&#39;http://bar.other/resources/credentialed-content/&#39;</span><span class="p">;</span>
+    
+<span class="k">function</span> callOtherDomain<span class="o">()</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span>invocation<span class="o">)</span> <span class="o">{</span>
+    invocation.open<span class="o">(</span><span class="s1">&#39;GET&#39;</span>, url, <span class="nb">true</span><span class="o">)</span><span class="p">;</span>
+    invocation.withCredentials <span class="o">=</span> true<span class="p">;</span>
+    invocation.onreadystatechange <span class="o">=</span> handler<span class="p">;</span>
+    invocation.send<span class="o">()</span><span class="p">;</span> 
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第7行显示 XMLHttpRequest 上的标志，必须设置该标志才能使用 Cookie 进行调用。默认情况下，调用是不在使用 Cookie 的情况下进行的。由于这是一个简单的 GET 请求，因此不会进行预检，但是浏览器将拒绝任何没有 Access-Control-Allow-Credentials 的响应：标头为true，指的是响应不会返回 web 页面的内容。</p>
+<p>上面的请求用下图可以表示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200819204816443.png" alt="image-20200819204816443"></p>
+<p>这是客户端和服务器之间的示例交换：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">GET /resources/access-control-with-credentials/ HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 <span class="o">(</span>Macintosh<span class="p">;</span> Intel Mac OS X 10.14<span class="p">;</span> rv:71.0<span class="o">)</span> Gecko/20100101 Firefox/71.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.9,*/*<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.8
+Accept-Language: en-us,en<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.5
+Accept-Encoding: gzip,deflate
+Connection: keep-alive
+Referer: http://foo.example/examples/credential.html
+Origin: http://foo.example
+Cookie: <span class="nv">pageAccess</span><span class="o">=</span><span class="m">2</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">HTTP/1.1 <span class="m">200</span> OK
+Date: Mon, <span class="m">01</span> Dec <span class="m">2008</span> 01:34:52 GMT
+Server: Apache/2
+Access-Control-Allow-Origin: https://foo.example
+Access-Control-Allow-Credentials: <span class="nb">true</span>
+Cache-Control: no-cache
+Pragma: no-cache
+Set-Cookie: <span class="nv">pageAccess</span><span class="o">=</span>3<span class="p">;</span> <span class="nv">expires</span><span class="o">=</span>Wed, 31-Dec-2008 01:34:53 GMT
+Vary: Accept-Encoding, Origin
+Content-Encoding: gzip
+Content-Length: <span class="m">106</span>
+Keep-Alive: <span class="nv">timeout</span><span class="o">=</span>2, <span class="nv">max</span><span class="o">=</span><span class="m">100</span>
+Connection: Keep-Alive
+Content-Type: text/plain
+
+
+<span class="o">[</span>text/plain payload<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面第10行包含指向<code>http://bar.other</code> 上的内容 Cookie，但是如果 bar.other 没有以 <code>Access-Control-Allow-Credentials:true</code> 响应（下面第五行），响应将被忽略，并且不能使用网站返回的内容。</p>
+<p><strong>请求凭证和通配符</strong></p>
+<p>当回应凭证请求时，服务器必须在 <code>Access-Control-Allow-Credentials</code> 中指定一个来源，而不能直接写<code>*</code> 通配符</p>
+<p>因为上面示例代码中的请求标头包含 Cookie 标头，如果 <code>Access-Control-Allow-Credentials</code> 中是指定的通配符 <code>*</code> 的话，请求会失败。</p>
+<p>注意上面示例中的 <code>Set-Cookie</code> 响应标头还设置了另外一个值，如果发生故障，将引发异常（取决于所使用的API）。</p>
+<h1 id="7与跨域相关的请求头">7.与跨域相关的请求头</h1>
+<p>下面会列出一些服务器跨域共享规范定义的 HTTP 标头，上面简单概述了一下，现在一起来认识一下，主要会介绍下面这些</p>
+<ul>
+<li>Access-Control-Allow-Origin</li>
+<li>Access-Control-Allow-Credentials</li>
+<li>Access-Control-Allow-Headers</li>
+<li>Access-Control-Allow-Methods</li>
+<li>Access-Control-Expose-Headers</li>
+<li>Access-Control-Max-Age</li>
+<li>Access-Control-Request-Headers</li>
+<li>Access-Control-Request-Method</li>
+<li>Origin</li>
+</ul>
+<h4 id="access-control-allow-origin">Access-Control-Allow-Origin</h4>
+<p><code>Access-Control-Allow-Origin</code> 是 HTTP 响应标头，指示响应是否能够和给定的源共享资源。Access-Control-Allow-Origin 指定单个资源会告诉浏览器允许指定来源访问资源。对于没有凭据的请求 <code>*</code>通配符，告诉浏览器允许任何源访问资源。</p>
+<p>例如，如果要允许源 <code>https://mozilla.org</code> 的代码访问资源，可以使用如下的指定方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Allow-Origin: https://mozilla.org
+Vary: Origin
+</code></pre></td></tr></table>
+</div>
+</div><p>如果服务器指定单个来源而不是<code>*</code>通配符，则服务器还应在 Vary 响应标头中包含该来源。</p>
+<h4 id="access-control-allow-credentials">Access-Control-Allow-Credentials</h4>
+<p><code>Access-Control-Allow-Credentials</code> 是 HTTP 的响应标头，这个标头告诉浏览器，当包含凭证请求（Request.credentials）时是否将响应公开给前端 JavaScript 代码。</p>
+<p>这时候你会问到 <code>Request.credentials</code> 是什么玩意？不要着急，来给你看一下，首先来看 Request 是什么玩意，</p>
+<p>实际上，Request 是 Fetch API 的一类接口代表着资源请求。一般创建 Request 对象有两种方式</p>
+<ul>
+<li>使用 Request() 构造函数创建一个 Request 对象</li>
+<li>还可以通过 FetchEvent.request api 操作来创建</li>
+</ul>
+<p>再来说下 Request.credentials 是什么意思，Request 接口的凭据只读属性指示在跨域请求的情况下，用户代理是否应从其他域发送 cookie。</p>
+<p>当发送的是凭证模式的请求包含 （Request.credentials）时，如果 Access-Control-Allow-Credentials 值为 true，浏览器将仅向前端 JavaScript 代码公开响应。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Allow-Credentials: <span class="nb">true</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>凭证一般包括 <strong>cookie、认证头和 TLS 客户端证书</strong></p>
+<blockquote>
+<p>当用作对预检请求响应的一部分时，这表明是否可以使用凭据发出实际请求。注意简单的 <code>GET</code> 请求不会进行预检。</p>
+</blockquote>
+<p>可以参考一个实际的例子 <a href="https://www.jianshu.com/p/ea485e5665b3">https://www.jianshu.com/p/ea4&hellip;</a></p>
+<h4 id="access-control-allow-headers">Access-Control-Allow-Headers</h4>
+<p><code>Access-Control-Allow-Headers</code> 是一个响应标头，这个标头用来响应预检请求，它发出实际请求时可以使用哪些HTTP标头。</p>
+<p><strong>示例</strong></p>
+<ul>
+<li>自定义标头</li>
+</ul>
+<p>这是 Access-Control-Allow-Headers 标头的示例。它表明除了像 CROS 安全列出的请求标头外，对服务器的 CROS 请求还支持名为 <code>X-Custom-Header</code> 的自定义标头。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Allow-Headers: X-Custom-Header
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>多个标头</li>
+</ul>
+<p>这个例子展示了 Access-Control-Allow-Headers 如何使用多个标头</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Allow-Headers: X-Custom-Header, Upgrade-Insecure-Requests
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>绕过其他限制</li>
+</ul>
+<p>尽管始终允许使用 CORS 安全列出的请求标头，并且通常不需要在 Access-Control-Allow-Headers 中列出这些标头，但是无论如何列出它们都将绕开适用的其他限制。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Allow-Headers: Accept
+</code></pre></td></tr></table>
+</div>
+</div><p>这里你可能会有疑问，哪些是 CORS 列出的安全标头？（别嫌累，就是这么麻烦）</p>
+<p>有下面这些 <strong>Accep、Accept-Language、Content-Language、Content-Type</strong> ，当且仅当包含这些标头时，无需在 CORS 上下文中发送预检请求。</p>
+<h4 id="access-control-allow-methods">Access-Control-Allow-Methods</h4>
+<p><code>Access-Control-Allow-Methods</code> 也是响应标头，它指定了哪些访问资源的方法可以使用预检请求。例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Allow-Methods: POST, GET, OPTIONS
+Access-Control-Allow-Methods: *
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="access-control-expose-headers">Access-Control-Expose-Headers</h4>
+<p>Zs</p>
+<ul>
+<li>Cache-Control</li>
+<li>Content-Language</li>
+<li>Content-Type</li>
+<li>Expires</li>
+<li>Last-Modified</li>
+<li>Pragma</li>
+</ul>
+<p>如果希望客户端能够访问其他标头，则必须使用 Access-Control-Expose-Headers 标头列出它们。下面是示例</p>
+<p>要公开非 CORS 安全列出的请求标头，可以像如下这样指定</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Expose-Headers: Content-Length
+</code></pre></td></tr></table>
+</div>
+</div><p>要另外公开自定义标头，例如 X-Kuma-Revision，可以指定多个标头，并用逗号分隔</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Expose-Headers: Content-Length, X-Kuma-Revision
+</code></pre></td></tr></table>
+</div>
+</div><p>在不是凭证请求中，你还可以使用通配符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Expose-Headers: *
+</code></pre></td></tr></table>
+</div>
+</div><p>但是，这不会通配 <code>Authorization</code> 标头，因此如果需要公开它，则需要明确列出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Expose-Headers: *, Authorization
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="access-control-max-age">Access-Control-Max-Age</h4>
+<p>Access-Control-Max-Age 响应头表示预检请求的结果可以缓存多长时间，例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Max-Age: <span class="m">600</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>表示预检请求可以缓存10分钟</p>
+<h4 id="access-control-request-headers">Access-Control-Request-Headers</h4>
+<p>浏览器在发出预检请求时使用 Access-Control-Request-Headers 请求标头，使服务器知道在发出实际请求时客户端可能发送的 HTTP 标头。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Request-Headers: X-PINGOTHER, Content-Type
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="access-control-request-method">Access-Control-Request-Method</h4>
+<p>同样的，Access-Control-Request-Method 响应标头告诉服务器发出预检请求时将使用那种 HTTP 方法。此标头是必需的，<strong>因为预检请求始终是 OPTIONS</strong>，并且使用的方法与实际请求不同。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Access-Control-Request-Method: POST
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="origin">Origin</h4>
+<p>Origin 请求标头表明匹配的来源，它不包含任何信息，仅仅包含服务器名称，它与 CORS 请求以及 POST 请求一起发送，它类似于 <code>Referer</code> 标头，但与此标头不同，它没有公开整个路径。例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Origin: https://developer.mozilla.org
+</code></pre></td></tr></table>
+</div>
+</div></div>
+        
+            <div class="article-licensing box">
+    <div class="licensing-title">
+        <p>HTTP跨域请求</p>
+        <p><a href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/</a></p>
+    </div>
+    <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>作者</h6>
+                        <p>pikachues</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>发布于</h6>
+                        <p>2020-08-19</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>更新于</h6>
+                        <p>2020-08-19</p>
+                    </div>
+                </div>
+            
+            <div class="level-item is-narrow">
+                <div>
+                    <h6>许可协议</h6>
+                    <p>
+                        
+                            <a class="" title="CC BY-NC 4.0" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">
+                                CC BY-NC 4.0
+                            </a>
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        
+            <div class="article-tags size-small mb-4">
+                <span class="mr-2">#</span><a class="link-muted mr-2" href="/tags/HTTP" rel="tag">HTTP</a></div>
+        
+        
+
+    </article>
+</div>
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+                
+
+    <a class="button donate" data-type="alipay">
+        <span class="icon is-small">
+            <i class="fab fa-alipay"></i>
+        </span>
+        <span>支付宝</span>
+        <span class="qrcode">
+            <img src="/img/alipay.png" alt="支付宝">
+        </span>
+    </a>
+
+
+                
+            
+                
+                
+
+    <a class="button donate" data-type="wechat">
+        <span class="icon is-small">
+            <i class="fab fa-weixin"></i>
+        </span>
+        <span>微信</span>
+        <span class="qrcode">
+            <img src="/img/wechat.png" alt="微信">
+        </span>
+    </a>
+
+
+                
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+    <nav class="post-navigation mt-4 level is-mobile">
+        
+            <div class="level-start">
+                <a class="article-nav-prev level level-item link-muted" href="http://blog.dpf114.top/posts/http%E8%AE%A4%E8%AF%81/">
+                    <i class="level-item fas fa-chevron-left"></i>
+                    <span class="level-item">HTTP认证</span>
+                </a>
+            </div>
+        
+        
+            <div class="level-end">
+                <a class="article-nav-next level level-item link-muted" href="http://blog.dpf114.top/posts/6.http%E9%A6%96%E9%83%A8%E8%AF%B7%E6%B1%82%E6%A0%87%E5%A4%B4/">
+                    <span class="level-item">HTTP协议(六)HTTP首部(请求标头)</span>
+                    <i class="level-item fas fa-chevron-right"></i>
+                </a>
+            </div>
+        
+    </nav>
+
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="title is-5">评论</h3>
+        
+        
+
+
+    
+    <div id="valine-thread" class="content"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@1.4.14/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+          el: '#valine-thread',
+          app_id: "GeG3Ob5TvK8CJKXmJI8hc7fA-MdYXbMMI",
+          app_key: "ePVOGzkm0LD03BtB3UM4pbEp",
+          placeholder: "发表你的意见，让我们一起交流，共同提高..."
+        });
+    </script>
+
+
+        
+    </div>
+</div>
+
+
+
+
+            </div>
+            
+
+    <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1 is-sticky">
+        
+            
+            
+                
+                
+<div class="card widget" data-type="profile">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered flex-shrink-1">
+                <div>
+                    <figure class="image is-128x128 mx-auto mb-2">
+                        <img class="avatar is-rounded"
+                             src="/img/pikachues.jpg"
+                             alt="Pikachues">
+                    </figure>
+                    <p class="title is-size-4 is-block" style="line-height: inherit">Pikachues</p>
+                    <p class="is-size-6 is-block">Better Luck Tomorrow</p>
+                    
+                        <p class="is-size-6 is-flex justify-content-center">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>China</span>
+                        </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">文章</p>
+                    <a href="/archives"><p class="title">16</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">分类</p>
+                    <a href="/categories"><p class="title">4</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">标签</p>
+                    <a href="/tags"><p class="title">8</p></a>
+                </div>
+            </div>
+        </nav>
+        
+            <div class="level">
+                <a class="level-item button is-primary is-rounded" href="https://github.com/xiaoxiaoshou"
+                   target="_blank" rel="noopener">关注我</a>
+            </div>
+        
+        <div class="level is-mobile">
+            
+                <a class="level-item button is-transparent is-marginless" title="Mail" href="mailto:446933040@qq.com"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            
+                <a class="level-item button is-transparent is-marginless" title="RSS" href="/index.xml"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-rss"></i>
+                </a>
+            
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+    <div class="card widget" id="toc" data-type="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">目录</h3>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#61-简单请求">6.1 简单请求</a></li>
+    <li><a href="#62--预检请求">6.2  预检请求</a></li>
+    <li><a href="#63-带凭证的请求">6.3 带凭证的请求</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#access-control-allow-origin">Access-Control-Allow-Origin</a></li>
+            <li><a href="#access-control-allow-credentials">Access-Control-Allow-Credentials</a></li>
+            <li><a href="#access-control-allow-headers">Access-Control-Allow-Headers</a></li>
+            <li><a href="#access-control-allow-methods">Access-Control-Allow-Methods</a></li>
+            <li><a href="#access-control-expose-headers">Access-Control-Expose-Headers</a></li>
+            <li><a href="#access-control-max-age">Access-Control-Max-Age</a></li>
+            <li><a href="#access-control-request-headers">Access-Control-Request-Headers</a></li>
+            <li><a href="#access-control-request-method">Access-Control-Request-Method</a></li>
+            <li><a href="#origin">Origin</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </div>
+        </div>
+        <style>
+        .menu-list > li > a.is-active + .menu-list {display: block;}
+        .menu-list > li > a + .menu-list {display: none;}
+        </style>
+        <script type="text/javascript" src="/js/toc.js" defer></script>
+    </div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="categories">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">分类</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/http%e5%8d%8f%e8%ae%ae/">
+                            <span class="level-start">
+                                <span class="level-item">http协议</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/python/">
+                            <span class="level-start">
+                                <span class="level-item">python</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/ssm/">
+                            <span class="level-start">
+                                <span class="level-item">ssm</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/%e7%bd%91%e7%bb%9c/">
+                            <span class="level-start">
+                                <span class="level-item">网络</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="tags">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">标签</h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/http/">
+                            <span class="tag">http</span>
+                            <span class="tag">11</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/https/">
+                            <span class="tag">https</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/htts/">
+                            <span class="tag">htts</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/jwt/">
+                            <span class="tag">jwt</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/python%e5%9f%ba%e7%a1%80/">
+                            <span class="tag">python基础</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/springmvc/">
+                            <span class="tag">springmvc</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e4%b8%b4%e6%97%b6cookies/">
+                            <span class="tag">临时cookies</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e5%b1%80%e5%9f%9f%e7%bd%91/">
+                            <span class="tag">局域网</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="recent-posts">
+    <div class="card-content">
+        <h3 class="menu-label">最新文章</h3>
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-25T22:14:55&#43;08:00'>2020-08-25</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/">与HTTP相关的组件</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/">jwt和Session cookies（临时cookies）</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/cookie%E5%92%8Csession/">Cookie和Session</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-22T22:14:55&#43;08:00'>2020-08-22</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/https/">HTTPS</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-19T22:14:55&#43;08:00'>2020-08-19</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">HTTP跨域请求</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="archives">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">归档</h3>
+            <ul class="menu-list">
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-08">
+                            <span class="level-start">
+                                <span class="level-item">2020年 8月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-03">
+                            <span class="level-start">
+                                <span class="level-item">2020年 3月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">3</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="links">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">链接</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="https://gohugo.io" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">Hugo</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    gohugo.io
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="https://blog.csdn.net/qq_41262903" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">CSDN</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    blog.csdn.net
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+        
+            
+            
+        
+        
+            <div class="column-right-shadow is-hidden-widescreen "></div>
+        
+    </div>
+
+
+    <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 ">
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </div>
+
+
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start">
+                
+                <a class="footer-logo is-block mb-2" href="/">
+                    
+                        eRunn&#39;s Blog
+                    
+                </a>
+
+                <p class="is-size-7">
+                    <span>&copy; 2020 pikachues</span>&nbsp;&nbsp;Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>&nbsp;&&nbsp;<a href="https://github.com/iMaple/hugo-theme-icarus/" target="_blank" rel="noopener">Icarus</a>
+
+                    
+                    <br>
+                    <span>
+                        <img style="width: 60px;height: 21px;" src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/ypy_logo5.png">
+                        <a href="https://console.upyun.com/register/?invite=rknj9xrGD">提供加速服务</a>
+                    </span>
+                    <br>
+                    <span>
+                        <img src="/img/icp.png" alt="">
+                        <a href="https://beian.miit.gov.cn/">湘ICP备2020018013号</a>
+                    </span>
+                </p>
+
+            </div>
+            <div class="level-end">
+                <div class="field has-addons">
+                    
+                        <p class="control">
+                            <a class="button is-transparent is-large" title="Creative Commons" href="https://creativecommons.org/" target="_blank" rel="noopener">
+                                <i class="fab fa-creative-commons"></i>
+                            </a>
+                        </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script>moment.locale("zh-cn");</script>
+
+<script>
+    var IcarusThemeSettings = {
+      article: {
+        highlight: {
+          clipboard:  true ,
+          fold: "unfolded"
+        }
+      },
+      toc: {
+        index:  true 
+      }
+    };
+</script>
+
+<script type="text/javascript" src="/js/column.js"></script>
+
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="/js/animation.js"></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <a id="back-to-top" title="回到顶端" href="javascript:;">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+    <script type="text/javascript" src="/js/back2top.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script>
+    <script>
+    window.addEventListener('load', () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static:  false ,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: '#edeff5',
+            text: '#838391'
+          },
+          button: {
+            background: '#4b81e8'
+          },
+        },
+      });
+    });
+    </script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      'HTML-CSS': {matchFontHeight: false},
+      SVG: {matchFontHeight: false},
+      CommonHTML: {matchFontHeight: false},
+      tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <div id="outdated">
+        <h6>Your browser is out-of-date!</h6>
+        <p>Update your browser to view this website correctly.&nbsp;
+            <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a>
+        </p>
+        <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+          outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'object-fit'
+          });
+        });
+    </script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" async></script>
+
+
+        
+    
+
+    
+    
+
+
+<script type="text/javascript" src="/js/main.js" defer></script>
+
+
+    
+    <div class="searchbox">
+    <div class="searchbox-container">
+        <div class="searchbox-header">
+            <div class="searchbox-input-container">
+                <input class="searchbox-input" type="text" placeholder="想要查找什么..."/>
+            </div>
+            <a class="searchbox-close" href="javascript:;">×</a>
+        </div>
+        <div class="searchbox-body"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/insight.js" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      loadInsight(
+        {contentUrl: '/index.json'},
+        {
+          hint: "想要查找什么...",
+          untitled: "(无标题)",
+          posts: "文章",
+          pages: "页面",
+          categories: "分类",
+          tags: "标签"
+        }
+      );
+    });
+</script>
+
+    
+
+
+</body>
+</html>

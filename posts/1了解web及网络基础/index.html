@@ -1,0 +1,1355 @@
+
+
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="renderer" content="webkit"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<meta name="generator" content="Hugo 0.78.2 with theme icarus"/>
+<meta name="google-site-verification" content="Your googleVerification code"/>
+<meta name="baidu-site-verification" content="Your baiduVerification code"/>
+
+<meta name="author" content="pikachues"/>
+<meta name="description" content="1.使用HTTP协议访问Web 你知道当我们在网页浏览器(Web browser)的地址栏中输入 URL时，Web 页面是如何呈现的吗? 如上图所示我"/>
+<meta name="keywords" content=""/>
+
+<title>HTTP协议(一)了解web及网络基础 - eRunn&#39;s Blog</title>
+
+
+<meta name="application-name" content="eRunn&#39;s Blog" />
+<meta name="msapplication-TileImage" content="img/favicon.ico" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="eRunn&#39;s Blog" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http:\/\/blog.dpf114.top\/posts\/1%E4%BA%86%E8%A7%A3web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80\/"
+    },
+    "headline": "eRunn\u0027s Blog",
+    "image": [],
+    "dataPublished": "2020-08-01T22:14:55\u002b08:00",
+    "dataModified": "2020-08-01T22:14:55\u002b08:00",
+    "author": {
+        "@type": "Person",
+        "name": "pikachues"
+    },
+    "description": "1.使用HTTP协议访问Web 你知道当我们在网页浏览器(Web browser)的地址栏中输入 URL时，Web 页面是如何呈现的吗? 如上图所示我"
+}
+</script>
+
+
+<link rel="canonical" href="http://blog.dpf114.top/posts/1%E4%BA%86%E8%A7%A3web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/"/>
+<link rel="alternate" href="http://blog.dpf114.top/index.xml" title="eRunn&#39;s Blog" type="application/rss+xml"/>
+<link rel="icon" href="/img/favicon.ico"/>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-light.min.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source&#43;Code&#43;Pro"/>
+
+<link rel="stylesheet" href="/css/default.css"/>
+
+
+    
+    
+        
+        
+        
+        
+
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"/>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"/>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+
+
+
+</head>
+<body class="is-3-column">
+<nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand justify-content-center">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    eRunn&#39;s Blog
+                
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                
+                
+                    <a class="navbar-item "
+                       href="/">主页</a>
+                
+                    <a class="navbar-item "
+                       href="/archives">归档</a>
+                
+                    <a class="navbar-item "
+                       href="/categories">分类</a>
+                
+                    <a class="navbar-item "
+                       href="/tags">标签</a>
+                
+                    <a class="navbar-item "
+                       href="/about">关于</a>
+                
+            </div>
+            <div class="navbar-end">
+                
+                    
+                        <a class="navbar-item" target="_blank" title="github" href="https://github.com/xiaoxiaoshou" rel="noopener">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    
+                
+                
+                    <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                        <i class="fas fa-list-ul"></i>
+                    </a>
+                
+                
+                    <a class="navbar-item search" title="搜索" href="javascript:;">
+                        <i class="fas fa-search"></i>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen">
+                
+    <div class="card">
+    
+    <article class="card-content article" role="article">
+        
+            <div class="article-meta is-size-7 is-uppercase level is-mobile">
+                <div class="level-left">
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-01T22:14:55&#43;08:00"
+                                  title="2020-08-01T22:14:55&#43;08:00">2020-08-01</time>发表
+                        </span>
+                    
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-01T22:14:55&#43;08:00"
+                                  title="2020-08-01T22:14:55&#43;08:00">2020-08-01</time>更新
+                        </span>
+                    
+                    
+                    
+                        <span class="level-item">
+                            
+                            <a class="link-muted" href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a>
+                        </span>
+                    
+                    
+                        <span class="level-item">8 分钟读完 (大约3734个字)</span>
+                    
+                    
+                        <span class="level-item" id="busuanzi_container_page_pv">
+                            <span id="busuanzi_value_page_pv">0</span>次访问
+                        </span>
+                    
+                </div>
+            </div>
+        
+        <h1 class="title is-3 is-size-4-mobile">HTTP协议(一)了解web及网络基础</h1>
+        <div class="content"><h2 id="1使用http协议访问web">1.使用HTTP协议访问Web</h2>
+<p>你知道当我们在网页浏览器(Web browser)的地址栏中输入 URL时，Web 页面是如何呈现的吗?
+<img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/20200802172321.png" alt="image.png">
+如上图所示我们在浏览器(客户端)的地址栏输入URL(地址)时，浏览器会根据对应的地址向服务器获取对应的resource(资源)等信息，从而显示出Web页面。</p>
+<!-- more -->
+<p>Web 使用一种名为 HTTP(HyperText Transfer Protocol，超文本传输协议) 的协议作为规范，完成从客户端到服务器端等一系列运作流程。而协议是指规则的约定。可以说，Web 是建立在 HTTP 协议上通 信的。</p>
+<h2 id="2http的诞生">2.HTTP的诞生</h2>
+<p>1989 年 3 月，互联网还只属于少数人。在这一互联网的黎明期，HTTP 诞生了。</p>
+<p>最初设想的基本理念是:借助多文档之间相互关联形成的超文本 (HyperText)，连成可相互参阅的 WWW(World Wide Web，万维网)。</p>
+<p>现在已提出了 3 项 WWW 构建技术，分别是:</p>
+<ul>
+<li>把 SGML(Standard Generalized Markup Language，标准通用标记语言)作为页面的文本标记语言的 <code>HTML</code>(HyperText Markup Language，超文本标记语言);</li>
+<li>作为文档传递协议的 <code>HTTP</code> ;</li>
+<li>指定文档所在地址的 <code>URL</code>(Universal Resource Locator)</li>
+</ul>
+<blockquote>
+<p>WWW 这一名称，是 Web 浏览器当年用来浏览超文本的客户端应用程序时的名称。现在则用来表示这一系列的集合，也可简称为 Web。</p>
+</blockquote>
+<p><strong>HTTP各个版本</strong></p>
+<p>HTTP/0.9
+HTTP于1990年问世，但是的HTTP并没有作为正式的标准被建立。这时的HP其实还有HTTP/1.0之前版本的意思，因此被称为HTTP/0.9。</p>
+<p>HTTP/1.0
+HTTP正是作为标准被公布，是在1996年的五月版本被命名为HTTP1.0N记载于RFC1945，虽说是初七标准，但该协议标准至今仍被广泛使用，在服务器端。</p>
+<p>HTTP/1.1
+1997年1月公布的HTTP1.1是目前主流的HTTP协议版本，当初的标准是RFC2068之后发布的修订版RFC2616是当前的最新版本</p>
+<p>HTTP/2.0
+在2010年到2015年，谷歌通过实践了一个实验性的SPDY协议，证明了一个在客户端和服务器端交换数据的另类方式。其收集了浏览器和服务器端的开发者的焦点问题。明确了响应数量的增加和解决复杂的数据传输，SPDY成为了HTTP/2协议的基础。
+在2015年5月正式标准化后，HTTP/2取得了极大的成功，在2016年7月前，8.7%的站点已经在使用它，代表超过68%的请求。高流量的站点最迅速的普及，在数据传输上节省了可观的成本和支出。</p>
+<h2 id="3网络基础-tcpip">3.网络基础 <strong>TCP/IP</strong></h2>
+<h3 id="31tcpip协议族">3.1.TCP/IP协议族</h3>
+<p>计算机与网络设备要相互通信，双方就必须基于相同的方法。不同的硬件、操作系统之间的通信，所有的这一切都需要一种规则。而我们就把这种规则称为协议(protocol)。															
+<img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/20200802172548.png" alt="image.png">
+通常使用的网络(包括互联网)是在 TCP/IP 协议族的基础上运作的。而 HTTP 属于它内部的一个子集。</p>
+<h3 id="32tcpip分层管理">3.2.TCP/IP分层管理</h3>
+<p>TCP/IP协议族里重要的一点就是分层。TCP/IP协议族按层次分别为一下四层：应用层、传输层、网络层和数据链路层。</p>
+<p>分层的好处：</p>
+<blockquote>
+<p>某一个应用需要改变时不需要把整个应用替换掉，只需要把需要变动的层替换掉即可。分层之后，设计变得相对简单了，处于某一层的应用只需要考虑自己这一层的任务，不需要考虑其他层。</p>
+</blockquote>
+<h4 id="321各层的作用">3.2.1各层的作用</h4>
+<h5 id="1应用层">1.应用层</h5>
+<p>应用层决定了向用户提供应用服务时通信的活动。</p>
+<p>TCP/IP 协议族内预存了各类通用的应用服务。比如，FTP(File Transfer Protocol，文件传输协议)和 DNS(Domain Name System，域名系统)服务就是其中两类。
+HTTP 协议也处于该层。</p>
+<h5 id="2传输层">2.传输层</h5>
+<p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。
+在传输层有两个性质不同的协议:TCP(Transmission Control Protocol，传输控制协议)和 UDP(User Data Protocol，用户数据报协议)。</p>
+<p>TCP和UDP的异同：</p>
+<blockquote>
+<p>TCP提供面向连接的，可靠的数据传输服务。
+UDP提供无连接的，尽最大努力的数据传输服务（不保证数据传输的可靠性）。</p>
+</blockquote>
+<h5 id="3网络层又名网络互连层">3.网络层（又名网络互连层）</h5>
+<p>网络层是用来处理在网络上流动的数据包。数据包是传输的最小数据单位。该层规定了通过怎样的路径（所谓传输路线）到达对方计算机，并把数据包传给对方。</p>
+<p>与对方计算机之间通过多台计算机或网络设备进行传输时，网络层所起的作用就是在众多的选项内选择一条传输路径。</p>
+<h5 id="4链路层又名数据链路层网络接口层">4.链路层（又名数据链路层，网络接口层）</h5>
+<p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC(Network Interface Card，网络适配器，即网卡)、光纤等物理可见部分。硬件上的范畴。</p>
+<h3 id="322tcpip通信传输流">3.2.2.TCP/IP通信传输流</h3>
+<p>以<code>HTTP举例</code>各层简易传输流程如下图：
+<img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/20200802172938.png" alt="image.png">
+利用 TCP/IP 协议族进行网络通信时，会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端则往应用层往上走。</p>
+<p>具体传输流程：</p>
+<ul>
+<li>首先作为发送端的客户端在应用层（HTTP协议）发出一个想看某个Web页面的HTTP请求。</li>
+<li>接着，为传输方便，在传输层（TCP协议）把应用层处收到的数据（HTTP请求报文）进行分割，并在各个报文上打上标记序号及端口号转发给网络层</li>
+<li>在网络层（IP协议），增加作为通信目的地的MAC地址后转发给链路层。这样一来，发往网络的通信请求就准备齐全了。</li>
+<li>接收端的服务器在链路层接收到数据，按序网上层传达，一直应到应用层。当传输到应用层，才算真正接收到由客户端发送过来的HTTP请求。</li>
+</ul>
+<p>**
+带首部的传输流程如下图：
+<img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/20200802173042.png" alt="image.png"></p>
+<p>发送端在层与层之间传输数据时，每经过一层时必定会被打上一个该层所属的首部信息。反之，接收端在层与层传输数据时，没经过一层时会把对应的首部消去。</p>
+<p>这种把数据信息包装起来的做法称为封装。</p>
+<h2 id="4与http关系密切的协议">4.与HTTP关系密切的协议</h2>
+<p>与HTTP关系密切的协议有三个：IP、TCP、DNS。</p>
+<h3 id="41负责传输的ip协议">4.1.负责传输的IP协议</h3>
+<p>按层次分，IP（Internet Protocol）网际协议位于网络层。Internet Protocol这个名字可能听起来有点夸张，但事实正是如此，因为几乎所有使用网络的系统都会用到IP协议。TCP/IP协议族中的IP指的就是网际协议，协议名称中占据了一半位置，其重要性可见一斑。</p>
+<p>IP协议的作用是把各种数据包传送给对方。而要保证确实传到对方那里，则需要满足各类条件。其中两个重要的条件时IP地址和MAC地址。</p>
+<p>IP地址指明了节点被分配到的地址，MAC地址是指网卡所属的固定地址。IP地址可以和MAC地址进行配对。IP地址可变换，但MAC地址基本上不会更改。</p>
+<p>使用ARP协议凭借MAC地址进行通信：
+IP间的通信依赖MAC地址。在网络上，通信的双方在同一局域网（LAN）内的情况很少，通常是经过多台计算机和网络设备中转才能连接到对方。而进行中转时，会利用下一站中转设备的MAC地址来搜索中转目标。这时会采用ARP协议（Address Resource Protocol）。ARP是一种用以解析地址的协议，根据通信方的IP地址就可以反查出对应的MAC地址。</p>
+<p>ARP通信如下图：
+<img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/20200802173250.png" alt="image.png"></p>
+<h3 id="42确保可靠性的tcp协议">4.2.确保可靠性的TCP协议</h3>
+<p>按层次分，TCP位于传输层，提供可靠的字节流服务。</p>
+<p>所谓的字节流服务(Byte Stream Service)是指，为了方便传输，将大块数据分割成以报文段(segment)为单位的数据包进行管理。而可靠的传输服务是指，能够把数据准确可靠地传给对方。</p>
+<p>怎么确保数据能够到达对方？
+TCP协议采用三次握手策略确保数据能准确送达目标。用 TCP 协议把数据包送出去后，TCP不会对传送后的情况置之不理，它一定会向对方确认是否成功送达。</p>
+<p>握手过程中使用了 TCP 的标志(flag) —— SYN(synchronize) 和ACK(acknowledgement)。</p>
+<p>三次握手如下图：
+<img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/20200802173658.png" alt="image.png"></p>
+<ul>
+<li>第一次握手：发送端发送一个带有SYN标志的数据包给对方</li>
+<li>第二次握手：接受端接收后，回传一个带有 SYN/ACK 标志的数据包以示传达确认信息。</li>
+<li>第三次握手：发送端再回传一个带 ACK 标志的数据包，代表“握手”结束。</li>
+</ul>
+<h3 id="43负责域名解析的dns服务">4.3.负责域名解析的DNS服务</h3>
+<p>DNS(Domain Name System)服务是和 HTTP 协议一样位于应用层的协议。它提供域名到 IP 地址之间的解析服务。
+<img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/20200802173753.png" alt="image.png"></p>
+<h2 id="5各种协议与http协议的关系">5.各种协议与HTTP协议的关系</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/20200802173900.png" alt="image.png"></p>
+<h2 id="6uri和url">6.URI和URL</h2>
+<ul>
+<li>URI(Uniform Resource Identifier) 是统一资源标志符，可以唯一标识一个资源。</li>
+<li>URL(Uniform Resource Location) 是统一资源定位符，可以提供该资源的路径。它是一种具体的 URI，即 URL 可以用来标识一个资源，而且还指明了如何 locate 这个资源。									
+URI 用字符串标识某一互联网资源，而 URL 表示资源的地点(互联网上所处的位置)。可见 URL 是 URI 的子集。
+URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL是一种具体的URI，它不仅唯一标识资源，而且还提供了定位该资源的信息。</li>
+</ul>
+<p>绝对 URI 的格式：
+<img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/20200802173945.png" alt="image.png"></p>
+<ul>
+<li>协议方案名	：使用http:或https:协议名称，不区分字母大小写，最后一个冒号（:）</li>
+<li>登录信息(可选)：指定用户名和密码作为从服务器端获取资源时必要的登录信息。</li>
+<li>服务器地址：服务器地址可以是域名(erunn.xyz)，或者是192.169.1.1这类IP地址。</li>
+<li>服务器端口号：指定连接的网络端口号。此项也是可选性，若省略则自动使用默认端口号</li>
+<li>带层次的文件路径：指定服务器上的文件路径来定位特指的资源。这与Unix系统的文件目录结构相似。</li>
+<li>查询字符串(可选)：针对已指定的文件路径内的资源，可以使用查询字符串传入任意参数。</li>
+<li>片段表示符(可选)：使用片段标识符通常可标记已获取资源中的子资源。但在 RFC 中并没有明确规定其使用方法。</li>
+</ul>
+<blockquote>
+<p>并不是所有的应用程序都符合 <strong>RFC。</strong>
+有一些用来制定 HTTP 协议技术标准的文档，它们被称为RFC(Request for Comments，征求修正意见书)。</p>
+</blockquote>
+</div>
+        
+            <div class="article-licensing box">
+    <div class="licensing-title">
+        <p>HTTP协议(一)了解web及网络基础</p>
+        <p><a href="http://blog.dpf114.top/posts/1%E4%BA%86%E8%A7%A3web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">http://blog.dpf114.top/posts/1%E4%BA%86%E8%A7%A3web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</a></p>
+    </div>
+    <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>作者</h6>
+                        <p>pikachues</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>发布于</h6>
+                        <p>2020-08-01</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>更新于</h6>
+                        <p>2020-08-01</p>
+                    </div>
+                </div>
+            
+            <div class="level-item is-narrow">
+                <div>
+                    <h6>许可协议</h6>
+                    <p>
+                        
+                            <a class="" title="CC BY-NC 4.0" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">
+                                CC BY-NC 4.0
+                            </a>
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        
+            <div class="article-tags size-small mb-4">
+                <span class="mr-2">#</span><a class="link-muted mr-2" href="/tags/HTTP" rel="tag">HTTP</a></div>
+        
+        
+
+    </article>
+</div>
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+                
+
+    <a class="button donate" data-type="alipay">
+        <span class="icon is-small">
+            <i class="fab fa-alipay"></i>
+        </span>
+        <span>支付宝</span>
+        <span class="qrcode">
+            <img src="/img/alipay.png" alt="支付宝">
+        </span>
+    </a>
+
+
+                
+            
+                
+                
+
+    <a class="button donate" data-type="wechat">
+        <span class="icon is-small">
+            <i class="fab fa-weixin"></i>
+        </span>
+        <span>微信</span>
+        <span class="qrcode">
+            <img src="/img/wechat.png" alt="微信">
+        </span>
+    </a>
+
+
+                
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+    <nav class="post-navigation mt-4 level is-mobile">
+        
+            <div class="level-start">
+                <a class="article-nav-prev level level-item link-muted" href="http://blog.dpf114.top/posts/2.%E7%AE%80%E5%8D%95%E7%9A%84http%E5%8D%8F%E8%AE%AE/">
+                    <i class="level-item fas fa-chevron-left"></i>
+                    <span class="level-item">HTTP协议(二)简单的HTTP协议</span>
+                </a>
+            </div>
+        
+        
+            <div class="level-end">
+                <a class="article-nav-next level level-item link-muted" href="http://blog.dpf114.top/posts/springmvc/">
+                    <span class="level-item">SpringMVC</span>
+                    <i class="level-item fas fa-chevron-right"></i>
+                </a>
+            </div>
+        
+    </nav>
+
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="title is-5">评论</h3>
+        
+        
+
+
+    
+    <div id="valine-thread" class="content"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@1.4.14/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+          el: '#valine-thread',
+          app_id: "GeG3Ob5TvK8CJKXmJI8hc7fA-MdYXbMMI",
+          app_key: "ePVOGzkm0LD03BtB3UM4pbEp",
+          placeholder: "发表你的意见，让我们一起交流，共同提高..."
+        });
+    </script>
+
+
+        
+    </div>
+</div>
+
+
+
+
+            </div>
+            
+
+    <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1 is-sticky">
+        
+            
+            
+                
+                
+<div class="card widget" data-type="profile">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered flex-shrink-1">
+                <div>
+                    <figure class="image is-128x128 mx-auto mb-2">
+                        <img class="avatar is-rounded"
+                             src="/img/pikachues.jpg"
+                             alt="Pikachues">
+                    </figure>
+                    <p class="title is-size-4 is-block" style="line-height: inherit">Pikachues</p>
+                    <p class="is-size-6 is-block">Better Luck Tomorrow</p>
+                    
+                        <p class="is-size-6 is-flex justify-content-center">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>China</span>
+                        </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">文章</p>
+                    <a href="/archives"><p class="title">16</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">分类</p>
+                    <a href="/categories"><p class="title">4</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">标签</p>
+                    <a href="/tags"><p class="title">8</p></a>
+                </div>
+            </div>
+        </nav>
+        
+            <div class="level">
+                <a class="level-item button is-primary is-rounded" href="https://github.com/xiaoxiaoshou"
+                   target="_blank" rel="noopener">关注我</a>
+            </div>
+        
+        <div class="level is-mobile">
+            
+                <a class="level-item button is-transparent is-marginless" title="Mail" href="mailto:446933040@qq.com"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            
+                <a class="level-item button is-transparent is-marginless" title="RSS" href="/index.xml"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-rss"></i>
+                </a>
+            
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+    <div class="card widget" id="toc" data-type="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">目录</h3>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1使用http协议访问web">1.使用HTTP协议访问Web</a></li>
+    <li><a href="#2http的诞生">2.HTTP的诞生</a></li>
+    <li><a href="#3网络基础-tcpip">3.网络基础 <strong>TCP/IP</strong></a>
+      <ul>
+        <li><a href="#31tcpip协议族">3.1.TCP/IP协议族</a></li>
+        <li><a href="#32tcpip分层管理">3.2.TCP/IP分层管理</a>
+          <ul>
+            <li><a href="#321各层的作用">3.2.1各层的作用</a></li>
+          </ul>
+        </li>
+        <li><a href="#322tcpip通信传输流">3.2.2.TCP/IP通信传输流</a></li>
+      </ul>
+    </li>
+    <li><a href="#4与http关系密切的协议">4.与HTTP关系密切的协议</a>
+      <ul>
+        <li><a href="#41负责传输的ip协议">4.1.负责传输的IP协议</a></li>
+        <li><a href="#42确保可靠性的tcp协议">4.2.确保可靠性的TCP协议</a></li>
+        <li><a href="#43负责域名解析的dns服务">4.3.负责域名解析的DNS服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#5各种协议与http协议的关系">5.各种协议与HTTP协议的关系</a></li>
+    <li><a href="#6uri和url">6.URI和URL</a></li>
+  </ul>
+</nav>
+            </div>
+        </div>
+        <style>
+        .menu-list > li > a.is-active + .menu-list {display: block;}
+        .menu-list > li > a + .menu-list {display: none;}
+        </style>
+        <script type="text/javascript" src="/js/toc.js" defer></script>
+    </div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="categories">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">分类</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/http%e5%8d%8f%e8%ae%ae/">
+                            <span class="level-start">
+                                <span class="level-item">http协议</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/python/">
+                            <span class="level-start">
+                                <span class="level-item">python</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/ssm/">
+                            <span class="level-start">
+                                <span class="level-item">ssm</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/%e7%bd%91%e7%bb%9c/">
+                            <span class="level-start">
+                                <span class="level-item">网络</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="tags">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">标签</h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/http/">
+                            <span class="tag">http</span>
+                            <span class="tag">11</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/https/">
+                            <span class="tag">https</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/htts/">
+                            <span class="tag">htts</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/jwt/">
+                            <span class="tag">jwt</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/python%e5%9f%ba%e7%a1%80/">
+                            <span class="tag">python基础</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/springmvc/">
+                            <span class="tag">springmvc</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e4%b8%b4%e6%97%b6cookies/">
+                            <span class="tag">临时cookies</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e5%b1%80%e5%9f%9f%e7%bd%91/">
+                            <span class="tag">局域网</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="recent-posts">
+    <div class="card-content">
+        <h3 class="menu-label">最新文章</h3>
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-25T22:14:55&#43;08:00'>2020-08-25</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/">与HTTP相关的组件</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/">jwt和Session cookies（临时cookies）</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/cookie%E5%92%8Csession/">Cookie和Session</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-22T22:14:55&#43;08:00'>2020-08-22</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/https/">HTTPS</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-19T22:14:55&#43;08:00'>2020-08-19</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">HTTP跨域请求</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="archives">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">归档</h3>
+            <ul class="menu-list">
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-08">
+                            <span class="level-start">
+                                <span class="level-item">2020年 8月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-03">
+                            <span class="level-start">
+                                <span class="level-item">2020年 3月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">3</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="links">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">链接</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="https://gohugo.io" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">Hugo</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    gohugo.io
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="https://blog.csdn.net/qq_41262903" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">CSDN</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    blog.csdn.net
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+        
+            
+            
+        
+        
+            <div class="column-right-shadow is-hidden-widescreen "></div>
+        
+    </div>
+
+
+    <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 ">
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </div>
+
+
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start">
+                
+                <a class="footer-logo is-block mb-2" href="/">
+                    
+                        eRunn&#39;s Blog
+                    
+                </a>
+
+                <p class="is-size-7">
+                    <span>&copy; 2020 pikachues</span>&nbsp;&nbsp;Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>&nbsp;&&nbsp;<a href="https://github.com/iMaple/hugo-theme-icarus/" target="_blank" rel="noopener">Icarus</a>
+
+                    
+                    <br>
+                    <span>
+                        <img style="width: 60px;height: 21px;" src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/ypy_logo5.png">
+                        <a href="https://console.upyun.com/register/?invite=rknj9xrGD">提供加速服务</a>
+                    </span>
+                    <br>
+                    <span>
+                        <img src="/img/icp.png" alt="">
+                        <a href="https://beian.miit.gov.cn/">湘ICP备2020018013号</a>
+                    </span>
+                </p>
+
+            </div>
+            <div class="level-end">
+                <div class="field has-addons">
+                    
+                        <p class="control">
+                            <a class="button is-transparent is-large" title="Creative Commons" href="https://creativecommons.org/" target="_blank" rel="noopener">
+                                <i class="fab fa-creative-commons"></i>
+                            </a>
+                        </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script>moment.locale("zh-cn");</script>
+
+<script>
+    var IcarusThemeSettings = {
+      article: {
+        highlight: {
+          clipboard:  true ,
+          fold: "unfolded"
+        }
+      },
+      toc: {
+        index:  true 
+      }
+    };
+</script>
+
+<script type="text/javascript" src="/js/column.js"></script>
+
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="/js/animation.js"></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <a id="back-to-top" title="回到顶端" href="javascript:;">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+    <script type="text/javascript" src="/js/back2top.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script>
+    <script>
+    window.addEventListener('load', () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static:  false ,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: '#edeff5',
+            text: '#838391'
+          },
+          button: {
+            background: '#4b81e8'
+          },
+        },
+      });
+    });
+    </script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      'HTML-CSS': {matchFontHeight: false},
+      SVG: {matchFontHeight: false},
+      CommonHTML: {matchFontHeight: false},
+      tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <div id="outdated">
+        <h6>Your browser is out-of-date!</h6>
+        <p>Update your browser to view this website correctly.&nbsp;
+            <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a>
+        </p>
+        <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+          outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'object-fit'
+          });
+        });
+    </script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" async></script>
+
+
+        
+    
+
+    
+    
+
+
+<script type="text/javascript" src="/js/main.js" defer></script>
+
+
+    
+    <div class="searchbox">
+    <div class="searchbox-container">
+        <div class="searchbox-header">
+            <div class="searchbox-input-container">
+                <input class="searchbox-input" type="text" placeholder="想要查找什么..."/>
+            </div>
+            <a class="searchbox-close" href="javascript:;">×</a>
+        </div>
+        <div class="searchbox-body"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/insight.js" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      loadInsight(
+        {contentUrl: '/index.json'},
+        {
+          hint: "想要查找什么...",
+          untitled: "(无标题)",
+          posts: "文章",
+          pages: "页面",
+          categories: "分类",
+          tags: "标签"
+        }
+      );
+    });
+</script>
+
+    
+
+
+</body>
+</html>

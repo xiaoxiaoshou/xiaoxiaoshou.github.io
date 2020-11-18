@@ -1,0 +1,2460 @@
+
+
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="renderer" content="webkit"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<meta name="generator" content="Hugo 0.78.2 with theme icarus"/>
+<meta name="google-site-verification" content="Your googleVerification code"/>
+<meta name="baidu-site-verification" content="Your baiduVerification code"/>
+
+<meta name="author" content="pikachues"/>
+<meta name="description" content="HTTP协议的请求和响应报文中必定包含HTTP首部，只是我们平时在使用Web的过程中感受不到他。这篇文章我们一起来看看HTTP首部的结构和各"/>
+<meta name="keywords" content=""/>
+
+<title>HTTP协议(六)HTTP首部(请求标头) - eRunn&#39;s Blog</title>
+
+
+<meta name="application-name" content="eRunn&#39;s Blog" />
+<meta name="msapplication-TileImage" content="img/favicon.ico" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="eRunn&#39;s Blog" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http:\/\/blog.dpf114.top\/posts\/6.http%E9%A6%96%E9%83%A8%E8%AF%B7%E6%B1%82%E6%A0%87%E5%A4%B4\/"
+    },
+    "headline": "eRunn\u0027s Blog",
+    "image": [],
+    "dataPublished": "2020-08-15T22:14:55\u002b08:00",
+    "dataModified": "2020-08-15T22:14:55\u002b08:00",
+    "author": {
+        "@type": "Person",
+        "name": "pikachues"
+    },
+    "description": "HTTP协议的请求和响应报文中必定包含HTTP首部，只是我们平时在使用Web的过程中感受不到他。这篇文章我们一起来看看HTTP首部的结构和各"
+}
+</script>
+
+
+<link rel="canonical" href="http://blog.dpf114.top/posts/6.http%E9%A6%96%E9%83%A8%E8%AF%B7%E6%B1%82%E6%A0%87%E5%A4%B4/"/>
+<link rel="alternate" href="http://blog.dpf114.top/index.xml" title="eRunn&#39;s Blog" type="application/rss+xml"/>
+<link rel="icon" href="/img/favicon.ico"/>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-light.min.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source&#43;Code&#43;Pro"/>
+
+<link rel="stylesheet" href="/css/default.css"/>
+
+
+    
+    
+        
+        
+        
+        
+
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"/>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"/>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+
+
+
+</head>
+<body class="is-3-column">
+<nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand justify-content-center">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    eRunn&#39;s Blog
+                
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                
+                
+                    <a class="navbar-item "
+                       href="/">主页</a>
+                
+                    <a class="navbar-item "
+                       href="/archives">归档</a>
+                
+                    <a class="navbar-item "
+                       href="/categories">分类</a>
+                
+                    <a class="navbar-item "
+                       href="/tags">标签</a>
+                
+                    <a class="navbar-item "
+                       href="/about">关于</a>
+                
+            </div>
+            <div class="navbar-end">
+                
+                    
+                        <a class="navbar-item" target="_blank" title="github" href="https://github.com/xiaoxiaoshou" rel="noopener">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    
+                
+                
+                    <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                        <i class="fas fa-list-ul"></i>
+                    </a>
+                
+                
+                    <a class="navbar-item search" title="搜索" href="javascript:;">
+                        <i class="fas fa-search"></i>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen">
+                
+    <div class="card">
+    
+    <article class="card-content article" role="article">
+        
+            <div class="article-meta is-size-7 is-uppercase level is-mobile">
+                <div class="level-left">
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-15T22:14:55&#43;08:00"
+                                  title="2020-08-15T22:14:55&#43;08:00">2020-08-15</time>发表
+                        </span>
+                    
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-15T22:14:55&#43;08:00"
+                                  title="2020-08-15T22:14:55&#43;08:00">2020-08-15</time>更新
+                        </span>
+                    
+                    
+                    
+                        <span class="level-item">
+                            
+                            <a class="link-muted" href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a>
+                        </span>
+                    
+                    
+                        <span class="level-item">24 分钟读完 (大约11707个字)</span>
+                    
+                    
+                        <span class="level-item" id="busuanzi_container_page_pv">
+                            <span id="busuanzi_value_page_pv">0</span>次访问
+                        </span>
+                    
+                </div>
+            </div>
+        
+        <h1 class="title is-3 is-size-4-mobile">HTTP协议(六)HTTP首部(请求标头)</h1>
+        <div class="content"><p>HTTP协议的请求和响应报文中必定包含HTTP首部，只是我们平时在使用Web的过程中感受不到他。这篇文章我们一起来看看HTTP首部的结构和各字段的用法。</p>
+<!-- more -->
+<h1 id="1http报文首部">1.HTTP报文首部</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811152811800.png" alt="image-20200811152811800"></p>
+<p>HTTP协议的请求和响应报文中必定包含HTTP首部。首部内容为客户端和服务器分别处理请求和响应提供所需要的信息。</p>
+<h2 id="11http请求报文">1.1.HTTP请求报文</h2>
+<p>在请求中，HTTP报文由方法、URI、HTTP版本、HTTP首部字段等部分组成。</p>
+<p>HTTP请求报文整体结构如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811153610357.png" alt="image-20200811153610357"></p>
+<p>访问 <a href="http://hackr.jp">http://hackr.jp</a> 时，请求报文的首部信息如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">GET</span> <span class="o">/</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Host</span><span class="o">:</span> <span class="nx">hackr</span><span class="p">.</span><span class="nx">jp</span>
+<span class="nx">Connection</span><span class="o">:</span> <span class="nx">keep</span><span class="o">-</span><span class="nx">alive</span>
+<span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">max</span><span class="o">-</span><span class="nx">age</span><span class="o">=</span><span class="mi">0</span>
+<span class="nx">Upgrade</span><span class="o">-</span><span class="nx">Insecure</span><span class="o">-</span><span class="nx">Requests</span><span class="o">:</span> <span class="mi">1</span>
+<span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="o">:</span> <span class="nx">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="nx">Macintosh</span><span class="p">;</span> <span class="nx">Intel</span> <span class="nx">Mac</span> <span class="nx">OS</span> <span class="nx">X</span> <span class="mi">10</span><span class="nx">_15_6</span><span class="p">)</span> <span class="nx">AppleWebKit</span><span class="o">/</span><span class="mf">537.36</span> <span class="p">(</span><span class="nx">KHTML</span><span class="p">,</span> <span class="nx">like</span> <span class="nx">Gecko</span><span class="p">)</span> <span class="nx">Chrome</span><span class="o">/</span><span class="mf">84.0.4147.125</span> <span class="nx">Safari</span><span class="o">/</span><span class="mf">537.36</span>
+<span class="nx">Accept</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xhtml</span><span class="o">+</span><span class="nx">xml</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xml</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">webp</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">apng</span><span class="p">,</span><span class="o">*</span><span class="err">/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span>
+<span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">gzip</span><span class="p">,</span> <span class="nx">deflate</span>
+<span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">zh</span><span class="o">-</span><span class="nx">CN</span><span class="p">,</span><span class="nx">zh</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="nx">en</span><span class="o">-</span><span class="nx">US</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="nx">en</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.7</span>
+<span class="nx">If</span><span class="o">-</span><span class="nx">None</span><span class="o">-</span><span class="nx">Match</span><span class="o">:</span> <span class="s2">&#34;25e-4d2c3145df440-gzip&#34;</span>
+<span class="nx">If</span><span class="o">-</span><span class="nx">Modified</span><span class="o">-</span><span class="nx">Since</span><span class="o">:</span> <span class="nx">Tue</span><span class="p">,</span> <span class="mi">08</span> <span class="nx">Jan</span> <span class="mi">2013</span> <span class="mi">08</span><span class="o">:</span><span class="mi">53</span><span class="o">:</span><span class="mi">29</span> <span class="nx">GMT</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="12http响应报文">1.2.HTTP响应报文</h2>
+<p>在响应中，HTTP报文由HTTP版本、状态码（数字或原因短语）、HTTP首部字段3部分组成。</p>
+<p>结构如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811154050388.png" alt="image-20200811154050388"></p>
+<p>访问 <a href="http://hackr.jp/">http://hackr.jp/</a> 时，返回的响应报文的首部信息如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
+<span class="nb">Date</span><span class="o">:</span> <span class="nx">Tue</span><span class="p">,</span> <span class="mi">11</span> <span class="nx">Aug</span> <span class="mi">2020</span> <span class="mi">07</span><span class="o">:</span><span class="mi">34</span><span class="o">:</span><span class="mi">33</span> <span class="nx">GMT</span>
+<span class="nx">Server</span><span class="o">:</span> <span class="nx">Apache</span>
+<span class="nx">Last</span><span class="o">-</span><span class="nx">Modified</span><span class="o">:</span> <span class="nx">Tue</span><span class="p">,</span> <span class="mi">08</span> <span class="nx">Jan</span> <span class="mi">2013</span> <span class="mi">08</span><span class="o">:</span><span class="mi">53</span><span class="o">:</span><span class="mi">29</span> <span class="nx">GMT</span>
+<span class="nx">ETag</span><span class="o">:</span> <span class="s2">&#34;25e-4d2c3145df440-gzip&#34;</span>
+<span class="nx">Accept</span><span class="o">-</span><span class="nx">Ranges</span><span class="o">:</span> <span class="nx">bytes</span>
+<span class="nx">Vary</span><span class="o">:</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">,</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">gzip</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Length</span><span class="o">:</span> <span class="mi">379</span>
+<span class="nx">Keep</span><span class="o">-</span><span class="nx">Alive</span><span class="o">:</span> <span class="nx">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="nx">max</span><span class="o">=</span><span class="mi">100</span>
+<span class="nx">Connection</span><span class="o">:</span> <span class="nx">Keep</span><span class="o">-</span><span class="nx">Alive</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="2http首部字段">2.HTTP首部字段</h1>
+<h2 id="21-http首部字段传递重要信息">2.1 HTTP首部字段传递重要信息</h2>
+<p>HTTP首部字段是构成HTTP报文的要素之一。在客户端与服务器间以HTTP协议进行通信过程中，无论请求还是响应都会使用首部字段，它能起到传递额外重要信息的作用。</p>
+<p>使用首部字段是为了给浏览器和服务器提供报文主体大小、所使用的 语言、认证信息等内容。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811155820115.png" alt="image-20200811155820115"></p>
+<h2 id="22-http首部字段结构">2.2 HTTP首部字段结构</h2>
+<p>HTTP首部字段由首部字段名和字段值构成，中间用冒号“：”隔开。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">首部字段名</span><span class="err">：</span><span class="nx">字段值</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>例如首部字段为<code>Content-type</code>，字符串<code>text/html</code>是字段值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="err">：</span><span class="nx">text</span><span class="o">/</span><span class="nx">html</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>一个首部字段可以有多个值，用逗号隔开&quot;,&quot;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Keep</span><span class="o">-</span><span class="nx">Alive</span><span class="err">：</span><span class="nx">timeout</span><span class="o">=</span><span class="mi">15</span><span class="err">，</span><span class="nx">max</span><span class="o">=</span><span class="mi">100</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>若HTTP首部字段重复了会如何？</strong></p>
+<blockquote>
+<p>当 HTTP 报文首部中出现了两个或两个以上具有相同首部字段名时 会怎么样?这种情况在规范内尚未明确，根据浏览器内部处理逻辑 的不同，结果可能并不一致。有些浏览器会优先处理第一次出现的 首部字段，而有些则会优先处理最后出现的首部字段。</p>
+</blockquote>
+<h2 id="23-4种http首部字段类型">2.3 4种HTTP首部字段类型</h2>
+<p>HTTP 首部字段根据实际用途被分为以下 4 种类型。</p>
+<h4 id="1通用首部字段general-header-fields">1.通用首部字段(General Header Fields)</h4>
+<p>请求报文和响应报文两方都会使用的首部。</p>
+<h4 id="2请求首部字段request-header-fields">2.请求首部字段（Request Header Fields)</h4>
+<p>从客户端向服务器端发送请求报文时使用的首部。补充了请求的附加 内容、客户端信息、响应内容相关优先级等信息。</p>
+<h4 id="3响应首部字段-response-header-fields">3.响应首部字段 (Response Header Fields)</h4>
+<p>从服务器端向客户端返回响应报文时使用的首部。补充了响应的附加</p>
+<p>内容，也会要求客户端附加额外的内容信息。</p>
+<h4 id="4实体首部字段-entity-header-fields">4.实体首部字段 (Entity Header Fields)</h4>
+<p>针对请求报文和响应报文的实体部分使用的首部。补充了资源内容更 新时间等与实体有关的信息。</p>
+<h2 id="24-http11-首部字段一览">2.4 HTTP/1.1 首部字段一览</h2>
+<p>HTTP/1.1 规范定义了如下 47 种首部字段。</p>
+<h4 id="1通用首部字段">1.通用首部字段</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811161751007.png" alt="image-20200811161751007"></p>
+<h4 id="2请求首部字段">2.请求首部字段</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811162138109.png" alt="image-20200811162138109"></p>
+<h4 id="3响应首部字段">3.响应首部字段</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811162152976.png" alt="image-20200811162152976"></p>
+<h4 id="4实体首部字段">4.实体首部字段</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811162209033.png" alt="image-20200811162209033"></p>
+<h2 id="25-非http11首部字段">2.5 非HTTP/1.1首部字段</h2>
+<p>在 HTTP 协议通信交互中使用到的首部字段，不限于 RFC2616 中定 义的 47 种首部字段。还有 Cookie、Set-Cookie 和 Content-Disposition 等在其他 RFC 中定义的首部字段，它们的使用频率也很高。</p>
+<h2 id="26-end-to-end-首部和-hop-by-hop-首部">2.6 <strong>End-to-end</strong> 首部和 <strong>Hop-by-hop</strong> 首部</h2>
+<p>HTTP 首部字段将定义成缓存代理和非缓存代理的行为，分成 2 种类型。</p>
+<h4 id="1端到端首部end-to-end-header">1.端到端首部(End-to-end Header)</h4>
+<p>分在此类别中的首部会转发给请求 / 响应对应的最终接收目标，且<strong>必须保存在由缓存生成的响应中</strong>，另外规定它<strong>必须被转发</strong>。</p>
+<h4 id="2逐跳首部hop-by-hop-header">2.逐跳首部(Hop-by-hop Header)</h4>
+<p>分在此类别中的首部<strong>只对单次转发有效</strong>，会因通过缓存或代理而不再转发。HTTP/1.1 和之后版本中，如果要使用 hop-by-hop 首部，需提供<code> Connection</code> 首部字段。</p>
+<p>在HTTP/1.1 首部字段中，除以下8个是逐跳首部外，其余全部属于端到端首部。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Connection</span>
+<span class="nx">Keep</span><span class="o">-</span><span class="nx">Alive</span> 
+<span class="nb">Proxy</span><span class="o">-</span><span class="nx">Authenticate</span> 
+<span class="nb">Proxy</span><span class="o">-</span><span class="nx">Authorization</span> 
+<span class="nx">Trailer</span>
+<span class="nx">TE</span>
+<span class="nx">Transfer</span><span class="o">-</span><span class="nx">Encoding</span> 
+<span class="nx">Upgrade</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="3http11-通用首部字段">3.HTTP/1.1 通用首部字段</h1>
+<p>通用首部字段是指，请求报文和响应报文双方都会使用的首部。</p>
+<h2 id="31-cache-control">3.1 Cache-Control</h2>
+<p>通过指定首部字段<code>Cache-Control</code>的指令能控制缓存的行为。指令的参数是可选的，多个指令之间通过“，”隔开。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="kr">private</span><span class="p">,</span> <span class="nx">max</span><span class="o">-</span><span class="nx">age</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nx">no</span><span class="o">-</span><span class="nx">cache</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>相关指令如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200812150656627.png" alt=""></p>
+<p>上面这个表格其实会有四种分类</p>
+<ul>
+<li>
+<p>可缓存性：<code>no-cache</code>、<code>no-store</code>、<code>private</code>、<code>public</code>。</p>
+</li>
+<li>
+<p>缓存有效时间：<code>max-age </code>  、<code>s-maxage</code>、<code>max-stale</code>、<code>min-fresh</code></p>
+</li>
+<li>
+<p>重新验证并重新加载：<code>must-revalidate</code>、<code>proxy-revalivate</code></p>
+</li>
+<li>
+<p>其他：<code>only-if-cached</code>、<code>no-transform</code></p>
+</li>
+</ul>
+<p>下面分别对以上内容进行详细介绍</p>
+<h4 id="no-cache">no-cache</h4>
+<p><code>no-cache</code>很容易和<code>no-store</code>混淆，一般会把<code>no-cache</code>认为是缓存，其实不是这样。</p>
+<p>使用<code>no-cache</code>指令的目的是为了<strong>防止从缓存中返回过期的资源</strong>，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">cache</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>举个例子你就明白了，No-Cache就相当于<strong>吃着碗里的，占着锅里的</strong>，如果锅里还有新的肉片，就先吃锅里的，如果锅里没有新的，就吃自己的，这里的<strong>锅里的</strong>就相当于源服务器产生的，<strong>碗里的</strong>就相当于是缓存的。</p>
+<h4 id="no-store">no-store</h4>
+<p><code>no-store</code>才是真正意义上的<strong>不缓存</strong>，每次服务器接收到客户端的请求后，都会返回最新的资源给客户端。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">store</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="private">private</h4>
+<h4 id="public">public</h4>
+<h4 id="max-age">max-age</h4>
+<p><code>max-age</code>可以用在请求或者响应中，当客户端发送带有max-age的指令时，缓存服务器就会判断自己缓存时间的数值和max-age的大小，如果比max-age小，那么缓存有效，可以继续给客户端返回缓存数据，如果比max-age大，那么缓存服务器将不能返回给客户端缓存的数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">max</span><span class="o">-</span><span class="nx">age</span><span class="o">=</span><span class="mi">60</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果max-age=0，那么缓存服务器将会直接把请求转发到服务器。</p>
+<blockquote>
+<p>注意：这个max-age的值是相对于请求时间的</p>
+</blockquote>
+<h4 id="must-revalidate">must-revalidate</h4>
+<p>表示缓存 一旦资源过期，缓存必须跟原始服务器进行有效性校验，只有在没有校验成功的情况下才能使用过期缓存。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">must</span><span class="o">-</span><span class="nx">revalidate</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>no-store</code>、<code>no-cache</code>、<code>must-revalidate</code>、<code>max-age</code>可以一起看，下面是这四个标头的流程图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200812215943608.png" alt="image-20200812215943608"></p>
+<h4 id="public-1">public</h4>
+<p><code>public</code>属性只出现在客户端响应中，表示响应可以被任何缓存所缓存。在计算机网络中，分为两种缓存，共享缓存和私有缓存。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="kr">public</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200812220358623.png" alt="image-20200812220358623"></p>
+<h4 id="private-1">private</h4>
+<p>当指定<code>private</code>指令后，响应只以特定的用户作为对象，这与<code>public</code>的用法相反，缓存服务器支队特定的客户端进行缓存，其他客户端发送过来的请求，缓存服务器则不会返回缓存。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="kr">private</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200812220649467.png" alt="image-20200812220649467"></p>
+<h4 id="s-maxage">s-maxage</h4>
+<p><code>s-maxage</code>指令的功能和<code>max-age</code>指令的功能相同，不同点之处在于s-maxage不能用于私有缓存，只能用于多用户使用的公共服务器，对于同一用户的重复请求和响应来说，这个指令没有任何作用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">s</span><span class="o">-</span><span class="nx">maxage</span><span class="o">=</span><span class="mi">60</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="min-fresh">min-fresh</h4>
+<p><code>min-fresh</code>只能出现在请求中，<code>min-fresh</code>要求缓存服务器返回min-fresh时间内的缓存数据。比如，当指定 min-fresh 为 60 秒后，过了 60 秒的资源都无法作为响 应返回了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">control</span><span class="o">:</span> <span class="nx">min</span><span class="o">-</span><span class="nx">fresh</span><span class="o">=</span><span class="mi">60</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="max-stable">max-stable</h4>
+<p><code>max-stable</code>只能出现在请求中，表示客户端会接收缓存数据，即使过期也照常接收。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">control</span><span class="o">:</span> <span class="nx">max</span><span class="o">-</span><span class="nx">stable</span><span class="o">=</span><span class="mi">60</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果指令未指定参数值，那么无论经过多久，客户端都会接收响应; 如果指令中指定了具体数值，那么即使过期，只要仍处于 max-stale 指定的时间内，仍旧会被客户端接收。</p>
+<h4 id="only-if-cached">only-if-cached</h4>
+<p>这个标头只能出现在请求中，使用 <code>only-if-cached</code> 指令表示客户端仅在缓存服务器本地缓存目标资源的情况下才会要求其返回。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">only</span><span class="o">-</span><span class="k">if</span><span class="o">-</span><span class="nx">cached</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="proxy-revalidate">Proxy-revalidate</h4>
+<p><code>proxy-revalidate</code> 指令要求所有的缓存服务器在接收到客户端带有该指 令的请求返回响应之前，必须再次验证缓存的有效性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">proxy</span><span class="o">-</span><span class="nx">revalidate</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="no-transform">no-transform</h4>
+<p>使用 <code>no-transform</code> 指令规定无论是在请求还是响应中，缓存都不能改变实体主体的媒体类型。这样做可防止缓存或代理压缩图片等类似操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">transform</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="32-connection">3.2 Connection</h2>
+<p>HTTP协议使用TCP来管理连接方式，主要有两种连接方式，<strong>持久性连接</strong>和<strong>非持久性连接</strong></p>
+<h4 id="持久性连接">持久性连接</h4>
+<p>持久性连接指的是一次会话完成后，TCP连接并未关闭，第二次再次发送请求后，就不再需要建立TCP连接，而是可以直接进行请求和响应。它的一般表示形式如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Connection</span><span class="o">:</span> <span class="nx">Keep</span><span class="o">-</span><span class="nx">Alive</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>从HTTP/1.1 开始，默认使用持久化连接。</strong></p>
+<p><code>keep-alive</code>也是一个通用标头，一般Connection都会和keep-alive一起使用，keep-alive有两个参数，一个是<code>timeout</code>；另外一个是<code>max</code>，主要表现形式如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Connection</span><span class="o">:</span> <span class="nx">Keep</span><span class="o">-</span><span class="nx">Alive</span>
+<span class="nx">Keep</span><span class="o">-</span><span class="nx">Alive</span><span class="o">:</span> <span class="nx">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nx">max</span><span class="o">=</span><span class="mi">1000</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Timeout：指的是空闲连接必须打开的最短时间，也就是说这次连接请求时间不能少于5秒</li>
+<li>max：指的是在连接关闭之前服务器所能收到的最大请求数。</li>
+</ul>
+<h4 id="非持久性连接">非持久性连接</h4>
+<p>非持久性连接表示一次会话请求/响应后关闭连接的方式。HTTP/1.1 之前使用的连接都是非持久性连接，也即是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Connection</span><span class="o">:</span> <span class="nx">close</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="33-date">3.3 Date</h2>
+<p>Date是一个通用标头，它可以出现在请求标头和响应标头中，它的基本表示如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Date</span><span class="o">:</span> <span class="nx">Wed</span><span class="p">,</span> <span class="mi">12</span> <span class="nx">Aug</span> <span class="mi">2020</span> <span class="mi">15</span><span class="o">:</span><span class="mi">15</span><span class="o">:</span><span class="mi">38</span> <span class="nx">GMT</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>表示的是格林威治标准时间，这个时间比北京时间慢八个小时</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200812231717407.png" alt="image-20200812231717407"></p>
+<h2 id="34-pragma">3.4 Pragma</h2>
+<p><code>Pragma</code>是HTTP/1.1 之前版本的历史遗留字段，仅作为与HTTP的向后兼容而定义，它的一般形式如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Pragma</span><span class="o">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">cache</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>该首部字段属于通用首部字段，但只用在客户端发送的请求中。</p>
+<p>如果所有中间服务器如果都以 HTTP/1.1 为基准，那直接采用 <code>Cache-Control: no-cache</code> 即可，如果不是的话，就要包含两个字段，如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">cache</span> 
+<span class="nx">Pragma</span><span class="o">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">cache</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="35-trailer">3.5 Trailer</h2>
+<p>首部字段 Trailer 会事先说明在报文主体后记录了哪些首部字段。该 首部字段可应用在 HTTP/1.1 版本分块传输编码时。一般用法如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Transfer</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">chunked</span> 
+<span class="nx">Trailer</span><span class="o">:</span> <span class="nx">Expires</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上用例中，指定首部字段 Trailer 的值为 Expires，在报文主体之后 (分块长度 0 之后)出现了首部字段 Expires。</p>
+<h2 id="36-transfer-encoding">3.6 Transfer-Encoding</h2>
+<p>首部字段 Transfer-Encoding 规定了传输报文主体时采用的编码方式。</p>
+<blockquote>
+<p>HTTP/1.1 的传输编码方式仅对分块传输编码有效。􏱃􏰍 但是HTTP/2.0 就不再支持分块传输，而更有效的传输机制。 􏰬􏱈􏴯􏲢􏰴􏰆􏷓􏰸􏰹􏰉􏱊􏳞 􏴆􏳉􏱜􏴰􏲕􏲒􏲓􏰙􏴾􏵆􏰸􏰹􏱡􏱢􏰚</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Transfer</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">chunked</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Transfer-Encoding</code>的所有编码方式如下</p>
+<ul>
+<li>
+<p>chunked</p>
+<p>数据按照一系列块发送，在这种情况下，将省略<code>Content-Length</code>标头，并在每个块的开头，需要以十六进制填充当前块的长度，后面跟<code>\r\n</code>，然后是本身，然后是另一个<code>\r\n</code>。将大量数据发送到客户端并且在请求未被完全处理之前，分块处理很有用。例如，在传输大型图像时。分块响应看起来像下面这种</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">  <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span> 
+  <span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">plain</span> 
+  <span class="nx">Transfer</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">chunked</span>
+  
+  <span class="mi">7</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">n</span>
+  <span class="nx">Mozilla</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">n</span>
+  <span class="mi">9</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">n</span>
+  <span class="nx">Developer</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">n</span>
+  <span class="mi">7</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">n</span>
+  <span class="nx">Network</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">n</span>
+  <span class="mi">0</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">n</span>
+  <span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">n</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><del>compress</del>：由 UNIX 文件压缩程序 compress 生成的编码格式，采用 Lempel- Ziv-Welch 算法(LZW)。</p>
+</li>
+<li>
+<p>deflate: 组合使用 zlib 格式(RFC1950)及由 deflate 压缩算法 (RFC1951)生成的编码格式。</p>
+</li>
+<li>
+<p>gzip</p>
+<p>由文件压缩程序 gzip(GNU zip)生成的编码格式 (RFC1952)，采用 Lempel-Ziv 算法(LZ77)及 32 位循环冗余 校验(Cyclic Redundancy Check，通称 CRC)。</p>
+</li>
+<li>
+<p>Identity：不执行压缩或不会变化的默认编码格式</p>
+</li>
+</ul>
+<h2 id="37-upgrade">3.7 Upgrade</h2>
+<p>首部字段 <code>Upgrade</code> 用于检测 HTTP 协议及其他协议是否可使用更高的版本进行通信，其参数值可以用来指定一个完全不同的通信协议。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200812235605810.png" alt="image-20200812235605810"></p>
+<p>上图用例中，首部字段 <code>Upgrade</code> 指定的值为 <code>TLS/1.0</code>。请注意此处两 个字段首部字段的对应关系，<code>Connection </code>的值被指定为 <code>Upgrade</code>。 <code>Upgrade </code>首部字段产生作用的 <code>Upgrade</code> 对象仅限于客户端和邻接服务 器之间。因此，使用首部字段 <code>Upgrade</code> 时，还需要额外指定 <code>Connection:Upgrade</code>。</p>
+<p>对于附有首部字段 <code>Upgrade</code> 的请求，服务器可用 <code>101 Switching Protocols</code> 状态码作为响应返回。</p>
+<h2 id="38-via">3.8 Via</h2>
+<p>使用首部字段 Via 是为了追踪客户端与服务器之间的请求/响应传输路径，避免请求循环以及能够识别请求/响应链中发送者的协议功能。Via字段由代理服务器添加（包括正向代理和反向代理），可以出现在请求标头和响应标头中。它用于追踪消息转发。如下图所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200813001354333.png" alt="image-20200813001354333"></p>
+<p>Via后面的1.1，1.0表示接受服务器上的HTTP版本，Via首部是为了跟踪路径经常和<code>TRACE</code>方法一起使用。</p>
+<h2 id="39-warning">3.9 Warning</h2>
+<blockquote>
+<p>注意：Warning 字段即将被弃用</p>
+<p>􏵵􏵶参考<strong>Warning (<a href="https://github.com/httpwg/http-core/issues/139">https://github.com/httpwg/http-core/issues/139</a>)</strong> and <strong>Warning: header &amp; stale-while-revalidate (<a href="https://github.com/whatwg/fetch/issues/913">https://github.com/whatwg/fetch/issues/913</a>)</strong> 􏰎􏰏􏲕􏳾􏴁􏶽</p>
+</blockquote>
+<p>Warning 通用标头通常会告知用户一些与缓存有关问题的警告。</p>
+<p>HTTP/1.1 中定义了7种警告。如下图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200813001832632.png" alt="image-20200813001832632"></p>
+<h1 id="4请求首部字段">4.请求首部字段</h1>
+<p>请求首部字段是从客户端往服务器端发送请求报文中所使用的字段， 用于补充请求的附加信息、客户端信息、对响应内容相关的优先级等内容。</p>
+<h2 id="41-accept">4.1 Accept</h2>
+<p>HTTP请求标头会告知客户端能接收的MIME类型是什么</p>
+<blockquote>
+<p>MIME：MIME(Multipurpose Internet Mail Extensitions) 是描述消息内容类型的因特网标准。MIME消息能包括文本、图像、音频、视频以及其他应用程序专用的数据。</p>
+</blockquote>
+<p>MIME类型其实就是一系列消息内容类型的集合。MIME类型如下</p>
+<ul>
+<li>文本文件：text/html􏴕、text/plain􏴕、text/css􏴕、application/xhtml+xml􏴕、application/xml&hellip;</li>
+<li>图片文件：image/jpeg、􏴕image/gif􏴕、image/png&hellip;</li>
+<li>视频文件：video/mpeg、􏴕video/quicktime&hellip;</li>
+<li>应用程序二进制文件：application/octet-stream􏴕、application/zip&hellip;</li>
+</ul>
+<p>比如，如果浏览器不支持PNG图片的显示，那Accept就不指定image/png，而指定可处理的类型。</p>
+<p>一般MIME类型也会和<code>q</code> 这个属性一起使用。q是什么？q表示一个权重，来看一个例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Accept</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xhtml</span><span class="o">+</span><span class="nx">xml</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xml</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="o">*</span><span class="err">/*;q=0.8</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这是什么意思呢？若想要给显示的媒体类型增加优先级，则使用q=来额外表示权重值（0~1），没有显示权重的时候默认值是1.0。</p>
+<h2 id="42-accept-charset">4.2 Accept-Charset</h2>
+<p><code>Accept-Charset</code>表示客户端能接受的字符编码以及字符集的相对有限顺序。另外，可一次性指定多种字符集。与首部字 段 Accept 相同的是可用权重 q 值来表示相对优先级。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Charset</span><span class="o">:</span> <span class="nx">iso</span><span class="o">-</span><span class="mi">8859</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="nx">unicode</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.8</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="43-accept-encoding">4.3 Accept-Encoding</h2>
+<p><code>Accept-Encoding</code> 用来告知服务器用户代理支持的内容编码及内容编码的优先级顺序。可一次性指定多种内容编码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">gzip</span><span class="p">,</span> <span class="nx">deflate</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>几个常用值：</p>
+<ul>
+<li>
+<p>gzip：由文件压缩程序 gzip(GNU zip)生成的编码格式</p>
+</li>
+<li>
+<p>compress：由 UNIX 文件压缩程序 compress 生成的编码格式</p>
+</li>
+<li>
+<p>deflate：组合使用 zlib 格式(RFC1950)及由 deflate 压缩算法 (RFC1951)生成的编码格式</p>
+</li>
+<li>
+<p>identity：不执行压缩或默认编码方式</p>
+</li>
+<li>
+<p>br：􏱋􏰒使用Brotli算法压缩，参考 􏳐（􏴒􏵧􏰉􏶋􏺌 􏱻 <strong><a href="https://en.wikipedia.org/wiki/Brotli">https://en.wikipedia.org/wiki/Brotli</a></strong>） 􏲂</p>
+</li>
+<li>
+<p>*：默认值，可匹配任何编码</p>
+</li>
+</ul>
+<h2 id="44-accept-language">4.4 Accept-Language</h2>
+<p><code>Accept-Language </code>用来告知服务器客户端能够处理的语言(中文或英文&hellip;.)，以及语言的优先级，可一次指定多种语言，同样可以用<code>q</code>来指定优先级。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">zh</span><span class="o">-</span><span class="nx">cn</span><span class="p">,</span><span class="nx">zh</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="nx">en</span><span class="o">-</span><span class="nx">us</span><span class="p">,</span><span class="nx">en</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.3</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="45-authorization">4.5 Authorization</h2>
+<p><code>Authorization</code>用于向服务器发送认证用户代理的凭据，通常用在服务器以<code>401</code>未经授权状态和<code>WWW-Authenticate</code>标头响应之后。详解如下图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200813121340569.png" alt="image-20200813121340569"></p>
+<h2 id="46-expect">4.6 Expect</h2>
+<p>Expect 指示服务器需要满足特定的期望才能正确处理请求。如果服务器没有办法完成客户端所期望完成的事情并且服务端存在错误的话，会返回<code>417 Expectation Failed</code>。如果正常完成客户端锁期望的事情返回<code>100</code>（HTTP/1.1 规 范只定义了 100-continue）；如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">PUT</span> <span class="o">/</span><span class="nx">somewhere</span><span class="o">/</span><span class="nx">fun</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> 
+<span class="nx">Host</span><span class="o">:</span> <span class="nx">origin</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">com</span> 
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">video</span><span class="o">/</span><span class="nx">h264</span> 
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Length</span><span class="o">:</span> <span class="mi">1234567890987</span> 
+<span class="nx">Expect</span><span class="o">:</span> <span class="mi">100</span><span class="o">-</span><span class="k">continue</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="47-from">4.7 From</h2>
+<p><code>From</code> 用来告知服务器使用用户代理的用户的电子邮件地址。通常情况下，其使用目的是为了显示搜索引擎等用户代理的负责人的电子邮件联系方式。我们在使用代理的情况下，应尽可能包含From首部字段。例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">From</span><span class="o">:</span> <span class="nx">webmaster</span><span class="err">@</span><span class="nx">example</span><span class="p">.</span><span class="nx">org</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="48-host">4.8 Host</h2>
+<p><code>Host</code>请求头指明了服务器的域名或IP地址，以及服务器监听的TCP端口号(可选)。如果没有指定端口后，会自动使用被请求服务的默认端口（比如请求一个HTTP的URL会被自动使用80端口）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Host</span><span class="o">:</span> <span class="nx">developer</span><span class="p">.</span><span class="nx">mozilla</span><span class="p">.</span><span class="nx">org</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Host首部字段在 HTTP/1.1规范内唯一一个必须被包含在请求内的首部字段。</p>
+<h2 id="49-if-match">4.9 If-Match</h2>
+<p>If-Match 后面可以跟一大堆属性，形式像If-Match这种请求头称为<strong>条件请求</strong>，服务器接收到条件请求后，需要判定条件是否满足，只要条件请求为真，才会执行请求。</p>
+<p>类似的还有If-Modified-Since、If-None-Match、If-Range、If-Unmodified-Since</p>
+<p>对于<code>GET</code>或<code>POST</code>方法，服务器仅在与列出的ETag（响应标头）之一匹配时才会返回请求的资源。ETag后面做解释。对于像<code>PUT</code>和其他非安全方法，在这种情况下，它一般用于上传资源。</p>
+<p>下面是两种常见案例</p>
+<ul>
+<li>对于<code>GET</code>和<code>POST</code>方法，会结合使用<code>Range</code>标头，它可以确保新发送请求的范围与上一个请求的资源相同。如果不匹配的话，会返回<code>416</code>响应。</li>
+<li>对于其他方法，特别是<code>PUT</code>方法，If-Match可防止丢失更新，服务器会比对If-Match的字段值和资源的ETag值，仅当两者一致时，才会执行请求。反之，则返回状态码<code>412 Precondition Failed</code> 的响应。例如</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">If</span><span class="o">-</span><span class="nx">Match</span><span class="o">:</span> <span class="s2">&#34;bfc13a64729c4290ef5b2c2730249c88ca92d82d&#34;</span>
+<span class="nx">If</span><span class="o">-</span><span class="nx">Match</span><span class="o">:</span> <span class="o">*</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="410-if-modified-since">4.10 If-Modified-Since</h2>
+<p>If-Modified-Since 是HTTP请求的一部分，只有在给定日期之后，服务端修改了请求所需要的资源，才会返回200 OK 的响应。如果在给定日期之后，服务端没有修改内容，响应会返回 304并且不带任何响应体。If-Modified-Since只能使用<code>GET</code>和<code>HEAD</code>请求。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">If</span><span class="o">-</span><span class="nx">Modified</span><span class="o">-</span><span class="nx">Since</span><span class="o">:</span> <span class="nx">Wed</span><span class="p">,</span> <span class="mi">21</span> <span class="nx">Oct</span> <span class="mi">2015</span> <span class="mi">07</span><span class="o">:</span><span class="mi">28</span><span class="o">:</span><span class="mi">00</span> <span class="nx">GMT</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If-Modified-Since 用于确认代理或客户端拥有的本地资源的有效性。 获取资源的更新日期时间，可通过确认首部字段 Last-Modified 来确 定。</p>
+<h2 id="411-if-none-match">4.11 If-None-Match</h2>
+<p>If-None-Match与􏸟􏱌􏰀􏰁􏰉􏰊􏲞 If-Match 􏰙􏳧􏰒􏲟􏱉的作用刚好相反。</p>
+<h2 id="412-if-range">4.12 If-Range</h2>
+<p>If-Range 也是条件请求，如果满足条件（If-Range的值和ETag的值或者更新时间一致），则会发出请求范围，否则将会返回全部资源。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">If</span><span class="o">-</span><span class="nx">Range</span><span class="o">:</span> <span class="nx">Wed</span><span class="p">,</span> <span class="mi">21</span> <span class="nx">Oct</span> <span class="mi">2015</span> <span class="mi">07</span><span class="o">:</span><span class="mi">28</span><span class="o">:</span><span class="mi">00</span> <span class="nx">GMT</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="413-if-unmodified-since">4.13 If-Unmodified-Since</h2>
+<p>If-Unmodified-Since 请求标头也是一个条件请求，服务器在给定时间之后没有进行修改时，服务器才会返回请求资源。如果在指定时间后发生了，则以状态码<code>412 Precodition Failed</code> 作为响应返回</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">If</span><span class="o">-</span><span class="nx">Unmodified</span><span class="o">-</span><span class="nx">Since</span><span class="o">:</span> <span class="nx">Wed</span><span class="p">,</span> <span class="mi">21</span> <span class="nx">Oct</span> <span class="mi">2015</span> <span class="mi">07</span><span class="o">:</span><span class="mi">28</span><span class="o">:</span><span class="mi">00</span> <span class="nx">GMT</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="414-max-forwards">4.14 Max-Forwards</h2>
+<p>Max-Forwards 一般用于<code>TRANCE</code>和<code>OPTION</code>方法，发送包含<code>MAX-Forwards</code>的首部字段时，每经过一个服务器，Max-Forwards的值就会-1，知道Max-Forwards为0时返回。Max-Forwards是一个十进制的整数值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Max</span><span class="o">-</span><span class="nx">Forwards</span><span class="o">:</span> <span class="mi">10</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用 HTTP协议通信时，请求可能会经过代理等多台服务器。途中，如果代理服务器由于某些原因导致请求转发失败，客户端也就等不到服务器返回的响应了。对此，我们无从可知。</p>
+<p>可以灵活使用首部字段 <code>Max-Forwards</code> 字段值为 0 ，服务器就会立即返回响应，由此我们至少可以对以那台服务器为终点的传输路径的通信状况有所把握</p>
+<h2 id="415-proxy-authorization">4.15 Proxy-Authorization</h2>
+<p>Proxy-Authorization 是属于请求与认证的范畴，不同于Authorization发生在客户端-服务器之间，Proxy-Authorization发生在代理服务器和客户端之间。它表示接收到从代理服务器发来的认证时，客户端会发送包含首部字段Proxy-Authorization的请求，以告知服务器认证所需要的信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Proxy</span><span class="o">-</span><span class="nx">Authorization</span><span class="o">:</span> <span class="nx">Basic</span> <span class="nx">YWxhZGRpbjpvcGVuc2VzYW1l</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="416-range">4.16 Range</h2>
+<p>Range 指示服务器应返回文档指定部分的资源，可以一次请求一个 􏰀􏲃􏳬􏰛􏴠􏰞􏰟􏰠􏰨􏰥􏰦􏰰􏸧􏰛􏰜􏲍􏰆􏰙􏰐􏰑􏰉􏰾􏰿􏰄􏴸 Range 􏰓􏰥􏰦􏳾􏳔来返回多个部分，服务器会将这些资源返回各个文档中。如果服务器成功返回，那么将返回 􏲍􏰆􏰉􏰞􏰟􏰠􏲈􏲫􏳳􏴅􏰐􏰑􏰥􏰦􏹯􏳔􏰰􏸧􏱔􏰚􏰮􏰯􏰞􏰟􏰠􏵌􏵍􏰥􏰦􏰉􏰲􏵃􏲫􏰥􏰦 206 􏰧􏰨􏰷􏰮􏰯响应状态码，如果 Range 􏷻􏺩􏶀􏲓􏰉􏰞􏰟􏰠􏰥􏰦范围无效，服务器返回 416 Range Not Satisfiable 错误；􏺞􏺟􏰷􏰞􏰟􏰠􏳹􏰾􏰿􏺫􏸄</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Range</span><span class="o">:</span> <span class="nx">bytes</span><span class="o">=</span><span class="mi">200</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="o">-</span><span class="mi">6576</span><span class="p">,</span> <span class="mi">19000</span><span class="o">-</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="417-referer">4.17 Referer</h2>
+<p>Referer 属性时请求标头的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用户处理。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Referer</span><span class="o">:</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//developer.mozilla.org/testpage.html
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="418-te">4.18 TE</h2>
+<p>字段<code>TE</code>会告知服务器客户端能够处理响应的传输编码方式及相对优先级。它和首部字段Accept-Encoding的功能很相像，但是<code>TE</code>是用于传输编码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">TE</span><span class="o">:</span> <span class="nx">gzip</span><span class="p">,</span> <span class="nx">deflate</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.5</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首部字段TE除指定传输编码之外，还可以指定伴随trailer 字段的分块传输编码的方式。应用后者时，只需把trailers复制给该字段值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">TE</span><span class="o">:</span> <span class="nx">trailers</span><span class="p">,</span> <span class="nx">deflate</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.5</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="419-user-agent">4.19 User-Agent</h2>
+<p>首部字段 <code>User-Agent</code>会将创建请求的浏览器和用户代理名称等信息传达给服务器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="o">:</span> <span class="nx">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="nx">Macintosh</span><span class="p">;</span> <span class="nx">Intel</span> <span class="nx">Mac</span> <span class="nx">OS</span> <span class="nx">X</span> <span class="mi">10</span><span class="nx">_15_6</span><span class="p">)</span> <span class="nx">AppleWebKit</span><span class="o">/</span><span class="mf">537.36</span> <span class="p">(</span><span class="nx">KHTML</span><span class="p">,</span> <span class="nx">like</span> <span class="nx">Gecko</span><span class="p">)</span> <span class="nx">Chrome</span><span class="o">/</span><span class="mf">84.0.4147.125</span> <span class="nx">Safari</span><span class="o">/</span><span class="mf">537.36</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="5响应首部字段">5.响应首部字段</h1>
+<h2 id="51-accept-ranges">5.1 Accept-Ranges</h2>
+<p><code>Accept-Ranges</code> 响应标头有两个值可指定</p>
+<ul>
+<li>当服务器能够处理客户端发送过来的请求时，使用<code>bytes</code>来指定</li>
+<li>当服务器不能处理客户端发送过来的请求时，使用<code>none</code>来指定</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Ranges</span><span class="o">:</span> <span class="nx">bytes</span>
+<span class="nx">Accept</span><span class="o">-</span><span class="nx">Ranges</span><span class="o">:</span> <span class="nx">none</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="52-age">5.2 Age</h2>
+<p><code>Age</code>响应标头告诉客户端源服务器多久之前建立了响应，它的单位为<strong>秒</strong>，Age标头通常接近于0，如果是0则可能是从源服务器获取的，如果不是表示可能由代理服务器创建，那么Age的值表示的是缓存后的响应结果再次发起认证到认证完成的时间值。代理创建响应时不需加上标头Age。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Age</span><span class="o">:</span> <span class="mi">24</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="53-etag">5.3 ETag</h2>
+<p>ETag对于条件请求来说真的很重要。因为条件请求就是根据ETag的值进行匹配的，下面详细了解。</p>
+<p>ETag响应头是<code>特定版本</code>的标识，它能使缓存变得高效并能节省带宽，因为如果换缓存内容未发生变更，Web服务器则不需要重新发送完整的路径。除此之外，ETag能够防止资源更新互相覆盖。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200814224529937.png" alt="image-20200814224529937"></p>
+<p>如果给定的URL资源上的资源发生变更，必须生成一个新的<code>ETag</code>值，通过比较它们可以确定资源的两个表示形式是否相同。</p>
+<p>ETag值有两种，一种是强Etag，一种是弱Etag</p>
+<ul>
+<li>强Etag值，无论实体发生多么细微的变化都会改变其值，一般表示如下</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">  <span class="nx">ETag</span><span class="o">:</span> <span class="s2">&#34;33a64df551425fcc55e4d42a148795d9f25f89d4&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>弱Etag值，弱Etag值只用于提示资源是否相同。只有资源发生了根本改变，产生差异时才会改变Etag的值。这时，会在字段值最开始处附加W/</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">  <span class="nx">ETag</span><span class="o">:</span> <span class="nx">W</span><span class="o">/</span><span class="s2">&#34;0815&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="54-location">5.4 Location</h2>
+<p>Location响应标头表示URL需要重定向页面，它仅仅与<code>3XX（重定向）</code>或<code>201（已创建）</code>状态一起使用。下面是一个页面重定向的过程。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200814225502224.png" alt="image-20200814225502224"></p>
+<p>使用首部字段 Location 可以将响应接收方引导至某个与请求 URI 位置不同的资源。</p>
+<p>Location和Content-Location是不一样的：Location表示目标的重定向。然而Content-Location表示发生内容协商时用于访问资源的直接URL，而无需进一步协商。Location是与响应相关联的标头，而Content-Location与返回的实体相关联。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Location</span><span class="o">:</span> <span class="err">/index.html</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="55-proxyz-authenticate">5.5 Proxyz-Authenticate</h2>
+<p>Proxy-Authenticate 会把由代理服务器所要求的认证信息发送 给客户端。</p>
+<p>它与客户端和服务器之间的 HTTP 访问认证的行为相似，不同之处在 于其认证行为是在客户端与代理之间进行的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Proxy</span><span class="o">-</span><span class="nx">Authenticate</span><span class="o">:</span> <span class="nx">Basic</span>
+<span class="nb">Proxy</span><span class="o">-</span><span class="nx">Authenticate</span><span class="o">:</span> <span class="nx">Basic</span> <span class="nx">realm</span><span class="o">=</span><span class="s2">&#34;Access to the internal site&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="56-retry-after">5.6 Retry-After</h2>
+<p>Retry-After 告知客户端需要在多久之后重新发送请求，使用此标头主要有以下三种情况</p>
+<ul>
+<li>当发送 <code>503（服务不可用）</code>请求时，这表示该服务预计无法使用多长时间。</li>
+<li>当发送<code>429（太多请求）</code>时，这表示发出请求之前需要等待多长时间。</li>
+<li>当发送重定向的响应时<code>（3XX）</code>，这表示在发出重定向请求之前要求用户等待的最短时间。</li>
+</ul>
+<p>字段值可以指定为具体的日期时间，也可以是创建响应之后所持续的秒数，例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Retry</span><span class="o">-</span><span class="nx">After</span><span class="o">:</span> <span class="nx">Wed</span><span class="p">,</span> <span class="mi">21</span> <span class="nx">Oct</span> <span class="mi">2015</span> <span class="mi">07</span><span class="o">:</span><span class="mi">28</span><span class="o">:</span><span class="mi">00</span> <span class="nx">GMT</span>
+<span class="nx">Retry</span><span class="o">-</span><span class="nx">After</span><span class="o">:</span> <span class="mi">120</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="57-server">5.7 Server</h2>
+<p>Server标头包含有关原始服务器用来处理请求的软件信息。</p>
+<p>应该避免使用过于冗长和详细的Server值，因为他们可能会泄露内部实施细节，这可能会使攻击者容易地发现并利用已知的安全漏洞。例如下面写法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Server</span><span class="o">:</span> <span class="nx">Apache</span><span class="o">/</span><span class="mf">2.2.17</span> <span class="p">(</span><span class="nx">Unix</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="58-vary">5.8 Vary</h2>
+<p>Vary 响应标头确定如何匹配响应标头，以决定是使用缓存还是从原始服务器请求一个新的响应。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Vary</span><span class="o">:</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>例如下图使用的是Accept-Language字段且字段值相同时，直接从缓存返回响应，反之从新请求响应。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200814233032622.png" alt="image-20200814233032622"></p>
+<h2 id="59-www-authenticate">5.9 www-Authenticate</h2>
+<p>www-Authenticate 响应标头定义了应用用于获得对资源的访问权限的身份验证方法。 www-Authenticate标头与401未授权的响应一起发送。它的一般表示形式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">1</span> <span class="nx">WWW</span><span class="o">-</span><span class="nx">Authenticate</span><span class="o">:</span> <span class="nx">Basic</span>
+<span class="mi">2</span> <span class="nx">WWW</span><span class="o">-</span><span class="nx">Authenticate</span><span class="o">:</span> <span class="nx">Basic</span> <span class="nx">realm</span><span class="o">=</span><span class="s2">&#34;Access to the staging site&#34;</span><span class="p">,</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&#34;UTF-8&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="510-access-control-allow-origin">5.10 Access-Control-Allow-Origin</h2>
+<p>一个返回的HTTP标头可能会具有<code>Access-Control-Allow-Origin</code>，Access-Control-Allow-Origin 指定一个来源，它告诉浏览器允许该来源进行访问。如果Access-Control-Allow-Origin对应的值是<code>*</code>的话允许任何来源访问。例如，要允许源https://mozilla.org 的代码访问资源，可以指定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Origin</span><span class="o">:</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//mozilla.org
+</span><span class="c1"></span><span class="nx">Vary</span><span class="o">:</span> <span class="nx">Origin</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果服务器指定单个来源不是<code>*</code>的话，则服务器还应该在Vary响应标头包含<code>Origin</code>,以向客户端指示服务器响应将根据原始请求标头的值。</p>
+<h1 id="6-实体首部字段">6. 实体首部字段</h1>
+<p>实体标头用于HTTP请求和响应中，例如Content-Length，Content-Language，Content-Encoding的标头是实体标头。实体标头不局限于请求标头或者响应标头，下面例子中，Content-Length是一个实体标头，但是却出现在了请求报文中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">POST</span> <span class="o">/</span><span class="nx">myform</span><span class="p">.</span><span class="nx">html</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Host</span><span class="o">:</span> <span class="nx">developer</span><span class="p">.</span><span class="nx">mozilla</span><span class="p">.</span><span class="nx">org</span>
+<span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="o">:</span> <span class="nx">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="nx">Macintosh</span><span class="p">;</span> <span class="nx">Intel</span> <span class="nx">Mac</span> <span class="nx">OS</span> <span class="nx">X</span> <span class="mf">10.9</span><span class="p">;</span> <span class="nx">rv</span><span class="o">:</span><span class="mf">50.0</span><span class="p">)</span> <span class="nx">Gecko</span><span class="o">/</span><span class="mi">20100101</span> <span class="nx">Firefox</span><span class="o">/</span><span class="mf">50.0</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Length</span><span class="o">:</span> <span class="mi">128</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="61-allow">6.1 Allow</h2>
+<p>Allow用于列出HTTP请求资源请求所支持的方法。当服务器接收到不支持的HTTP方法时，会以状态码<code>405 Method Not Allowed</code>作为响应返回。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Allow</span><span class="o">:</span> <span class="nx">GET</span><span class="p">,</span> <span class="nx">POST</span><span class="p">,</span> <span class="nx">HEAD</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="62-content-encoding">6.2 Content-Encoding</h2>
+<p>Content-Encoding 会告知客户端服务器对实体的主体部分选 用的内容编码方式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Content</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">gzip</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="63-content-language">6.3 Content-Language</h2>
+<p>Content-Language 会告知客户端，实体主体使用的自然语言 (指中文或英文等语言)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Content</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">zh</span><span class="o">-</span><span class="nx">CN</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="64-content-length">6.4 Content-Length</h2>
+<p>Content-Length 表明了实体主体部分的大小(单位是字节)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Content</span><span class="o">-</span><span class="nx">Length</span><span class="o">:</span> <span class="mi">3000</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="65-content-location">6.5 Content-Location</h2>
+<p>Content-Location与Location相对应。</p>
+<p>Location和Content-Location是不一样的，Location表示重定向的RUL，而Content-Location表示用于访问资源的直接URL，以后无需进行进一步的内容协商。Location是与响应关联的标头，而Content-Location是与返回的数据相关联的标头。</p>
+<h2 id="66-content-md5">6.6 Content-MD5</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200815171452500.png" alt="image-20200815171452500"></p>
+<p>客户端会对接收的报文主体执行相同的 <strong>MD5</strong> 算法，然后与首部字段 <strong>Content-MD5</strong> 的字段值比较。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Content</span><span class="o">-</span><span class="nx">MD5</span><span class="o">:</span> <span class="nx">OGFkZDUwNGVhNGY3N2MxMDIwZmQ4NTBmY2IyTY</span><span class="o">==</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首部字段 Content-MD5 是一串由 MD5 算法生成的值，其目的在于检查报文主体在传输过程中是否保持完整，以及确认传输到达。</p>
+<h2 id="67-content-range">6.7 Content-Range</h2>
+<p>Content-Range针对范围请求，返回响应时使用的首部字段 Content-Range，能告知客户端作为响应返回的实体的哪个部分符合范围请求。字段值以字节为 单位，表示当前发送部分及整个实体大小。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Content</span><span class="o">-</span><span class="nx">Range</span><span class="o">:</span> <span class="nx">bytes</span> <span class="mi">5001</span><span class="o">-</span><span class="mi">10000</span><span class="o">/</span><span class="mi">10000</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="68-content-type">6.8 Content-Type</h2>
+<p>Content-Type 说明了实体主体内对象的媒体类型。和首部字 段 Accept 一样使用，表示服务器能够响应的媒体类型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span><span class="p">;</span> <span class="nx">charset</span><span class="o">=</span><span class="nx">UTF</span><span class="o">-</span><span class="mi">8</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="69-expires">6.9 Expires</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Expires</span><span class="o">:</span> <span class="nx">Wed</span><span class="p">,</span> <span class="mi">04</span> <span class="nx">Jul</span> <span class="mi">2012</span> <span class="mi">08</span><span class="o">:</span><span class="mi">26</span><span class="o">:</span><span class="mi">05</span> <span class="nx">GMT</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首部字段 Expires 会将资源失效的日期告知客户端。缓存服务器在接 收到含有首部字段 Expires 的响应后，会判断是否把缓存返回客户端。</p>
+<p>源服务器不希望缓存服务器对资源缓存时，最好在 Expires 字段内写 入与首部字段 Date 相同的时间值。</p>
+<p>但是，当首部字段 Cache-Control 有指定 max-age 指令时，比起首部字 段 Expires，会优先处理 max-age 指令。</p>
+<h2 id="610-last-modified">6.10 Last-modified</h2>
+<p>首部字段 Last-Modified 指明资源最终修改的时间。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Last</span><span class="o">-</span><span class="nx">Modified</span><span class="o">:</span> <span class="nx">Wed</span><span class="p">,</span> <span class="mi">21</span> <span class="nx">Oct</span> <span class="mi">2015</span> <span class="mi">07</span><span class="o">:</span><span class="mi">28</span><span class="o">:</span><span class="mi">00</span> <span class="nx">GMT</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="7为cookie服务的首部字段">7.为Cookie服务的首部字段</h1>
+<p>Cookie的工作机制是用户识别及状态管理。Web 网站为了管理用户的 状态会通过 Web 浏览器，把一些数据临时写入用户的计算机内。接 着当用户访问该Web网站时，可通过通信方式取回之前发放的 Cookie。</p>
+<p>调用Cookie时，由于可校验Cookie的有效期，以及发送方的域、路径、协议等信息，所以正规发布的Cookie内的数据不会因来自其他Web站点和攻击者的攻击而泄露。</p>
+<p>至 2013 年 5 月，Cookie 的规格标准文档有4 种。目前使用最广泛的 Cookie 标准却不是 RFC 中定义的任何一个。而是在网景公司制定的标准上进行扩展后的产物。下面内容对目前使用最为广泛普及的标准进行说明。</p>
+<p><strong>为Cookie服务的首部字段</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811170241283.png" alt="image-20200811170241283"></p>
+<h2 id="71-set-cookie">7.1 Set-Cookie</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Set</span><span class="o">-</span><span class="nx">Cookie</span><span class="o">:</span> <span class="nx">status</span><span class="o">=</span><span class="nx">enable</span><span class="p">;</span> <span class="nx">expires</span><span class="o">=</span><span class="nx">Tue</span><span class="p">,</span> <span class="mi">05</span> <span class="nx">Jul</span> <span class="mi">2011</span> <span class="mi">07</span><span class="o">:</span><span class="mi">26</span><span class="o">:</span><span class="mi">31</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当服务器准备开始管理客户端的状态时，会事先告知各种信息。</p>
+<p>Set-Cookie 的相关属性说明如下图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200811170844140.png" alt="image-20200811170844140"></p>
+<p><strong>expires</strong>属性</p>
+<p>Cookie 的 expires 属性指定浏览器可发送 Cookie 的有效期。</p>
+<p>省略expires属性时，有效期为一次会话。</p>
+<p>一旦 Cookie 从服务器端发送至客户端，服务器端就不存在可以显式删除 Cookie 的方法。但可通过覆盖已过期的 Cookie，实现对客户端 Cookie 的实质性删除操作。</p>
+<p><strong>path</strong>属性</p>
+<p>Cookie 的 path 属性可用于限制指定 Cookie 的发送范围的文件目录。 不过另有办法可避开这项限制，看来对其作为安全机制的效果不能抱 有期待。</p>
+<p><strong>domain</strong>属性</p>
+<p>通过 Cookie 的 domain 属性指定的域名可做到与结尾匹配一致。比如，当指定 example.com 后，除 example.com 以外，www.example.com 或 www2.example.com 等都可以发送 Cookie。</p>
+<p>因此，除了针对具体指定的多个域名发送 Cookie 之 外，不指定 domain 属性显得更安全。</p>
+<p><strong>secure</strong>属性</p>
+<p>Cookie 的 secure 属性用于限制 Web 页面仅在 HTTPS 安全连接时，才可以发送 Cookie。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Set</span><span class="o">-</span><span class="nx">Cookie</span><span class="o">:</span> <span class="nx">name</span><span class="o">=</span><span class="nx">value</span><span class="p">;</span> <span class="nx">secure</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如上例子仅在请求协议是https时才会进行Cookie回收。</p>
+<p><strong>HttpOnly</strong> 属性</p>
+<p>Cookie 的 HttpOnly 属性是 Cookie 的扩展功能，它使 JavaScript 脚本 无法获得 Cookie。其主要目的为防止跨站脚本攻击(Cross-site scripting，XSS)对 Cookie 的信息窃取。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Set</span><span class="o">-</span><span class="nx">Cookie</span><span class="o">:</span> <span class="nx">name</span><span class="o">=</span><span class="nx">value</span><span class="p">;</span> <span class="nx">HttpOnly</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过上述设置，使用JavaScript的<code>document.cookie</code>无法获取对应cookie。可防止xss攻击。</p>
+<h1 id="8其他首部字段">8.其他首部字段</h1>
+<p>HTTP 首部字段是可以自行扩展的。所以在 Web 服务器和浏览器的应 用上，会出现各种非标准的首部字段。</p>
+<h2 id="1x-frame--options">1.X-Frame -Options</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">X</span><span class="o">-</span><span class="nx">Frame</span><span class="o">-</span><span class="nx">Options</span><span class="o">:</span> <span class="nx">DENY</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首部字段 X-Frame-Options 属于 HTTP 响应首部，用于控制网站内容 在其他 Web 网站的 Frame 标签内的显示问题。其主要目的是为了防 止点击劫持(clickjacking)攻击。</p>
+<p>首部字段 X-Frame-Options 有以下两个可指定的字段值。</p>
+<ul>
+<li>
+<p><strong>DENY</strong> :拒绝</p>
+</li>
+<li>
+<p><strong>SAMEORIGIN</strong> :仅同源域名下的页面(Top-level-browsing- context)匹配时许可。(比如，当指定 <a href="http://hackr.jp/sample.html">http://hackr.jp/sample.html</a> 页面为 SAMEORIGIN 时，那么 hackr.jp 上所有页面的 frame 都被 允许可加载该页面，而 example.com 等其他域名的页面就不行 了)</p>
+</li>
+</ul>
+<h2 id="2x-xss-protection">2.X-XSS-Protection</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">X</span><span class="o">-</span><span class="nx">XSS</span><span class="o">-</span><span class="nx">Protection</span><span class="o">:</span> <span class="mi">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首部字段 X-XSS-Protection 属于 HTTP 响应首部，它是针对跨站脚本攻击(XSS)的一种对策，用于控制浏览器 XSS 防护机制的开关。</p>
+<p>首部字段 X-XSS-Protection 可指定的字段值如下。</p>
+<ul>
+<li>0 :将 XSS 过滤设置成无效状态</li>
+<li>1 :将 XSS 过滤设置成有效状态</li>
+</ul>
+<h2 id="3dnt">3.DNT</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">DNT</span><span class="o">:</span> <span class="mi">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首部字段 DNT 属于 HTTP 请求首部，其中 DNT 是 Do Not Track 的简 称，意为拒绝个人信息被收集，是表示拒绝被精准广告追踪的一种方法。</p>
+<p>首部字段 DNT 可指定的字段值如下。</p>
+<ul>
+<li>
+<p>0 :同意被追踪</p>
+</li>
+<li>
+<p>1 :拒绝被追踪</p>
+</li>
+</ul>
+<h2 id="4p3p">4.P3P</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">P3P</span><span class="o">:</span> <span class="nx">CP</span><span class="o">=</span><span class="err">&#34;</span><span class="nx">CAO</span> <span class="nx">DSP</span> <span class="nx">LAW</span> <span class="nx">CURa</span> <span class="nx">ADMa</span> <span class="nx">DEVa</span> <span class="nx">TAIa</span> <span class="nx">PSAa</span> <span class="nx">PSDa</span> <span class="nx">IVAa</span> <span class="nx">IVDa</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首部字段 P3P 属于 HTTP 相应首部，通过利用 P3P(The Platform for Privacy Preferences，在线隐私偏好平台)技术，可以让 Web 网站上 的个人隐私变成一种仅供程序可理解的形式，以达到保护用户隐私的 目的。</p>
+</div>
+        
+            <div class="article-licensing box">
+    <div class="licensing-title">
+        <p>HTTP协议(六)HTTP首部(请求标头)</p>
+        <p><a href="http://blog.dpf114.top/posts/6.http%E9%A6%96%E9%83%A8%E8%AF%B7%E6%B1%82%E6%A0%87%E5%A4%B4/">http://blog.dpf114.top/posts/6.http%E9%A6%96%E9%83%A8%E8%AF%B7%E6%B1%82%E6%A0%87%E5%A4%B4/</a></p>
+    </div>
+    <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>作者</h6>
+                        <p>pikachues</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>发布于</h6>
+                        <p>2020-08-15</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>更新于</h6>
+                        <p>2020-08-15</p>
+                    </div>
+                </div>
+            
+            <div class="level-item is-narrow">
+                <div>
+                    <h6>许可协议</h6>
+                    <p>
+                        
+                            <a class="" title="CC BY-NC 4.0" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">
+                                CC BY-NC 4.0
+                            </a>
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        
+            <div class="article-tags size-small mb-4">
+                <span class="mr-2">#</span><a class="link-muted mr-2" href="/tags/HTTP" rel="tag">HTTP</a></div>
+        
+        
+
+    </article>
+</div>
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+                
+
+    <a class="button donate" data-type="alipay">
+        <span class="icon is-small">
+            <i class="fab fa-alipay"></i>
+        </span>
+        <span>支付宝</span>
+        <span class="qrcode">
+            <img src="/img/alipay.png" alt="支付宝">
+        </span>
+    </a>
+
+
+                
+            
+                
+                
+
+    <a class="button donate" data-type="wechat">
+        <span class="icon is-small">
+            <i class="fab fa-weixin"></i>
+        </span>
+        <span>微信</span>
+        <span class="qrcode">
+            <img src="/img/wechat.png" alt="微信">
+        </span>
+    </a>
+
+
+                
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+    <nav class="post-navigation mt-4 level is-mobile">
+        
+            <div class="level-start">
+                <a class="article-nav-prev level level-item link-muted" href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">
+                    <i class="level-item fas fa-chevron-left"></i>
+                    <span class="level-item">HTTP跨域请求</span>
+                </a>
+            </div>
+        
+        
+            <div class="level-end">
+                <a class="article-nav-next level level-item link-muted" href="http://blog.dpf114.top/posts/5.%E4%B8%8Ehttp%E5%8D%8F%E4%BD%9C%E7%9A%84web%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                    <span class="level-item">HTTP协议(五)与HTTP协作的Web服务器</span>
+                    <i class="level-item fas fa-chevron-right"></i>
+                </a>
+            </div>
+        
+    </nav>
+
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="title is-5">评论</h3>
+        
+        
+
+
+    
+    <div id="valine-thread" class="content"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@1.4.14/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+          el: '#valine-thread',
+          app_id: "GeG3Ob5TvK8CJKXmJI8hc7fA-MdYXbMMI",
+          app_key: "ePVOGzkm0LD03BtB3UM4pbEp",
+          placeholder: "发表你的意见，让我们一起交流，共同提高..."
+        });
+    </script>
+
+
+        
+    </div>
+</div>
+
+
+
+
+            </div>
+            
+
+    <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1 is-sticky">
+        
+            
+            
+                
+                
+<div class="card widget" data-type="profile">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered flex-shrink-1">
+                <div>
+                    <figure class="image is-128x128 mx-auto mb-2">
+                        <img class="avatar is-rounded"
+                             src="/img/pikachues.jpg"
+                             alt="Pikachues">
+                    </figure>
+                    <p class="title is-size-4 is-block" style="line-height: inherit">Pikachues</p>
+                    <p class="is-size-6 is-block">Better Luck Tomorrow</p>
+                    
+                        <p class="is-size-6 is-flex justify-content-center">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>China</span>
+                        </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">文章</p>
+                    <a href="/archives"><p class="title">16</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">分类</p>
+                    <a href="/categories"><p class="title">4</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">标签</p>
+                    <a href="/tags"><p class="title">8</p></a>
+                </div>
+            </div>
+        </nav>
+        
+            <div class="level">
+                <a class="level-item button is-primary is-rounded" href="https://github.com/xiaoxiaoshou"
+                   target="_blank" rel="noopener">关注我</a>
+            </div>
+        
+        <div class="level is-mobile">
+            
+                <a class="level-item button is-transparent is-marginless" title="Mail" href="mailto:446933040@qq.com"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            
+                <a class="level-item button is-transparent is-marginless" title="RSS" href="/index.xml"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-rss"></i>
+                </a>
+            
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+    <div class="card widget" id="toc" data-type="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">目录</h3>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#11http请求报文">1.1.HTTP请求报文</a></li>
+    <li><a href="#12http响应报文">1.2.HTTP响应报文</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#21-http首部字段传递重要信息">2.1 HTTP首部字段传递重要信息</a></li>
+    <li><a href="#22-http首部字段结构">2.2 HTTP首部字段结构</a></li>
+    <li><a href="#23-4种http首部字段类型">2.3 4种HTTP首部字段类型</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1通用首部字段general-header-fields">1.通用首部字段(General Header Fields)</a></li>
+            <li><a href="#2请求首部字段request-header-fields">2.请求首部字段（Request Header Fields)</a></li>
+            <li><a href="#3响应首部字段-response-header-fields">3.响应首部字段 (Response Header Fields)</a></li>
+            <li><a href="#4实体首部字段-entity-header-fields">4.实体首部字段 (Entity Header Fields)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#24-http11-首部字段一览">2.4 HTTP/1.1 首部字段一览</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1通用首部字段">1.通用首部字段</a></li>
+            <li><a href="#2请求首部字段">2.请求首部字段</a></li>
+            <li><a href="#3响应首部字段">3.响应首部字段</a></li>
+            <li><a href="#4实体首部字段">4.实体首部字段</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#25-非http11首部字段">2.5 非HTTP/1.1首部字段</a></li>
+    <li><a href="#26-end-to-end-首部和-hop-by-hop-首部">2.6 <strong>End-to-end</strong> 首部和 <strong>Hop-by-hop</strong> 首部</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1端到端首部end-to-end-header">1.端到端首部(End-to-end Header)</a></li>
+            <li><a href="#2逐跳首部hop-by-hop-header">2.逐跳首部(Hop-by-hop Header)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#31-cache-control">3.1 Cache-Control</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#no-cache">no-cache</a></li>
+            <li><a href="#no-store">no-store</a></li>
+            <li><a href="#private">private</a></li>
+            <li><a href="#public">public</a></li>
+            <li><a href="#max-age">max-age</a></li>
+            <li><a href="#must-revalidate">must-revalidate</a></li>
+            <li><a href="#public-1">public</a></li>
+            <li><a href="#private-1">private</a></li>
+            <li><a href="#s-maxage">s-maxage</a></li>
+            <li><a href="#min-fresh">min-fresh</a></li>
+            <li><a href="#max-stable">max-stable</a></li>
+            <li><a href="#only-if-cached">only-if-cached</a></li>
+            <li><a href="#proxy-revalidate">Proxy-revalidate</a></li>
+            <li><a href="#no-transform">no-transform</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#32-connection">3.2 Connection</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#持久性连接">持久性连接</a></li>
+            <li><a href="#非持久性连接">非持久性连接</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#33-date">3.3 Date</a></li>
+    <li><a href="#34-pragma">3.4 Pragma</a></li>
+    <li><a href="#35-trailer">3.5 Trailer</a></li>
+    <li><a href="#36-transfer-encoding">3.6 Transfer-Encoding</a></li>
+    <li><a href="#37-upgrade">3.7 Upgrade</a></li>
+    <li><a href="#38-via">3.8 Via</a></li>
+    <li><a href="#39-warning">3.9 Warning</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-accept">4.1 Accept</a></li>
+    <li><a href="#42-accept-charset">4.2 Accept-Charset</a></li>
+    <li><a href="#43-accept-encoding">4.3 Accept-Encoding</a></li>
+    <li><a href="#44-accept-language">4.4 Accept-Language</a></li>
+    <li><a href="#45-authorization">4.5 Authorization</a></li>
+    <li><a href="#46-expect">4.6 Expect</a></li>
+    <li><a href="#47-from">4.7 From</a></li>
+    <li><a href="#48-host">4.8 Host</a></li>
+    <li><a href="#49-if-match">4.9 If-Match</a></li>
+    <li><a href="#410-if-modified-since">4.10 If-Modified-Since</a></li>
+    <li><a href="#411-if-none-match">4.11 If-None-Match</a></li>
+    <li><a href="#412-if-range">4.12 If-Range</a></li>
+    <li><a href="#413-if-unmodified-since">4.13 If-Unmodified-Since</a></li>
+    <li><a href="#414-max-forwards">4.14 Max-Forwards</a></li>
+    <li><a href="#415-proxy-authorization">4.15 Proxy-Authorization</a></li>
+    <li><a href="#416-range">4.16 Range</a></li>
+    <li><a href="#417-referer">4.17 Referer</a></li>
+    <li><a href="#418-te">4.18 TE</a></li>
+    <li><a href="#419-user-agent">4.19 User-Agent</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#51-accept-ranges">5.1 Accept-Ranges</a></li>
+    <li><a href="#52-age">5.2 Age</a></li>
+    <li><a href="#53-etag">5.3 ETag</a></li>
+    <li><a href="#54-location">5.4 Location</a></li>
+    <li><a href="#55-proxyz-authenticate">5.5 Proxyz-Authenticate</a></li>
+    <li><a href="#56-retry-after">5.6 Retry-After</a></li>
+    <li><a href="#57-server">5.7 Server</a></li>
+    <li><a href="#58-vary">5.8 Vary</a></li>
+    <li><a href="#59-www-authenticate">5.9 www-Authenticate</a></li>
+    <li><a href="#510-access-control-allow-origin">5.10 Access-Control-Allow-Origin</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#61-allow">6.1 Allow</a></li>
+    <li><a href="#62-content-encoding">6.2 Content-Encoding</a></li>
+    <li><a href="#63-content-language">6.3 Content-Language</a></li>
+    <li><a href="#64-content-length">6.4 Content-Length</a></li>
+    <li><a href="#65-content-location">6.5 Content-Location</a></li>
+    <li><a href="#66-content-md5">6.6 Content-MD5</a></li>
+    <li><a href="#67-content-range">6.7 Content-Range</a></li>
+    <li><a href="#68-content-type">6.8 Content-Type</a></li>
+    <li><a href="#69-expires">6.9 Expires</a></li>
+    <li><a href="#610-last-modified">6.10 Last-modified</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#71-set-cookie">7.1 Set-Cookie</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1x-frame--options">1.X-Frame -Options</a></li>
+    <li><a href="#2x-xss-protection">2.X-XSS-Protection</a></li>
+    <li><a href="#3dnt">3.DNT</a></li>
+    <li><a href="#4p3p">4.P3P</a></li>
+  </ul>
+</nav>
+            </div>
+        </div>
+        <style>
+        .menu-list > li > a.is-active + .menu-list {display: block;}
+        .menu-list > li > a + .menu-list {display: none;}
+        </style>
+        <script type="text/javascript" src="/js/toc.js" defer></script>
+    </div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="categories">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">分类</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/http%e5%8d%8f%e8%ae%ae/">
+                            <span class="level-start">
+                                <span class="level-item">http协议</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/python/">
+                            <span class="level-start">
+                                <span class="level-item">python</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/ssm/">
+                            <span class="level-start">
+                                <span class="level-item">ssm</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/%e7%bd%91%e7%bb%9c/">
+                            <span class="level-start">
+                                <span class="level-item">网络</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="tags">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">标签</h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/http/">
+                            <span class="tag">http</span>
+                            <span class="tag">11</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/https/">
+                            <span class="tag">https</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/htts/">
+                            <span class="tag">htts</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/jwt/">
+                            <span class="tag">jwt</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/python%e5%9f%ba%e7%a1%80/">
+                            <span class="tag">python基础</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/springmvc/">
+                            <span class="tag">springmvc</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e4%b8%b4%e6%97%b6cookies/">
+                            <span class="tag">临时cookies</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e5%b1%80%e5%9f%9f%e7%bd%91/">
+                            <span class="tag">局域网</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="recent-posts">
+    <div class="card-content">
+        <h3 class="menu-label">最新文章</h3>
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-25T22:14:55&#43;08:00'>2020-08-25</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/">与HTTP相关的组件</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/">jwt和Session cookies（临时cookies）</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/cookie%E5%92%8Csession/">Cookie和Session</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-22T22:14:55&#43;08:00'>2020-08-22</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/https/">HTTPS</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-19T22:14:55&#43;08:00'>2020-08-19</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">HTTP跨域请求</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="archives">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">归档</h3>
+            <ul class="menu-list">
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-08">
+                            <span class="level-start">
+                                <span class="level-item">2020年 8月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-03">
+                            <span class="level-start">
+                                <span class="level-item">2020年 3月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">3</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="links">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">链接</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="https://gohugo.io" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">Hugo</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    gohugo.io
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="https://blog.csdn.net/qq_41262903" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">CSDN</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    blog.csdn.net
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+        
+            
+            
+        
+        
+            <div class="column-right-shadow is-hidden-widescreen "></div>
+        
+    </div>
+
+
+    <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 ">
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </div>
+
+
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start">
+                
+                <a class="footer-logo is-block mb-2" href="/">
+                    
+                        eRunn&#39;s Blog
+                    
+                </a>
+
+                <p class="is-size-7">
+                    <span>&copy; 2020 pikachues</span>&nbsp;&nbsp;Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>&nbsp;&&nbsp;<a href="https://github.com/iMaple/hugo-theme-icarus/" target="_blank" rel="noopener">Icarus</a>
+
+                    
+                    <br>
+                    <span>
+                        <img style="width: 60px;height: 21px;" src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/ypy_logo5.png">
+                        <a href="https://console.upyun.com/register/?invite=rknj9xrGD">提供加速服务</a>
+                    </span>
+                    <br>
+                    <span>
+                        <img src="/img/icp.png" alt="">
+                        <a href="https://beian.miit.gov.cn/">湘ICP备2020018013号</a>
+                    </span>
+                </p>
+
+            </div>
+            <div class="level-end">
+                <div class="field has-addons">
+                    
+                        <p class="control">
+                            <a class="button is-transparent is-large" title="Creative Commons" href="https://creativecommons.org/" target="_blank" rel="noopener">
+                                <i class="fab fa-creative-commons"></i>
+                            </a>
+                        </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script>moment.locale("zh-cn");</script>
+
+<script>
+    var IcarusThemeSettings = {
+      article: {
+        highlight: {
+          clipboard:  true ,
+          fold: "unfolded"
+        }
+      },
+      toc: {
+        index:  true 
+      }
+    };
+</script>
+
+<script type="text/javascript" src="/js/column.js"></script>
+
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="/js/animation.js"></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <a id="back-to-top" title="回到顶端" href="javascript:;">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+    <script type="text/javascript" src="/js/back2top.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script>
+    <script>
+    window.addEventListener('load', () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static:  false ,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: '#edeff5',
+            text: '#838391'
+          },
+          button: {
+            background: '#4b81e8'
+          },
+        },
+      });
+    });
+    </script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      'HTML-CSS': {matchFontHeight: false},
+      SVG: {matchFontHeight: false},
+      CommonHTML: {matchFontHeight: false},
+      tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <div id="outdated">
+        <h6>Your browser is out-of-date!</h6>
+        <p>Update your browser to view this website correctly.&nbsp;
+            <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a>
+        </p>
+        <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+          outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'object-fit'
+          });
+        });
+    </script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" async></script>
+
+
+        
+    
+
+    
+    
+
+
+<script type="text/javascript" src="/js/main.js" defer></script>
+
+
+    
+    <div class="searchbox">
+    <div class="searchbox-container">
+        <div class="searchbox-header">
+            <div class="searchbox-input-container">
+                <input class="searchbox-input" type="text" placeholder="想要查找什么..."/>
+            </div>
+            <a class="searchbox-close" href="javascript:;">×</a>
+        </div>
+        <div class="searchbox-body"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/insight.js" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      loadInsight(
+        {contentUrl: '/index.json'},
+        {
+          hint: "想要查找什么...",
+          untitled: "(无标题)",
+          posts: "文章",
+          pages: "页面",
+          categories: "分类",
+          tags: "标签"
+        }
+      );
+    });
+</script>
+
+    
+
+
+</body>
+</html>

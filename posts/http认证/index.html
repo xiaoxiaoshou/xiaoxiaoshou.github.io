@@ -1,0 +1,1392 @@
+
+
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="renderer" content="webkit"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<meta name="generator" content="Hugo 0.78.2 with theme icarus"/>
+<meta name="google-site-verification" content="Your googleVerification code"/>
+<meta name="baidu-site-verification" content="Your baiduVerification code"/>
+
+<meta name="author" content="pikachues"/>
+<meta name="description" content="HTTP提供了用于访问控制和身份认证的功能，下面对HTTP的权限和认证功能进行介绍。 1.通用HTTP认证框架 RFC 7235 定义了 HTTP 身份认证框架，服务器"/>
+<meta name="keywords" content=""/>
+
+<title>HTTP认证 - eRunn&#39;s Blog</title>
+
+
+<meta name="application-name" content="eRunn&#39;s Blog" />
+<meta name="msapplication-TileImage" content="img/favicon.ico" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="eRunn&#39;s Blog" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http:\/\/blog.dpf114.top\/posts\/http%E8%AE%A4%E8%AF%81\/"
+    },
+    "headline": "eRunn\u0027s Blog",
+    "image": [],
+    "dataPublished": "2020-08-19T22:14:55\u002b08:00",
+    "dataModified": "2020-08-19T22:14:55\u002b08:00",
+    "author": {
+        "@type": "Person",
+        "name": "pikachues"
+    },
+    "description": "HTTP提供了用于访问控制和身份认证的功能，下面对HTTP的权限和认证功能进行介绍。 1.通用HTTP认证框架 RFC 7235 定义了 HTTP 身份认证框架，服务器"
+}
+</script>
+
+
+<link rel="canonical" href="http://blog.dpf114.top/posts/http%E8%AE%A4%E8%AF%81/"/>
+<link rel="alternate" href="http://blog.dpf114.top/index.xml" title="eRunn&#39;s Blog" type="application/rss+xml"/>
+<link rel="icon" href="/img/favicon.ico"/>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-light.min.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source&#43;Code&#43;Pro"/>
+
+<link rel="stylesheet" href="/css/default.css"/>
+
+
+    
+    
+        
+        
+        
+        
+
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"/>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"/>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+
+
+
+</head>
+<body class="is-3-column">
+<nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand justify-content-center">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    eRunn&#39;s Blog
+                
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                
+                
+                    <a class="navbar-item "
+                       href="/">主页</a>
+                
+                    <a class="navbar-item "
+                       href="/archives">归档</a>
+                
+                    <a class="navbar-item "
+                       href="/categories">分类</a>
+                
+                    <a class="navbar-item "
+                       href="/tags">标签</a>
+                
+                    <a class="navbar-item "
+                       href="/about">关于</a>
+                
+            </div>
+            <div class="navbar-end">
+                
+                    
+                        <a class="navbar-item" target="_blank" title="github" href="https://github.com/xiaoxiaoshou" rel="noopener">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    
+                
+                
+                    <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                        <i class="fas fa-list-ul"></i>
+                    </a>
+                
+                
+                    <a class="navbar-item search" title="搜索" href="javascript:;">
+                        <i class="fas fa-search"></i>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen">
+                
+    <div class="card">
+    
+    <article class="card-content article" role="article">
+        
+            <div class="article-meta is-size-7 is-uppercase level is-mobile">
+                <div class="level-left">
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-19T22:14:55&#43;08:00"
+                                  title="2020-08-19T22:14:55&#43;08:00">2020-08-19</time>发表
+                        </span>
+                    
+                    
+                        <span class="level-item">
+                            <time dateTime="2020-08-19T22:14:55&#43;08:00"
+                                  title="2020-08-19T22:14:55&#43;08:00">2020-08-19</time>更新
+                        </span>
+                    
+                    
+                    
+                        <span class="level-item">
+                            
+                            <a class="link-muted" href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a>
+                        </span>
+                    
+                    
+                        <span class="level-item">7 分钟读完 (大约3317个字)</span>
+                    
+                    
+                        <span class="level-item" id="busuanzi_container_page_pv">
+                            <span id="busuanzi_value_page_pv">0</span>次访问
+                        </span>
+                    
+                </div>
+            </div>
+        
+        <h1 class="title is-3 is-size-4-mobile">HTTP认证</h1>
+        <div class="content"><p>HTTP提供了用于访问控制和身份认证的功能，下面对HTTP的权限和认证功能进行介绍。</p>
+<!-- more -->
+<h1 id="1通用http认证框架">1.通用HTTP认证框架</h1>
+<p>RFC 7235 定义了 HTTP 身份认证框架，服务器可以根据其文档的定义来检查客户端请求。客户端也可以根据其文档定义来提供身份验证信息。</p>
+<p>请求/响应的工作流程如下：</p>
+<p>服务器以<code>401(未授权)</code> 的状态响应客户端告诉客户端服务器需要认证信息，客户端提供至少一个 <code>www-Authenticate</code> 的响应标头进行授权信息的认证。想要通过服务器进行身份认证的客户端可以在请求标头字段中添加认证标头进行身份认证，一般的认证过程如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818215731233.png" alt="image-20200818215731233"></p>
+<p>首先客户端发起一个 HTTP 请求，不带有任何认证标头，服务器对此 HTTP 请求作出响应，发现此 HTTP 信息未带有认证凭据，服务器通过 <code>www-Authenticate</code>标头返回 401 告诉客户端此请求未通过认证。然后客户端进行用户认证，认证完毕后重新发起 HTTP 请求，这次 HTTP 请求带有用户认证凭据（注意，整个身份认证的过程必须通过 HTTPS 连接保证安全），到达服务器后服务器会检查认证信息，如果不符合服务器认证信息，会返回 <code>403 Forbidden</code> 表示用户认证失败，如果满足认证信息，则返回 <code>200 OK</code>。</p>
+<p>我们知道，客户端和服务器之间的 HTTP 连接可以被代理缓存重新发送，所以认证信息也适用于代理服务器。</p>
+<h1 id="2代理认证">2.代理认证</h1>
+<p>由于资源认证和代理认证可以共存，因此需要不同的头和状态码，在代理的情况下，会返回状态码 <code>407(需要代理认证)</code>， <code>Proxy-Authenticate</code> 响应头包含至少一个适用于代理的情况，<code>Proxy-Authorization</code>请求头用于将证书提供给代理服务器。下面分别来认识一下这两个标头</p>
+<h2 id="21-proxy-authenticate">2.1 Proxy-Authenticate</h2>
+<p>HTTP <code>Proxy-Authenticate</code> 响应标头定义了身份验证方法，应使用该身份验证方法来访问代理服务器后面的资源。它将请求认证到代理服务器，从而允许它进一步发送请求。例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Proxy-Authenticate: Basic
+Proxy-Authenticate: Basic <span class="nv">realm</span><span class="o">=</span><span class="s2">&#34;Access to the internal site&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="22-proxy-authorization">2.2 Proxy-Authorization</h2>
+<p>这个 HTTP <code>请求</code>标头和上面的 <code>Proxy-Authenticate</code> 拼接很相似，但是概念不同，这个标头用于向代理服务器提供凭据，例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Proxy-Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
+</code></pre></td></tr></table>
+</div>
+</div><p>下面是代理服务器的请求/响应认证过程</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/image-20200818233815779.png" alt="image-20200818233815779"></p>
+<h1 id="3-禁止访问">3. 禁止访问</h1>
+<p>如果<code>代理服务器</code>收到的有效凭据不足以获取对给定资源的访问权限，则服务器应使用<code>403 Forbidden</code>状态代码进行响应。与 <code>401 Unauthorized</code> 和 <code>407 Proxy Authorization Required</code> 不同，该用户无法进行身份验证。</p>
+<h2 id="www-authenticate-和-proxy-authenticate-头">WWW-Authenticate 和 Proxy-Authenticate 头</h2>
+<p><code>WWW-Authenticate</code> 和 <code>Proxy-Authenticate</code> 响应头定义了获得对资源访问权限的身份验证方法。他们需要指定使用哪种身份验证方案，以便希望授权的客户端知道如何提供凭据。它们的一般表示形式如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">WWW-Authenticate: &lt;type&gt; <span class="nv">realm</span><span class="o">=</span>&lt;realm&gt;
+Proxy-Authenticate: &lt;type&gt; <span class="nv">realm</span><span class="o">=</span>&lt;realm&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>我想你从上面看到这里一定会好奇 <code>&lt;type&gt;</code> 和 <code>realm</code>是什么东西，现在就来解释下。</p>
+<ul>
+<li><code>&lt;type&gt;</code> 是认证协议，<code>Basic</code> 是下面协议中最普遍使用的</li>
+</ul>
+<blockquote>
+<p>RFC 7617 中定义了<code>Basic</code> HTT P身份验证方案，该方案将凭据作为用户ID /密码对传输，并使用 base64 进行编码。(感兴趣的同学可以看看 <a href="https://tools.ietf.org/html/rfc7617">https://tools.ietf.org/html/r&hellip;</a>)</p>
+</blockquote>
+<p>其他的认证协议主要有</p>
+<table>
+<thead>
+<tr>
+<th>认证协议</th>
+<th>参考来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Basic</td>
+<td>查阅 <a href="https://tools.ietf.org/html/rfc7617">RFC 7617</a>，base64编码的凭据</td>
+</tr>
+<tr>
+<td>Bearer</td>
+<td>查阅 <a href="https://tools.ietf.org/html/rfc6750">RFC 6750</a>，承载令牌来访问受 OAuth 2.0保护的资源</td>
+</tr>
+<tr>
+<td>Digest</td>
+<td>查阅 <a href="https://tools.ietf.org/html/rfc7616">RFC 7616</a>，Firefox仅支持md5哈希，请参见错误<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=472823">bug 472823</a>以获得SHA加密支持</td>
+</tr>
+<tr>
+<td>HOBA</td>
+<td>查阅 <a href="https://tools.ietf.org/html/rfc7486">RFC 7486</a></td>
+</tr>
+<tr>
+<td>Mutual</td>
+<td>查阅 <a href="https://tools.ietf.org/html/rfc8120">RFC 8120</a></td>
+</tr>
+<tr>
+<td>AWS4-HMAC-SHA256</td>
+<td>查阅 <a href="http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-auth-using-authorization-header.html">AWS docs</a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>realm</code> 用于描述保护区或指示保护范围，这可能是诸如 <strong>Access to the staging site(访问登陆站点)</strong> 或者类似的，这样用户就可以知道他们要访问哪个区域。</li>
+</ul>
+<h4 id="authorization-和-proxy-authorization-标头">Authorization 和 Proxy-Authorization 标头</h4>
+<p>Authorization 和 Proxy-Authorization 请求标头包含用于通过代理服务器对用户代理进行身份验证的凭据。在此，再次需要类型，其后是凭据，取决于使用哪种身份验证方案，可以对凭据进行编码或加密。一般表示如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
+Proxy-Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="4常用认证方式">4.常用认证方式</h1>
+<p>在HTTP中，常用的认证方式有以下几种：</p>
+<ul>
+<li>Basic认证：访问API时，浏览器会自动弹出一个对话框去输入用户名/密码</li>
+<li>Digest认证：摘要算法认证(MD5、SHA2&hellip;)</li>
+<li>SSL Client 认证：HTTPS常用此认证</li>
+<li>表单认证：最基本的认证方式</li>
+</ul>
+<h2 id="41-basic-认证">4.1 Basic 认证</h2>
+<p>![image-20200819114649471](/Users/dpf/Library/Application Support/typora-user-images/image-20200819114649471.png)</p>
+<ul>
+<li>当用户向一个需要BASIC认证的服务器发送请求时，服务器通过 <code>www-Authenticate</code>标头返回 401 告诉客户端请求此资源需要BASIC认证。</li>
+<li>用户输入用户名/密码以Base64编码之后发送给服务器</li>
+<li>服务器校验成功返回状态码<code>200</code>，失败返回<code>401</code></li>
+</ul>
+<p>BASIC认证虽然采用Base64编码方式，但这并不是加密处理，不需要任何附加信息即可解码。在HTTP等非加密线路上进行传输容易被人窃听，所以说BASIC认证存在安全性问题。除此之外想再进行一次 BASIC 认证时，一般的浏览器却无法实现认证注销操作，这也是问题之一。</p>
+<h2 id="42-digest-认证">4.2 Digest 认证</h2>
+<p>Digest 即摘要算法(MD5，SHA1&hellip;)，相对于基本认证，主要有如下改进：</p>
+<ul>
+<li>密码不发送明文</li>
+<li>可以有效防止恶意用户进行重放攻击</li>
+<li>可以有选择的防止对报文内容的篡改</li>
+</ul>
+<p>![image-20200819120905609](/Users/dpf/Library/Application Support/typora-user-images/image-20200819120905609.png)</p>
+<blockquote>
+<p>认证响应时①：</p>
+<p>首部字段 WWW-Authenticate 内必须包含 realm 和 nonce 这两个字段的信息。客户端就是依靠向服务器回送这两个值进行认证的。</p>
+<p>认证请求②：首部字段 Authorization 内必须包含 username、realm、nonce、uri 和 response 的字段信息。其中，realm 和 nonce 就是之前从服务器接收到 的响应中的字段。</p>
+</blockquote>
+<p>看到上面出现了那么多之前没见过的参数，是不是有点慌（或是兴奋）？别着急，这里先给出一个概览：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/WWW-Authenticate"><code>WWW-Authentication</code></a>：用来定义使用何种方式（Basic、Digest、Bearer等）去进行认证以获取受保护的资源</li>
+<li><code>realm</code>：表示Web服务器中受保护文档的安全域（比如公司财务信息域和公司员工信息域），用来指示需要哪个域的用户名和密码</li>
+<li><code>qop</code>：保护质量，包含<code>auth</code>（默认的）和<code>auth-int</code>（增加了报文完整性检测）两种策略，（可以为空，但是）不推荐为空值</li>
+<li><code>nonce</code>：服务端向客户端发送质询时附带的一个随机数，这个数会经常发生变化。客户端计算密码摘要时将其附加上去，使得多次生成同一用户的密码摘要各不相同，用来防止重放攻击</li>
+<li><code>nc</code>：nonce计数器，是一个16进制的数值，表示同一nonce下客户端发送出请求的数量。例如，在响应的第一个请求中，客户端将发送“nc=00000001”。这个指示值的目的是让服务器保持这个计数器的一个副本，以便检测重复的请求</li>
+<li><code>cnonce</code>：客户端随机数，这是一个不透明的字符串值，由客户端提供，并且客户端和服务器都会使用，以避免用明文文本。这使得双方都可以查验对方的身份，并对消息的完整性提供一些保护</li>
+<li><code>response</code>：这是由用户代理软件计算出的一个字符串，以证明用户知道口令（密码加密后的字符串）</li>
+<li><code>Authorization-Info</code>：用于返回一些与授权会话相关的附加信息</li>
+<li><code>rspauth</code>：响应摘要，用于客户端对服务端进行认证</li>
+<li><code>stale</code>：当密码摘要使用的随机数过期时，服务器可以返回一个附带有新随机数的401响应，并指定<code>stale=true</code>，表示服务器在告知客户端用新的随机数来重试，而不再要求用户重新输入用户名和密码了</li>
+</ul>
+<p>DIGEST 认证提供了高于 BASIC 认证的安全等级，但是和 HTTPS 的 客户端认证相比仍旧很弱。DIGEST 认证提供防止密码被窃听的保护 机制，但并不存在防止用户伪装的保护机制。</p>
+<h2 id="43-ssl-client-认证">4.3 SSL Client 认证</h2>
+<p>SSL认证安全级别较高，但需要承担证书费用。SSL认证过程中涉及到一些重要的概念，数字证书机构的公钥、证书的私钥和公钥、非对称算法（配合证书的私钥和公钥使用）、对称密钥、对称算法（配合对称密钥使用）。</p>
+<p>大致的认证步骤如下：
+第一步：客户端请求服务资源，服务器要求客户端出示数字证书。
+第二步：客户端发送数字证书
+第三步：服务器通过数字证书机构的公钥验证数字证书的合法性，验证通过后取出证书的公钥。
+第四步：服务端随机生成一个随机数即为对称密钥，并使用非对称算法和证书公钥加密。这个加密后的字符串，只有发送的客户端能解。
+第五步：客服端使用非对称解密算法和证书私钥获取服务端发送的对称密钥。后续客户端和服务端的请求直接基于对称算法和对称密钥。由于只有客户端和服务端有对称密钥，所以后续发送的请求较安全。</p>
+<p>SSL可以防泄漏、假冒、重放，所以在Web系统中得到了广泛的应用。</p>
+<p>SSL客户端认证在实际中用得不多，因为一来需要在客户端中安装证书（升级麻烦）、二来需要承担证书费用。</p>
+<h2 id="44-表单认证">4.4 表单认证</h2>
+<p>基于表单的认证方法并不是在 HTTP 协议中定义的。客户端会向服务 器上的 Web 应用程序发送登录信息(Credential)，按登录信息的验 证结果认证。多数情况下，输入已事先登录的用户 ID(通常是任意字符串或邮件地址)和密码等登录信息后，发送给 Web 应用程序，基于认证结果 来决定认证是否成功。</p>
+</div>
+        
+            <div class="article-licensing box">
+    <div class="licensing-title">
+        <p>HTTP认证</p>
+        <p><a href="http://blog.dpf114.top/posts/http%E8%AE%A4%E8%AF%81/">http://blog.dpf114.top/posts/http%E8%AE%A4%E8%AF%81/</a></p>
+    </div>
+    <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>作者</h6>
+                        <p>pikachues</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>发布于</h6>
+                        <p>2020-08-19</p>
+                    </div>
+                </div>
+            
+            
+                <div class="level-item is-narrow">
+                    <div>
+                        <h6>更新于</h6>
+                        <p>2020-08-19</p>
+                    </div>
+                </div>
+            
+            <div class="level-item is-narrow">
+                <div>
+                    <h6>许可协议</h6>
+                    <p>
+                        
+                            <a class="" title="CC BY-NC 4.0" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">
+                                CC BY-NC 4.0
+                            </a>
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        
+            <div class="article-tags size-small mb-4">
+                <span class="mr-2">#</span><a class="link-muted mr-2" href="/tags/HTTP" rel="tag">HTTP</a></div>
+        
+        
+
+    </article>
+</div>
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+                
+
+    <a class="button donate" data-type="alipay">
+        <span class="icon is-small">
+            <i class="fab fa-alipay"></i>
+        </span>
+        <span>支付宝</span>
+        <span class="qrcode">
+            <img src="/img/alipay.png" alt="支付宝">
+        </span>
+    </a>
+
+
+                
+            
+                
+                
+
+    <a class="button donate" data-type="wechat">
+        <span class="icon is-small">
+            <i class="fab fa-weixin"></i>
+        </span>
+        <span>微信</span>
+        <span class="qrcode">
+            <img src="/img/wechat.png" alt="微信">
+        </span>
+    </a>
+
+
+                
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+    <nav class="post-navigation mt-4 level is-mobile">
+        
+            <div class="level-start">
+                <a class="article-nav-prev level level-item link-muted" href="http://blog.dpf114.top/posts/http%E4%BC%98%E7%BC%BA%E7%82%B9/">
+                    <i class="level-item fas fa-chevron-left"></i>
+                    <span class="level-item">HTTP优缺点</span>
+                </a>
+            </div>
+        
+        
+            <div class="level-end">
+                <a class="article-nav-next level level-item link-muted" href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">
+                    <span class="level-item">HTTP跨域请求</span>
+                    <i class="level-item fas fa-chevron-right"></i>
+                </a>
+            </div>
+        
+    </nav>
+
+
+
+    <div class="card">
+    <div class="card-content">
+        <h3 class="title is-5">评论</h3>
+        
+        
+
+
+    
+    <div id="valine-thread" class="content"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@1.4.14/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+          el: '#valine-thread',
+          app_id: "GeG3Ob5TvK8CJKXmJI8hc7fA-MdYXbMMI",
+          app_key: "ePVOGzkm0LD03BtB3UM4pbEp",
+          placeholder: "发表你的意见，让我们一起交流，共同提高..."
+        });
+    </script>
+
+
+        
+    </div>
+</div>
+
+
+
+
+            </div>
+            
+
+    <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1 is-sticky">
+        
+            
+            
+                
+                
+<div class="card widget" data-type="profile">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered flex-shrink-1">
+                <div>
+                    <figure class="image is-128x128 mx-auto mb-2">
+                        <img class="avatar is-rounded"
+                             src="/img/pikachues.jpg"
+                             alt="Pikachues">
+                    </figure>
+                    <p class="title is-size-4 is-block" style="line-height: inherit">Pikachues</p>
+                    <p class="is-size-6 is-block">Better Luck Tomorrow</p>
+                    
+                        <p class="is-size-6 is-flex justify-content-center">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>China</span>
+                        </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">文章</p>
+                    <a href="/archives"><p class="title">16</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">分类</p>
+                    <a href="/categories"><p class="title">4</p></a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">标签</p>
+                    <a href="/tags"><p class="title">8</p></a>
+                </div>
+            </div>
+        </nav>
+        
+            <div class="level">
+                <a class="level-item button is-primary is-rounded" href="https://github.com/xiaoxiaoshou"
+                   target="_blank" rel="noopener">关注我</a>
+            </div>
+        
+        <div class="level is-mobile">
+            
+                <a class="level-item button is-transparent is-marginless" title="Mail" href="mailto:446933040@qq.com"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            
+                <a class="level-item button is-transparent is-marginless" title="RSS" href="/index.xml"
+                   target="_blank" rel="noopener">
+                    <i class="fas fa-rss"></i>
+                </a>
+            
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+    <div class="card widget" id="toc" data-type="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">目录</h3>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-proxy-authenticate">2.1 Proxy-Authenticate</a></li>
+    <li><a href="#22-proxy-authorization">2.2 Proxy-Authorization</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#www-authenticate-和-proxy-authenticate-头">WWW-Authenticate 和 Proxy-Authenticate 头</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#authorization-和-proxy-authorization-标头">Authorization 和 Proxy-Authorization 标头</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-basic-认证">4.1 Basic 认证</a></li>
+    <li><a href="#42-digest-认证">4.2 Digest 认证</a></li>
+    <li><a href="#43-ssl-client-认证">4.3 SSL Client 认证</a></li>
+    <li><a href="#44-表单认证">4.4 表单认证</a></li>
+  </ul>
+</nav>
+            </div>
+        </div>
+        <style>
+        .menu-list > li > a.is-active + .menu-list {display: block;}
+        .menu-list > li > a + .menu-list {display: none;}
+        </style>
+        <script type="text/javascript" src="/js/toc.js" defer></script>
+    </div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="categories">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">分类</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/http%e5%8d%8f%e8%ae%ae/">
+                            <span class="level-start">
+                                <span class="level-item">http协议</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/python/">
+                            <span class="level-start">
+                                <span class="level-item">python</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/ssm/">
+                            <span class="level-start">
+                                <span class="level-item">ssm</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="/categories/%e7%bd%91%e7%bb%9c/">
+                            <span class="level-start">
+                                <span class="level-item">网络</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">1</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                <div class="card widget" data-type="tags">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">标签</h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/http/">
+                            <span class="tag">http</span>
+                            <span class="tag">11</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/https/">
+                            <span class="tag">https</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/htts/">
+                            <span class="tag">htts</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/jwt/">
+                            <span class="tag">jwt</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/python%e5%9f%ba%e7%a1%80/">
+                            <span class="tag">python基础</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/springmvc/">
+                            <span class="tag">springmvc</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e4%b8%b4%e6%97%b6cookies/">
+                            <span class="tag">临时cookies</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%e5%b1%80%e5%9f%9f%e7%bd%91/">
+                            <span class="tag">局域网</span>
+                            <span class="tag">1</span>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="recent-posts">
+    <div class="card-content">
+        <h3 class="menu-label">最新文章</h3>
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-25T22:14:55&#43;08:00'>2020-08-25</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/">与HTTP相关的组件</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/">jwt和Session cookies（临时cookies）</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-23T22:14:55&#43;08:00'>2020-08-23</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/cookie%E5%92%8Csession/">Cookie和Session</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-22T22:14:55&#43;08:00'>2020-08-22</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/https/">HTTPS</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+            <article class="media">
+    
+    <div class="media-content">
+        <p class="date"><time datetime='2020-08-19T22:14:55&#43;08:00'>2020-08-19</time></p>
+        <p class="title"><a href="http://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">HTTP跨域请求</a></p>
+        <p class="categories"><a href="/categories/HTTP%e5%8d%8f%e8%ae%ae">HTTP协议</a></p>
+    </div>
+</article>
+
+        
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="archives">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">归档</h3>
+            <ul class="menu-list">
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-08">
+                            <span class="level-start">
+                                <span class="level-item">2020年 8月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">13</span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <li>
+                        <a class="level is-mobile" href="/archives/#2020-03">
+                            <span class="level-start">
+                                <span class="level-item">2020年 3月</span>
+                            </span>
+                            <span class="level-end">
+                                <span class="level-item tag">3</span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+                
+                
+<div class="card widget" data-type="links">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">链接</h3>
+            <ul class="menu-list">
+                
+                    <li>
+                        <a class="level is-mobile" href="https://gohugo.io" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">Hugo</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    gohugo.io
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="level is-mobile" href="https://blog.csdn.net/qq_41262903" target="_blank" rel="noopener">
+                            <span class="level-left"><span class="level-item">CSDN</span></span>
+                            <span class="level-right">
+                                <span class="level-item tag">
+                                    blog.csdn.net
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                
+            
+        
+            
+            
+        
+            
+            
+        
+        
+            <div class="column-right-shadow is-hidden-widescreen "></div>
+        
+    </div>
+
+
+    <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 ">
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </div>
+
+
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start">
+                
+                <a class="footer-logo is-block mb-2" href="/">
+                    
+                        eRunn&#39;s Blog
+                    
+                </a>
+
+                <p class="is-size-7">
+                    <span>&copy; 2020 pikachues</span>&nbsp;&nbsp;Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>&nbsp;&&nbsp;<a href="https://github.com/iMaple/hugo-theme-icarus/" target="_blank" rel="noopener">Icarus</a>
+
+                    
+                    <br>
+                    <span>
+                        <img style="width: 60px;height: 21px;" src="https://cdn.jsdelivr.net/gh/xiaoxiaoshou/staticResouce/img/ypy_logo5.png">
+                        <a href="https://console.upyun.com/register/?invite=rknj9xrGD">提供加速服务</a>
+                    </span>
+                    <br>
+                    <span>
+                        <img src="/img/icp.png" alt="">
+                        <a href="https://beian.miit.gov.cn/">湘ICP备2020018013号</a>
+                    </span>
+                </p>
+
+            </div>
+            <div class="level-end">
+                <div class="field has-addons">
+                    
+                        <p class="control">
+                            <a class="button is-transparent is-large" title="Creative Commons" href="https://creativecommons.org/" target="_blank" rel="noopener">
+                                <i class="fab fa-creative-commons"></i>
+                            </a>
+                        </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script>moment.locale("zh-cn");</script>
+
+<script>
+    var IcarusThemeSettings = {
+      article: {
+        highlight: {
+          clipboard:  true ,
+          fold: "unfolded"
+        }
+      },
+      toc: {
+        index:  true 
+      }
+    };
+</script>
+
+<script type="text/javascript" src="/js/column.js"></script>
+
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="/js/animation.js"></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <a id="back-to-top" title="回到顶端" href="javascript:;">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+    <script type="text/javascript" src="/js/back2top.js" defer></script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script>
+    <script>
+    window.addEventListener('load', () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static:  false ,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: '#edeff5',
+            text: '#838391'
+          },
+          button: {
+            background: '#4b81e8'
+          },
+        },
+      });
+    });
+    </script>
+
+
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      'HTML-CSS': {matchFontHeight: false},
+      SVG: {matchFontHeight: false},
+      CommonHTML: {matchFontHeight: false},
+      tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+    <div id="outdated">
+        <h6>Your browser is out-of-date!</h6>
+        <p>Update your browser to view this website correctly.&nbsp;
+            <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a>
+        </p>
+        <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+          outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'object-fit'
+          });
+        });
+    </script>
+
+
+        
+    
+
+    
+    
+        
+        
+        
+        
+
+
+
+        
+    
+
+    
+    
+
+    
+    
+        
+        
+        
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" async></script>
+
+
+        
+    
+
+    
+    
+
+
+<script type="text/javascript" src="/js/main.js" defer></script>
+
+
+    
+    <div class="searchbox">
+    <div class="searchbox-container">
+        <div class="searchbox-header">
+            <div class="searchbox-input-container">
+                <input class="searchbox-input" type="text" placeholder="想要查找什么..."/>
+            </div>
+            <a class="searchbox-close" href="javascript:;">×</a>
+        </div>
+        <div class="searchbox-body"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/insight.js" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      loadInsight(
+        {contentUrl: '/index.json'},
+        {
+          hint: "想要查找什么...",
+          untitled: "(无标题)",
+          posts: "文章",
+          pages: "页面",
+          categories: "分类",
+          tags: "标签"
+        }
+      );
+    });
+</script>
+
+    
+
+
+</body>
+</html>
