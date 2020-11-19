@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>jwt on eRunn&#39;s Blog</title>
-    <link>/tags/jwt/</link>
+    <link>http://blog.dpf114.top/tags/jwt/</link>
     <description>Recent content in jwt on eRunn&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>446933040@qq.com (pikachues)</managingEditor>
     <webMaster>446933040@qq.com (pikachues)</webMaster>
-    <lastBuildDate>Sun, 23 Aug 2020 22:14:55 +0800</lastBuildDate><atom:link href="/tags/jwt/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Aug 2020 22:14:55 +0800</lastBuildDate><atom:link href="http://blog.dpf114.top/tags/jwt/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>jwt和Session cookies（临时cookies）</title>
-      <link>/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/</link>
+      <link>http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/</link>
       <pubDate>Sun, 23 Aug 2020 22:14:55 +0800</pubDate>
       <author>446933040@qq.com (pikachues)</author>
-      <guid>/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/</guid>
+      <guid>http://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/</guid>
       <description>JSON Web Token简称JWT，它和Session Cookies(临时Cookies)都可以为网站提供用户的身份认证，但是它们不是一回事。 下对对J</description>
     </item>
     
