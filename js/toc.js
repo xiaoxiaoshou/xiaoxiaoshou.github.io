@@ -1,4 +1,5 @@
 /**
+ * 美化目录
  * ToC兼容, p1/1
  */
 /* - Start - */
@@ -9,7 +10,8 @@
       a.addClass('level is-mobile');
       const text = a.text();
       const sn = prefix + (level === 1 ? '' : '.') + (index + 1);
-     // const span = `<span class="level-left">${config.toc.index?`<span class="level-item">${sn}</span>`:null}<span class="level-item">${text}</span></span>`;
+      //const span = `<span class="level-left">${config.toc.index?`<span class="level-item">${sn}</span>`:null}<span class="level-item">${text}</span></span>`;
+      //const span = `<span class="level-left">${config.toc.index?`<span class="level-item">${sn}</span>`:null}<span class="level-item">${text}</span></span>`;
       const span = `<span class="level-left"><span class="level-item">${text}</span></span>`;
       a.text('');
       a.append(span);
