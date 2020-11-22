@@ -8,7 +8,16 @@
     <language>zh-CN</language>
     <managingEditor>446933040@qq.com (pikachues)</managingEditor>
     <webMaster>446933040@qq.com (pikachues)</webMaster>
-    <lastBuildDate>Tue, 25 Aug 2020 22:14:55 +0800</lastBuildDate><atom:link href="http://blog.dpf114.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Nov 2020 17:20:56 +0800</lastBuildDate><atom:link href="http://blog.dpf114.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自用Linux常用命令</title>
+      <link>http://blog.dpf114.top/posts/linux-often/</link>
+      <pubDate>Sun, 22 Nov 2020 17:20:56 +0800</pubDate>
+      <author>446933040@qq.com (pikachues)</author>
+      <guid>http://blog.dpf114.top/posts/linux-often/</guid>
+      <description>Linux常用命令 1.连接 1 ssh root@ip 2.文件上传下载 windows中使用xshell(强烈推荐)或者FinalShell，Mac也可以使用Fin</description>
+    </item>
+    
     <item>
       <title>与HTTP相关的组件</title>
       <link>http://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/</link>
