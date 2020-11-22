@@ -289,7 +289,7 @@
                         </span>
                     
                     
-                        <span class="level-item">11 分钟读完 (大约5075个字)</span>
+                        <span class="level-item">11 分钟读完 (大约5070个字)</span>
                     
                     
                         <span class="level-item" id="busuanzi_container_page_pv">
@@ -414,8 +414,8 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">@PostMapping<span class="o">(</span><span class="s2">&#34;/test&#34;</span><span class="o">)</span>
-public String test<span class="o">(</span>@RequestBody Object obj<span class="o">){</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">&#34;/test&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">test</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">Object</span> <span class="n">obj</span><span class="o">){</span>
     
 <span class="o">}</span>
 </code></pre></td></tr></table>
@@ -432,9 +432,9 @@ public String test<span class="o">(</span>@RequestBody Object obj<span class="o"
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">@PostMapping<span class="o">(</span><span class="s2">&#34;/test&#34;</span><span class="o">)</span>
-@ResponseBody
-public String test<span class="o">(){</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">&#34;/test&#34;</span><span class="o">)</span>
+<span class="nd">@ResponseBody</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">test</span><span class="o">(){</span>
     
 <span class="o">}</span>
 </code></pre></td></tr></table>
@@ -460,9 +460,9 @@ defauValue：请求参数的默认值</p>
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">@GetMapping<span class="o">(</span><span class="s2">&#34;/usr/{userId}&#34;</span><span class="o">)</span>
-public String login<span class="o">(</span>@PathVariable<span class="o">(</span><span class="s2">&#34;userId&#34;</span><span class="o">)</span> String userId<span class="o">){</span>
-    ....
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/usr/{userId}&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">login</span><span class="o">(</span><span class="nd">@PathVariable</span><span class="o">(</span><span class="s">&#34;userId&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">userId</span><span class="o">){</span>
+    <span class="o">....</span>
 <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -489,16 +489,16 @@ public String login<span class="o">(</span>@PathVariable<span class="o">(</span>
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
-    &lt;version&gt;5.2.2.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
-    &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;
-    &lt;version&gt;6.0.8.Final&lt;/version&gt;
-&lt;/dependency&gt;
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-webmvc<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.2.2.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.hibernate<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>hibernate-validator<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>6.0.8.Final<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -542,39 +542,39 @@ public String login<span class="o">(</span>@PathVariable<span class="o">(</span>
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&#34;1.0&#34;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&#34;UTF-8&#34;</span>?&gt;
-&lt;web-app <span class="nv">xmlns</span><span class="o">=</span><span class="s2">&#34;http://xmlns.jcp.org/xml/ns/javaee&#34;</span>
-         xmlns:xsi<span class="o">=</span><span class="s2">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-         xsi:schemaLocation<span class="o">=</span><span class="s2">&#34;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&#34;</span>
-         <span class="nv">version</span><span class="o">=</span><span class="s2">&#34;4.0&#34;</span>&gt;
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;web-app</span> <span class="na">xmlns=</span><span class="s">&#34;http://xmlns.jcp.org/xml/ns/javaee&#34;</span>
+         <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&#34;</span>
+         <span class="na">version=</span><span class="s">&#34;4.0&#34;</span><span class="nt">&gt;</span>
     
 
-    &lt;servlet&gt;
-        &lt;servlet-name&gt;spring-mvc&lt;/servlet-name&gt;
-        &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
-            &lt;param-value&gt;classpath:*.xml&lt;/param-value&gt;
-        &lt;/init-param&gt;
-    &lt;/servlet&gt;
-    &lt;servlet-mapping&gt;
-        &lt;servlet-name&gt;spring-mvc&lt;/servlet-name&gt;
-        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-    &lt;/servlet-mapping&gt;
+    <span class="nt">&lt;servlet&gt;</span>
+        <span class="nt">&lt;servlet-name&gt;</span>spring-mvc<span class="nt">&lt;/servlet-name&gt;</span>
+        <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+        <span class="nt">&lt;init-param&gt;</span>
+            <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+            <span class="nt">&lt;param-value&gt;</span>classpath:*.xml<span class="nt">&lt;/param-value&gt;</span>
+        <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;/servlet&gt;</span>
+    <span class="nt">&lt;servlet-mapping&gt;</span>
+        <span class="nt">&lt;servlet-name&gt;</span>spring-mvc<span class="nt">&lt;/servlet-name&gt;</span>
+        <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+    <span class="nt">&lt;/servlet-mapping&gt;</span>
 
-    &lt;filter&gt;
-        &lt;filter-name&gt;characterEncoding&lt;/filter-name&gt;
-        &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;encoding&lt;/param-name&gt;
-            &lt;param-value&gt;UTF-8&lt;/param-value&gt;
-        &lt;/init-param&gt;
-    &lt;/filter&gt;
-    &lt;filter-mapping&gt;
-        &lt;filter-name&gt;characterEncoding&lt;/filter-name&gt;
-        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-    &lt;/filter-mapping&gt;
-&lt;/web-app&gt;
+    <span class="nt">&lt;filter&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>characterEncoding<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;filter-class&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="nt">&lt;/filter-class&gt;</span>
+        <span class="nt">&lt;init-param&gt;</span>
+            <span class="nt">&lt;param-name&gt;</span>encoding<span class="nt">&lt;/param-name&gt;</span>
+            <span class="nt">&lt;param-value&gt;</span>UTF-8<span class="nt">&lt;/param-value&gt;</span>
+        <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;/filter&gt;</span>
+    <span class="nt">&lt;filter-mapping&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>characterEncoding<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+    <span class="nt">&lt;/filter-mapping&gt;</span>
+<span class="nt">&lt;/web-app&gt;</span>
 
 </code></pre></td></tr></table>
 </div>
@@ -592,13 +592,13 @@ public String login<span class="o">(</span>@PathVariable<span class="o">(</span>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">&lt;context:component-scan base-package<span class="o">=</span><span class="s2">&#34;com.dpf&#34;</span>&gt;&lt;/context:component-scan&gt;
-&lt;!-- 校验bean   --&gt;
-&lt;bean <span class="nv">class</span><span class="o">=</span><span class="s2">&#34;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&#34;</span> <span class="nv">id</span><span class="o">=</span><span class="s2">&#34;validatorFactoryBean&#34;</span>&gt;
-    &lt;property <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;providerClass&#34;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&#34;org.hibernate.validator.HibernateValidator&#34;</span>/&gt;
-&lt;/bean&gt;
-&lt;!--注解支持    --&gt;
-&lt;mvc:annotation-driven <span class="nv">validator</span><span class="o">=</span><span class="s2">&#34;validatorFactoryBean&#34;</span>/&gt;
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.dpf&#34;</span><span class="nt">&gt;&lt;/context:component-scan&gt;</span>
+<span class="c">&lt;!-- 校验bean   --&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&#34;</span> <span class="na">id=</span><span class="s">&#34;validatorFactoryBean&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;providerClass&#34;</span> <span class="na">value=</span><span class="s">&#34;org.hibernate.validator.HibernateValidator&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+<span class="c">&lt;!--注解支持    --&gt;</span>
+<span class="nt">&lt;mvc:annotation-driven</span> <span class="na">validator=</span><span class="s">&#34;validatorFactoryBean&#34;</span><span class="nt">/&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -662,58 +662,58 @@ public String login<span class="o">(</span>@PathVariable<span class="o">(</span>
 </span><span class="lnt">54
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">public class User <span class="o">{</span>
-    @NotNull
-    private Integer id<span class="p">;</span>
-    @NotNull
-    @Size<span class="o">(</span><span class="nv">min</span> <span class="o">=</span> 2,max <span class="o">=</span> 10<span class="o">)</span>
-    private String name<span class="p">;</span>
-    @Email
-    private String email<span class="p">;</span>
-    @Max<span class="o">(</span>150<span class="o">)</span>
-    private Integer age<span class="p">;</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">;</span>
+    <span class="nd">@NotNull</span>
+    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="n">2</span><span class="o">,</span><span class="n">max</span> <span class="o">=</span> <span class="n">10</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="nd">@Email</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
+    <span class="nd">@Max</span><span class="o">(</span><span class="n">150</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">age</span><span class="o">;</span>
 
-    public User<span class="o">(){</span>
+    <span class="kd">public</span> <span class="nf">User</span><span class="o">(){</span>
 
     <span class="o">}</span>
 
-    public User<span class="o">(</span>@NotNull Integer id, @NotNull @Size<span class="o">(</span><span class="nv">min</span> <span class="o">=</span> 2, <span class="nv">max</span> <span class="o">=</span> 10<span class="o">)</span> String name, @Email String email, @Max<span class="o">(</span>150<span class="o">)</span> Integer age<span class="o">)</span> <span class="o">{</span>
-        this.id <span class="o">=</span> id<span class="p">;</span>
-        this.name <span class="o">=</span> name<span class="p">;</span>
-        this.email <span class="o">=</span> email<span class="p">;</span>
-        this.age <span class="o">=</span> age<span class="p">;</span>
+    <span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@NotNull</span> <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="n">2</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="n">10</span><span class="o">)</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="nd">@Email</span> <span class="n">String</span> <span class="n">email</span><span class="o">,</span> <span class="nd">@Max</span><span class="o">(</span><span class="n">150</span><span class="o">)</span> <span class="n">Integer</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public Integer getId<span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> id<span class="p">;</span>
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public void setId<span class="o">(</span>Integer id<span class="o">)</span> <span class="o">{</span>
-        this.id <span class="o">=</span> id<span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public String getName<span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> name<span class="p">;</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public void setName<span class="o">(</span>String name<span class="o">)</span> <span class="o">{</span>
-        this.name <span class="o">=</span> name<span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public String getEmail<span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> email<span class="p">;</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getEmail</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">email</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public void setEmail<span class="o">(</span>String email<span class="o">)</span> <span class="o">{</span>
-        this.email <span class="o">=</span> email<span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEmail</span><span class="o">(</span><span class="n">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public Integer getAge<span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> age<span class="p">;</span>
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">age</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public void setAge<span class="o">(</span>Integer age<span class="o">)</span> <span class="o">{</span>
-        this.age <span class="o">=</span> age<span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="n">Integer</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></td></tr></table>
@@ -750,29 +750,29 @@ public String login<span class="o">(</span>@PathVariable<span class="o">(</span>
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">@RestController
-public class UserController <span class="o">{</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
     
-   /**
-     * @Validated 表示 user 中定义的校验规则将会生效
-     * BindingResult 表示出错信息，如果这个变量不为空，表示有错误，否则校验通过
-     * @param user
-     * @param result
-     * @return
-     */
-    @PostMapping<span class="o">(</span><span class="s2">&#34;/add&#34;</span><span class="o">)</span>
-    public Object addUser<span class="o">(</span>@Validated User user,BindingResult result<span class="o">){</span>
+   <span class="cm">/**
+</span><span class="cm">     * @Validated 表示 user 中定义的校验规则将会生效
+</span><span class="cm">     * BindingResult 表示出错信息，如果这个变量不为空，表示有错误，否则校验通过
+</span><span class="cm">     * @param user
+</span><span class="cm">     * @param result
+</span><span class="cm">     * @return
+</span><span class="cm">     */</span>
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">&#34;/add&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">addUser</span><span class="o">(</span><span class="nd">@Validated</span> <span class="n">User</span> <span class="n">user</span><span class="o">,</span><span class="n">BindingResult</span> <span class="n">result</span><span class="o">){</span>
 
-        <span class="k">if</span><span class="o">(</span>result!<span class="o">=</span>null<span class="o">){</span>
-            //校验未通过，获取所有的异常信息并展示出来
-            List&lt;ObjectError&gt; <span class="nv">allErrors</span> <span class="o">=</span> result.getAllErrors<span class="o">()</span><span class="p">;</span>
-            <span class="k">for</span> <span class="o">(</span>ObjectError allError : allErrors<span class="o">)</span> <span class="o">{</span>
-                System.out.println<span class="o">(</span>allError.getObjectName<span class="o">()</span>+<span class="s2">&#34;:&#34;</span>+allError.getDefaultMessage<span class="o">())</span><span class="p">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">result</span><span class="o">!=</span><span class="kc">null</span><span class="o">){</span>
+            <span class="c1">//校验未通过，获取所有的异常信息并展示出来
+</span><span class="c1"></span>            <span class="n">List</span><span class="o">&lt;</span><span class="n">ObjectError</span><span class="o">&gt;</span> <span class="n">allErrors</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getAllErrors</span><span class="o">();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">ObjectError</span> <span class="n">allError</span> <span class="o">:</span> <span class="n">allErrors</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">allError</span><span class="o">.</span><span class="na">getObjectName</span><span class="o">()+</span><span class="s">&#34;:&#34;</span><span class="o">+</span><span class="n">allError</span><span class="o">.</span><span class="na">getDefaultMessage</span><span class="o">());</span>
             <span class="o">}</span>
 
         <span class="o">}</span>
 
-        <span class="k">return</span> user<span class="p">;</span>
+        <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></td></tr></table>
@@ -781,23 +781,12 @@ public class UserController <span class="o">{</span>
 <ul>
 <li>在resource下添加文件errorMessages.properties</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">user.id.notnull<span class="o">=</span>id 不能为空
-user.name.notnull<span class="o">=</span>name 不能为空
-user.name.length<span class="o">=</span>name 最小长度为 <span class="m">2</span> ，最大长度为 <span class="m">10</span>
-user.email.error<span class="o">=</span>email 地址非法
-user.age.error<span class="o">=</span>年龄不能超过 <span class="m">150</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<pre><code class="language-properties" data-lang="properties">user.id.notnull=id 不能为空
+user.name.notnull=name 不能为空
+user.name.length=name 最小长度为 2 ，最大长度为 10
+user.email.error=email 地址非法
+user.age.error=年龄不能超过 150
+</code></pre><ul>
 <li>springmvc配置文件如下</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -822,24 +811,24 @@ user.age.error<span class="o">=</span>年龄不能超过 <span class="m">150</sp
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">&lt;!-- 校验bean   --&gt;
-&lt;bean <span class="nv">class</span><span class="o">=</span><span class="s2">&#34;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&#34;</span> <span class="nv">id</span><span class="o">=</span><span class="s2">&#34;validatorFactoryBean&#34;</span>&gt;
-    &lt;property <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;providerClass&#34;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&#34;org.hibernate.validator.HibernateValidator&#34;</span>/&gt;
-    &lt;property <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;validationMessageSource&#34;</span> <span class="nv">ref</span><span class="o">=</span><span class="s2">&#34;bundleMessageSource&#34;</span>/&gt;
-&lt;/bean&gt;
-&lt;!-- 自定义错误消息 --&gt;
-&lt;bean <span class="nv">class</span><span class="o">=</span><span class="s2">&#34;org.springframework.context.support.ReloadableResourceBundleMessageSource&#34;</span> <span class="nv">id</span><span class="o">=</span><span class="s2">&#34;bundleMessageSource&#34;</span>&gt;
-    &lt;property <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;basenames&#34;</span>&gt;
-        &lt;list&gt;
-            &lt;value&gt;classpath:errorMessages&lt;/value&gt;
-        &lt;/list&gt;
-    &lt;/property&gt;
-    &lt;property <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;defaultEncoding&#34;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&#34;UTF-8&#34;</span>/&gt;
-    &lt;property <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;cacheSeconds&#34;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&#34;300&#34;</span>&gt;&lt;/property&gt;
-&lt;/bean&gt;
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 校验bean   --&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&#34;</span> <span class="na">id=</span><span class="s">&#34;validatorFactoryBean&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;providerClass&#34;</span> <span class="na">value=</span><span class="s">&#34;org.hibernate.validator.HibernateValidator&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;validationMessageSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;bundleMessageSource&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+<span class="c">&lt;!-- 自定义错误消息 --&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;org.springframework.context.support.ReloadableResourceBundleMessageSource&#34;</span> <span class="na">id=</span><span class="s">&#34;bundleMessageSource&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;basenames&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;list&gt;</span>
+            <span class="nt">&lt;value&gt;</span>classpath:errorMessages<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/list&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;defaultEncoding&#34;</span> <span class="na">value=</span><span class="s">&#34;UTF-8&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;cacheSeconds&#34;</span> <span class="na">value=</span><span class="s">&#34;300&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
 
-&lt;!--注解支持    --&gt;
-&lt;mvc:annotation-driven <span class="nv">validator</span><span class="o">=</span><span class="s2">&#34;validatorFactoryBean&#34;</span>/&gt;
+<span class="c">&lt;!--注解支持    --&gt;</span>
+<span class="nt">&lt;mvc:annotation-driven</span> <span class="na">validator=</span><span class="s">&#34;validatorFactoryBean&#34;</span><span class="nt">/&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><h6 id="校验注解">校验注解</h6>
@@ -888,19 +877,19 @@ user.age.error<span class="o">=</span>年龄不能超过 <span class="m">150</sp
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">@ControllerAdvice
-public class MyException <span class="o">{</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@ControllerAdvice</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyException</span> <span class="o">{</span>
 
-    /**
-     * @ExceptionHandler<span class="o">(</span>需要处理的异常.class<span class="o">)</span>
-     * @param e
-     * @return
-     */
-    @ExceptionHandler<span class="o">(</span>Exception.class<span class="o">)</span>
-    public ModelAndView myexception<span class="o">(</span>Exception e<span class="o">){</span>
-        ModelAndView <span class="nv">error</span> <span class="o">=</span> new ModelAndView<span class="o">(</span><span class="s2">&#34;error&#34;</span><span class="o">)</span><span class="p">;</span>
-        error.addObject<span class="o">(</span><span class="s2">&#34;error&#34;</span>, e.getMessage<span class="o">())</span><span class="p">;</span>
-        <span class="k">return</span> error<span class="p">;</span>
+    <span class="cm">/**
+</span><span class="cm">     * @ExceptionHandler(需要处理的异常.class)
+</span><span class="cm">     * @param e
+</span><span class="cm">     * @return
+</span><span class="cm">     */</span>
+    <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">myexception</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+        <span class="n">ModelAndView</span> <span class="n">error</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;error&#34;</span><span class="o">);</span>
+        <span class="n">error</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">&#34;error&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="k">return</span> <span class="n">error</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></td></tr></table>
@@ -929,11 +918,11 @@ public class MyException <span class="o">{</span>
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">&lt;dependency&gt;
-    &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
-    &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
-    &lt;version&gt;1.4&lt;/version&gt;
-&lt;/dependency&gt;
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>commons-fileupload<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>commons-fileupload<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.4<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -1017,40 +1006,40 @@ public class MyException <span class="o">{</span>
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">@RestController
-public class FileUploadController <span class="o">{</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileUploadController</span> <span class="o">{</span>
 
-    SimpleDateFormat <span class="nv">sdf</span> <span class="o">=</span> new SimpleDateFormat<span class="o">(</span><span class="s2">&#34;yyyy-MM-dd&#34;</span><span class="o">)</span><span class="p">;</span>
+    <span class="n">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&#34;yyyy-MM-dd&#34;</span><span class="o">);</span>
 
-    @PostMapping<span class="o">(</span><span class="s2">&#34;/upload&#34;</span><span class="o">)</span>
-    public String upload<span class="o">(</span> MultipartFile file,HttpServletRequest req<span class="o">){</span>
-        System.out.println<span class="o">(</span><span class="s2">&#34;------&#34;</span><span class="o">)</span><span class="p">;</span>
-        String <span class="nv">format</span> <span class="o">=</span> sdf.format<span class="o">(</span>new Date<span class="o">())</span><span class="p">;</span>
-//        System.out.println<span class="o">(</span><span class="s2">&#34;getContextPath:&#34;</span>+req.getContextPath<span class="o">())</span><span class="p">;</span>
-//        System.out.println<span class="o">(</span><span class="s2">&#34;getServletPath:&#34;</span>+req.getServletPath<span class="o">())</span><span class="p">;</span>
-//        System.out.println<span class="o">(</span><span class="s2">&#34;getRequestURL(请求全路径):&#34;</span>+req.getRequestURL<span class="o">())</span><span class="p">;</span>
-//        System.out.println<span class="o">(</span><span class="s2">&#34;getRequestURI:(请求路径)&#34;</span>+req.getRequestURI<span class="o">())</span><span class="p">;</span>
-//        System.out.println<span class="o">(</span><span class="s2">&#34;getServerName:(ip/域名)&#34;</span>+req.getServerName<span class="o">())</span><span class="p">;</span>
-        //System.out.println<span class="o">(</span><span class="s2">&#34;getRealPath:&#34;</span>+req.getRealPath<span class="o">())</span><span class="p">;</span>
-
-        String <span class="nv">realPath</span> <span class="o">=</span> req.getRealPath<span class="o">(</span><span class="s2">&#34;/img&#34;</span><span class="o">)</span>+<span class="s2">&#34;/&#34;</span>+format+<span class="s2">&#34;/&#34;</span><span class="p">;</span>
-        System.out.println<span class="o">(</span>realPath<span class="o">)</span><span class="p">;</span>
-        File <span class="nv">folder</span> <span class="o">=</span> new File<span class="o">(</span>realPath<span class="o">)</span><span class="p">;</span>
-        <span class="k">if</span><span class="o">(</span>!folder.exists<span class="o">()){</span>
-            folder.mkdirs<span class="o">()</span><span class="p">;</span>
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">&#34;/upload&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">upload</span><span class="o">(</span> <span class="n">MultipartFile</span> <span class="n">file</span><span class="o">,</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;------&#34;</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">format</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+<span class="c1">//        System.out.println(&#34;getContextPath:&#34;+req.getContextPath());
+</span><span class="c1">//        System.out.println(&#34;getServletPath:&#34;+req.getServletPath());
+</span><span class="c1">//        System.out.println(&#34;getRequestURL(请求全路径):&#34;+req.getRequestURL());
+</span><span class="c1">//        System.out.println(&#34;getRequestURI:(请求路径)&#34;+req.getRequestURI());
+</span><span class="c1">//        System.out.println(&#34;getServerName:(ip/域名)&#34;+req.getServerName());
+</span><span class="c1"></span>        <span class="c1">//System.out.println(&#34;getRealPath:&#34;+req.getRealPath());
+</span><span class="c1"></span>
+        <span class="n">String</span> <span class="n">realPath</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">getRealPath</span><span class="o">(</span><span class="s">&#34;/img&#34;</span><span class="o">)+</span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">format</span><span class="o">+</span><span class="s">&#34;/&#34;</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">realPath</span><span class="o">);</span>
+        <span class="n">File</span> <span class="n">folder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">realPath</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">(!</span><span class="n">folder</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>
+            <span class="n">folder</span><span class="o">.</span><span class="na">mkdirs</span><span class="o">();</span>
         <span class="o">}</span>
 
-        String <span class="nv">oldName</span> <span class="o">=</span> file.getOriginalFilename<span class="o">()</span><span class="p">;</span>
-        String <span class="nv">newName</span> <span class="o">=</span> UUID.randomUUID<span class="o">()</span>.toString<span class="o">()</span>+oldName.substring<span class="o">(</span>oldName.lastIndexOf<span class="o">(</span><span class="s2">&#34;.&#34;</span><span class="o">))</span><span class="p">;</span>
-        try <span class="o">{</span>
-            file.transferTo<span class="o">(</span>new File<span class="o">(</span>folder,newName<span class="o">))</span><span class="p">;</span>
-            String <span class="nv">url</span> <span class="o">=</span> req.getScheme<span class="o">()</span>+<span class="s2">&#34;://&#34;</span>+req.getServerName<span class="o">()</span>+<span class="s2">&#34;:&#34;</span>+req.getServerPort<span class="o">()</span>+<span class="s2">&#34;/img/&#34;</span>+format+<span class="s2">&#34;/&#34;</span>+newName<span class="p">;</span>
-            <span class="k">return</span> url<span class="p">;</span>
-        <span class="o">}</span> catch <span class="o">(</span>IOException e<span class="o">)</span> <span class="o">{</span>
-            e.printStackTrace<span class="o">()</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">oldName</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">getOriginalFilename</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">newName</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">()+</span><span class="n">oldName</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">oldName</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">));</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">file</span><span class="o">.</span><span class="na">transferTo</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">folder</span><span class="o">,</span><span class="n">newName</span><span class="o">));</span>
+            <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">getScheme</span><span class="o">()+</span><span class="s">&#34;://&#34;</span><span class="o">+</span><span class="n">req</span><span class="o">.</span><span class="na">getServerName</span><span class="o">()+</span><span class="s">&#34;:&#34;</span><span class="o">+</span><span class="n">req</span><span class="o">.</span><span class="na">getServerPort</span><span class="o">()+</span><span class="s">&#34;/img/&#34;</span><span class="o">+</span><span class="n">format</span><span class="o">+</span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">newName</span><span class="o">;</span>
+            <span class="k">return</span> <span class="n">url</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
         
-        <span class="k">return</span> <span class="s2">&#34;failed&#34;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="s">&#34;failed&#34;</span><span class="o">;</span>
     <span class="o">}</span>
     
 <span class="o">}</span>
@@ -1168,39 +1157,39 @@ public class FileUploadController <span class="o">{</span>
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">//前端
-&lt;form <span class="nv">action</span><span class="o">=</span><span class="s2">&#34;/upload2&#34;</span> <span class="nv">method</span><span class="o">=</span><span class="s2">&#34;post&#34;</span> <span class="nv">enctype</span><span class="o">=</span><span class="s2">&#34;multipart/form-data&#34;</span>&gt;
-    &lt;input <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;file&#34;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;files&#34;</span> multiple&gt;
-    &lt;input <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&#34;上传&#34;</span>&gt;
-&lt;/form&gt;
+<pre class="chroma"><code class="language-html" data-lang="html">//前端
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;/upload2&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&#34;multipart/form-data&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;files&#34;</span> <span class="na">multiple</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;上传&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 
 //后台
-@PostMapping<span class="o">(</span><span class="s2">&#34;/upload2&#34;</span><span class="o">)</span>
-public String upload2<span class="o">(</span> MultipartFile <span class="o">[]</span> files,HttpServletRequest req<span class="o">){</span>
-    System.out.println<span class="o">(</span><span class="s2">&#34;------&#34;</span><span class="o">)</span><span class="p">;</span>
-    String <span class="nv">format</span> <span class="o">=</span> sdf.format<span class="o">(</span>new Date<span class="o">())</span><span class="p">;</span>
+@PostMapping(&#34;/upload2&#34;)
+public String upload2( MultipartFile [] files,HttpServletRequest req){
+    System.out.println(&#34;------&#34;);
+    String format = sdf.format(new Date());
     
-    String <span class="nv">realPath</span> <span class="o">=</span> req.getRealPath<span class="o">(</span><span class="s2">&#34;/img&#34;</span><span class="o">)</span>+<span class="s2">&#34;/&#34;</span>+format+<span class="s2">&#34;/&#34;</span><span class="p">;</span>
-    System.out.println<span class="o">(</span>realPath<span class="o">)</span><span class="p">;</span>
-    File <span class="nv">folder</span> <span class="o">=</span> new File<span class="o">(</span>realPath<span class="o">)</span><span class="p">;</span>
-    <span class="k">if</span><span class="o">(</span>!folder.exists<span class="o">()){</span>
-        folder.mkdirs<span class="o">()</span><span class="p">;</span>
-    <span class="o">}</span>
+    String realPath = req.getRealPath(&#34;/img&#34;)+&#34;/&#34;+format+&#34;/&#34;;
+    System.out.println(realPath);
+    File folder = new File(realPath);
+    if(!folder.exists()){
+        folder.mkdirs();
+    }
 
-    <span class="k">for</span> <span class="o">(</span>MultipartFile file : files<span class="o">){</span>
-        String <span class="nv">oldName</span> <span class="o">=</span> file.getOriginalFilename<span class="o">()</span><span class="p">;</span>
-        String <span class="nv">newName</span> <span class="o">=</span> UUID.randomUUID<span class="o">()</span>.toString<span class="o">()</span>+oldName.substring<span class="o">(</span>oldName.lastIndexOf<span class="o">(</span><span class="s2">&#34;.&#34;</span><span class="o">))</span><span class="p">;</span>
-        try <span class="o">{</span>
-            file.transferTo<span class="o">(</span>new File<span class="o">(</span>folder,newName<span class="o">))</span><span class="p">;</span>
-            String <span class="nv">url</span> <span class="o">=</span> req.getScheme<span class="o">()</span>+<span class="s2">&#34;://&#34;</span>+req.getServerName<span class="o">()</span>+<span class="s2">&#34;:&#34;</span>+req.getServerPort<span class="o">()</span>+<span class="s2">&#34;/img/&#34;</span>+format+<span class="s2">&#34;/&#34;</span>+newName<span class="p">;</span>
-            <span class="k">return</span> url<span class="p">;</span>
-        <span class="o">}</span> catch <span class="o">(</span>IOException e<span class="o">)</span> <span class="o">{</span>
-            e.printStackTrace<span class="o">()</span><span class="p">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+    for (MultipartFile file : files){
+        String oldName = file.getOriginalFilename();
+        String newName = UUID.randomUUID().toString()+oldName.substring(oldName.lastIndexOf(&#34;.&#34;));
+        try {
+            file.transferTo(new File(folder,newName));
+            String url = req.getScheme()+&#34;://&#34;+req.getServerName()+&#34;:&#34;+req.getServerPort()+&#34;/img/&#34;+format+&#34;/&#34;+newName;
+            return url;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
-    <span class="k">return</span> <span class="s2">&#34;failed&#34;</span><span class="p">;</span>
-<span class="o">}</span>
+    return &#34;failed&#34;;
+}
 
 </code></pre></td></tr></table>
 </div>
@@ -1248,43 +1237,43 @@ public String upload2<span class="o">(</span> MultipartFile <span class="o">[]</
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">//前端
-&lt;form <span class="nv">action</span><span class="o">=</span><span class="s2">&#34;/upload3&#34;</span> <span class="nv">method</span><span class="o">=</span><span class="s2">&#34;post&#34;</span> <span class="nv">enctype</span><span class="o">=</span><span class="s2">&#34;multipart/form-data&#34;</span>&gt;
-    &lt;input <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;file&#34;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;file1&#34;</span>&gt;
-    &lt;input <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;file&#34;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;file2&#34;</span>&gt;
-    &lt;input <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&#34;上传&#34;</span>&gt;
-&lt;/form&gt;
+<pre class="chroma"><code class="language-html" data-lang="html">//前端
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;/upload3&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&#34;multipart/form-data&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file1&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file2&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;上传&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 //后台
- @PostMapping<span class="o">(</span><span class="s2">&#34;/upload3&#34;</span><span class="o">)</span>
-public void upload3<span class="o">(</span> MultipartFile file1,MultipartFile file2,HttpServletRequest req<span class="o">){</span>
-    System.out.println<span class="o">(</span><span class="s2">&#34;------&#34;</span><span class="o">)</span><span class="p">;</span>
-    String <span class="nv">format</span> <span class="o">=</span> sdf.format<span class="o">(</span>new Date<span class="o">())</span><span class="p">;</span>
-    String <span class="nv">realPath</span> <span class="o">=</span> req.getRealPath<span class="o">(</span><span class="s2">&#34;/img&#34;</span><span class="o">)</span>+<span class="s2">&#34;/&#34;</span>+format+<span class="s2">&#34;/&#34;</span><span class="p">;</span>
-    System.out.println<span class="o">(</span>realPath<span class="o">)</span><span class="p">;</span>
-    File <span class="nv">folder</span> <span class="o">=</span> new File<span class="o">(</span>realPath<span class="o">)</span><span class="p">;</span>
-    <span class="k">if</span><span class="o">(</span>!folder.exists<span class="o">()){</span>
-        folder.mkdirs<span class="o">()</span><span class="p">;</span>
-    <span class="o">}</span>
+ @PostMapping(&#34;/upload3&#34;)
+public void upload3( MultipartFile file1,MultipartFile file2,HttpServletRequest req){
+    System.out.println(&#34;------&#34;);
+    String format = sdf.format(new Date());
+    String realPath = req.getRealPath(&#34;/img&#34;)+&#34;/&#34;+format+&#34;/&#34;;
+    System.out.println(realPath);
+    File folder = new File(realPath);
+    if(!folder.exists()){
+        folder.mkdirs();
+    }
     
-    try <span class="o">{</span>
-        String <span class="nv">oldName</span> <span class="o">=</span> file1.getOriginalFilename<span class="o">()</span><span class="p">;</span>
-        String <span class="nv">newName</span> <span class="o">=</span> UUID.randomUUID<span class="o">()</span>.toString<span class="o">()</span>+oldName.substring<span class="o">(</span>oldName.lastIndexOf<span class="o">(</span><span class="s2">&#34;.&#34;</span><span class="o">))</span><span class="p">;</span>
-        file1.transferTo<span class="o">(</span>new File<span class="o">(</span>folder,newName<span class="o">))</span><span class="p">;</span>
-        String <span class="nv">url</span> <span class="o">=</span> req.getScheme<span class="o">()</span>+<span class="s2">&#34;://&#34;</span>+req.getServerName<span class="o">()</span>+<span class="s2">&#34;:&#34;</span>+req.getServerPort<span class="o">()</span>+<span class="s2">&#34;/img/&#34;</span>+format+<span class="s2">&#34;/&#34;</span>+newName<span class="p">;</span>
-        System.out.println<span class="o">(</span>url<span class="o">)</span><span class="p">;</span>
+    try {
+        String oldName = file1.getOriginalFilename();
+        String newName = UUID.randomUUID().toString()+oldName.substring(oldName.lastIndexOf(&#34;.&#34;));
+        file1.transferTo(new File(folder,newName));
+        String url = req.getScheme()+&#34;://&#34;+req.getServerName()+&#34;:&#34;+req.getServerPort()+&#34;/img/&#34;+format+&#34;/&#34;+newName;
+        System.out.println(url);
         
-        <span class="nv">oldName</span> <span class="o">=</span> file2.getOriginalFilename<span class="o">()</span><span class="p">;</span>
-        <span class="nv">newName</span> <span class="o">=</span> UUID.randomUUID<span class="o">()</span>.toString<span class="o">()</span>+oldName.substring<span class="o">(</span>oldName.lastIndexOf<span class="o">(</span><span class="s2">&#34;.&#34;</span><span class="o">))</span><span class="p">;</span>
-        file2.transferTo<span class="o">(</span>new File<span class="o">(</span>folder,newName<span class="o">))</span><span class="p">;</span>
-        <span class="nv">url</span> <span class="o">=</span> req.getScheme<span class="o">()</span>+<span class="s2">&#34;://&#34;</span>+req.getServerName<span class="o">()</span>+<span class="s2">&#34;:&#34;</span>+req.getServerPort<span class="o">()</span>+<span class="s2">&#34;/img/&#34;</span>+format+<span class="s2">&#34;/&#34;</span>+newName<span class="p">;</span>
-        System.out.println<span class="o">(</span>url<span class="o">)</span><span class="p">;</span>
+        oldName = file2.getOriginalFilename();
+        newName = UUID.randomUUID().toString()+oldName.substring(oldName.lastIndexOf(&#34;.&#34;));
+        file2.transferTo(new File(folder,newName));
+        url = req.getScheme()+&#34;://&#34;+req.getServerName()+&#34;:&#34;+req.getServerPort()+&#34;/img/&#34;+format+&#34;/&#34;+newName;
+        System.out.println(url);
 
-    <span class="o">}</span> catch <span class="o">(</span>IOException e<span class="o">)</span> <span class="o">{</span>
-        e.printStackTrace<span class="o">()</span><span class="p">;</span>
-    <span class="o">}</span>
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
 
 
-<span class="o">}</span>
+}
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="10拦截器">10.拦截器</h2>
@@ -1344,54 +1333,54 @@ public void upload3<span class="o">(</span> MultipartFile file1,MultipartFile fi
 </span><span class="lnt">51
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">@Component
-public class MyInterceptor1 implements HandlerInterceptor <span class="o">{</span>
-    /**
-     * 这个是请求预处理的方法，只有当这个方法返回值为 <span class="nb">true</span> 的时候，后面的方法才会执行
-     * @param request
-     * @param response
-     * @param handler
-     * @return
-     * @throws Exception
-     */
-    public boolean preHandle<span class="o">(</span>HttpServletRequest request, HttpServletResponse response, Object handler<span class="o">)</span> throws Exception <span class="o">{</span>
-        System.out.println<span class="o">(</span><span class="s2">&#34;MyInterceptor1:preHandle&#34;</span><span class="o">)</span><span class="p">;</span>
-        <span class="k">return</span> true<span class="p">;</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInterceptor1</span> <span class="kd">implements</span> <span class="n">HandlerInterceptor</span> <span class="o">{</span>
+    <span class="cm">/**
+</span><span class="cm">     * 这个是请求预处理的方法，只有当这个方法返回值为 true 的时候，后面的方法才会执行
+</span><span class="cm">     * @param request
+</span><span class="cm">     * @param response
+</span><span class="cm">     * @param handler
+</span><span class="cm">     * @return
+</span><span class="cm">     * @throws Exception
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">preHandle</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;MyInterceptor1:preHandle&#34;</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public void postHandle<span class="o">(</span>HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView<span class="o">)</span> throws Exception <span class="o">{</span>
-        System.out.println<span class="o">(</span><span class="s2">&#34;MyInterceptor1:postHandle&#34;</span><span class="o">)</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postHandle</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">,</span> <span class="n">ModelAndView</span> <span class="n">modelAndView</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;MyInterceptor1:postHandle&#34;</span><span class="o">);</span>
 
     <span class="o">}</span>
 
-    public void afterCompletion<span class="o">(</span>HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex<span class="o">)</span> throws Exception <span class="o">{</span>
-        System.out.println<span class="o">(</span><span class="s2">&#34;MyInterceptor1:afterCompletion&#34;</span><span class="o">)</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterCompletion</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">,</span> <span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;MyInterceptor1:afterCompletion&#34;</span><span class="o">);</span>
 
     <span class="o">}</span>
 <span class="o">}</span>
 
-@Component
-public class MyInterceptor2 implements HandlerInterceptor <span class="o">{</span>
-    /**
-     * 这个是请求预处理的方法，只有当这个方法返回值为 <span class="nb">true</span> 的时候，后面的方法才会执行
-     * @param request
-     * @param response
-     * @param handler
-     * @return
-     * @throws Exception
-     */
-    public boolean preHandle<span class="o">(</span>HttpServletRequest request, HttpServletResponse response, Object handler<span class="o">)</span> throws Exception <span class="o">{</span>
-        System.out.println<span class="o">(</span><span class="s2">&#34;MyInterceptor2:preHandle&#34;</span><span class="o">)</span><span class="p">;</span>
-        <span class="k">return</span> true<span class="p">;</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInterceptor2</span> <span class="kd">implements</span> <span class="n">HandlerInterceptor</span> <span class="o">{</span>
+    <span class="cm">/**
+</span><span class="cm">     * 这个是请求预处理的方法，只有当这个方法返回值为 true 的时候，后面的方法才会执行
+</span><span class="cm">     * @param request
+</span><span class="cm">     * @param response
+</span><span class="cm">     * @param handler
+</span><span class="cm">     * @return
+</span><span class="cm">     * @throws Exception
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">preHandle</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;MyInterceptor2:preHandle&#34;</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
     <span class="o">}</span>
 
-    public void postHandle<span class="o">(</span>HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView<span class="o">)</span> throws Exception <span class="o">{</span>
-        System.out.println<span class="o">(</span><span class="s2">&#34;MyInterceptor2:postHandle&#34;</span><span class="o">)</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postHandle</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">,</span> <span class="n">ModelAndView</span> <span class="n">modelAndView</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;MyInterceptor2:postHandle&#34;</span><span class="o">);</span>
 
     <span class="o">}</span>
 
-    public void afterCompletion<span class="o">(</span>HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex<span class="o">)</span> throws Exception <span class="o">{</span>
-        System.out.println<span class="o">(</span><span class="s2">&#34;MyInterceptor2:afterCompletion&#34;</span><span class="o">)</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterCompletion</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">,</span> <span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;MyInterceptor2:afterCompletion&#34;</span><span class="o">);</span>
 
     <span class="o">}</span>
 <span class="o">}</span>
