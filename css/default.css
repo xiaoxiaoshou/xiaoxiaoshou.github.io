@@ -11298,6 +11298,12 @@ figure.highlight pre .line,
 figure.highlight pre code .hljs {
   line-height: 1.5rem;
 }
+
+/* 自加shell代码样式 */
+.language-shell{
+  color: #f33f90;
+}
+
 figure.highlight figcaption,
 figure.highlight .gutter {
   background: rgba(200,200,200,0.15);
