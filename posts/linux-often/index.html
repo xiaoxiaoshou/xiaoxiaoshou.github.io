@@ -289,7 +289,7 @@
                         </span>
                     
                     
-                        <span class="level-item">3 分钟读完 (大约1107个字)</span>
+                        <span class="level-item">3 分钟读完 (大约1279个字)</span>
                     
                     
                         <span class="level-item" id="busuanzi_container_page_pv">
@@ -310,16 +310,44 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell">ssh root@ip
 </code></pre></td></tr></table>
 </div>
-</div><!-- more -->
-<h2 id="2文件上传下载">2.文件上传下载</h2>
+</div><h2 id="2文件上传下载">2.文件上传下载</h2>
 <p>windows中使用<a href="https://xshell.en.softonic.com/">xshell</a>(强烈推荐)或者<a href="http://www.hostbuf.com/">FinalShell</a>，Mac也可以使用FinalShell。</p>
-<p>或者使用命令：</p>
+<!-- more -->
+<p><strong>或者使用命令</strong>：</p>
+<p>文件上传：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">scp ...
+<pre class="chroma"><code class="language-shell" data-lang="shell">scp 本地文件路径 用户名@ip地址:服务器要存放的的路径
+</code></pre></td></tr></table>
+</div>
+</div><p>例如将文件<code>/Users/dpf/Desktop/1.txt</code>上传到服务器122.51.114.41的根目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">scp /Users/dpf/Desktop/1.txt root@122.129.170.42:/
+</code></pre></td></tr></table>
+</div>
+</div><p>文件下载：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">scp 用户名@IP地址:需要下载的文件路径 本地存放下载的路径
+</code></pre></td></tr></table>
+</div>
+</div><p>例如将122.51.114.41根目录的文件下载到本地<code>Users</code>路径下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">scp root@122.51.114.41:/1.txt /Users
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="3端口号相关">3.端口号相关</h2>
@@ -428,25 +456,63 @@ curl http://127.0.0.1:8080
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>测试网络是否连通</strong></p>
-<pre><code>ping ip地址或域名
-</code></pre><h2 id="6文件相关">6.文件相关</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ping ip地址或域名
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="6文件相关">6.文件相关</h2>
 <p><strong>创建文件</strong></p>
-<pre><code>mkdir 目录
-     -p       创建目录，若无父目录，则创建p(parent)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">mkdir 目录
+     -p       创建目录，若无父目录，则创建p<span class="o">(</span>parent<span class="o">)</span>
 touch         创建空文件   
 
-</code></pre><p><strong>编辑文件</strong></p>
-<pre><code>vim / vi  文件名
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>编辑文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">vim / vi  文件名
      insert   编辑
      :q       退出
      :q!      强制退出
      :wq      保存并退出
      esc      退出编辑
-</code></pre><p><strong>复制文件</strong></p>
-<pre><code>cp 需要复制的文件  需要复制到的目录[新名字]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>复制文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">cp 需要复制的文件  需要复制到的目录<span class="o">[</span>新名字<span class="o">]</span>
 cp 1.txt /home/2.txt
 cp 1.txt 2.txt
-</code></pre><p><strong>删除文件</strong></p>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>删除文件</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
