@@ -2,55 +2,55 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on eRunn&#39;s Blog</title>
-    <link>https://blog.dpf114.top/categories/</link>
+    <link>https://test.blog.dpf114.top/categories/</link>
     <description>Recent content in Categories on eRunn&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>446933040@qq.com (pikachues)</managingEditor>
     <webMaster>446933040@qq.com (pikachues)</webMaster>
-    <lastBuildDate>Sun, 22 Nov 2020 17:20:56 +0800</lastBuildDate><atom:link href="https://blog.dpf114.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Nov 2020 17:20:56 +0800</lastBuildDate><atom:link href="https://test.blog.dpf114.top/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux</title>
-      <link>https://blog.dpf114.top/categories/linux/</link>
+      <link>https://test.blog.dpf114.top/categories/linux/</link>
       <pubDate>Sun, 22 Nov 2020 17:20:56 +0800</pubDate>
       <author>446933040@qq.com (pikachues)</author>
-      <guid>https://blog.dpf114.top/categories/linux/</guid>
+      <guid>https://test.blog.dpf114.top/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HTTP协议</title>
-      <link>https://blog.dpf114.top/categories/http%E5%8D%8F%E8%AE%AE/</link>
+      <link>https://test.blog.dpf114.top/categories/http%E5%8D%8F%E8%AE%AE/</link>
       <pubDate>Tue, 25 Aug 2020 22:14:55 +0800</pubDate>
       <author>446933040@qq.com (pikachues)</author>
-      <guid>https://blog.dpf114.top/categories/http%E5%8D%8F%E8%AE%AE/</guid>
+      <guid>https://test.blog.dpf114.top/categories/http%E5%8D%8F%E8%AE%AE/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SSM</title>
-      <link>https://blog.dpf114.top/categories/ssm/</link>
+      <link>https://test.blog.dpf114.top/categories/ssm/</link>
       <pubDate>Wed, 18 Mar 2020 22:14:55 +0800</pubDate>
       <author>446933040@qq.com (pikachues)</author>
-      <guid>https://blog.dpf114.top/categories/ssm/</guid>
+      <guid>https://test.blog.dpf114.top/categories/ssm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://blog.dpf114.top/categories/python/</link>
+      <link>https://test.blog.dpf114.top/categories/python/</link>
       <pubDate>Wed, 04 Mar 2020 22:14:55 +0800</pubDate>
       <author>446933040@qq.com (pikachues)</author>
-      <guid>https://blog.dpf114.top/categories/python/</guid>
+      <guid>https://test.blog.dpf114.top/categories/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>网络</title>
-      <link>https://blog.dpf114.top/categories/%E7%BD%91%E7%BB%9C/</link>
+      <link>https://test.blog.dpf114.top/categories/%E7%BD%91%E7%BB%9C/</link>
       <pubDate>Tue, 03 Mar 2020 22:14:55 +0800</pubDate>
       <author>446933040@qq.com (pikachues)</author>
-      <guid>https://blog.dpf114.top/categories/%E7%BD%91%E7%BB%9C/</guid>
+      <guid>https://test.blog.dpf114.top/categories/%E7%BD%91%E7%BB%9C/</guid>
       <description></description>
     </item>
     
