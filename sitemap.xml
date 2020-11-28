@@ -3,259 +3,259 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
     
     <url>
-        <loc>https://blog.dpf114.top/categories/</loc>
+        <loc>/categories/</loc>
         <lastmod>2020-11-22T17:20:56+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/</loc>
+        <loc>/</loc>
         <lastmod>2020-11-22T17:20:56+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/linux/</loc>
+        <loc>/tags/linux/</loc>
         <lastmod>2020-11-22T17:20:56+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/categories/linux/</loc>
+        <loc>/categories/linux/</loc>
         <lastmod>2020-11-22T17:20:56+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/</loc>
+        <loc>/posts/</loc>
         <lastmod>2020-11-22T17:20:56+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/</loc>
+        <loc>/tags/</loc>
         <lastmod>2020-11-22T17:20:56+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/linux-often/</loc>
+        <loc>/posts/linux-often/</loc>
         <lastmod>2020-11-22T17:20:56+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/http/</loc>
+        <loc>/tags/http/</loc>
         <lastmod>2020-08-25T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/categories/http%E5%8D%8F%E8%AE%AE/</loc>
+        <loc>/categories/http%E5%8D%8F%E8%AE%AE/</loc>
         <lastmod>2020-08-25T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/</loc>
+        <loc>/posts/%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BB%84%E4%BB%B6/</loc>
         <lastmod>2020-08-25T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/cookie%E5%92%8Csession/</loc>
+        <loc>/posts/cookie%E5%92%8Csession/</loc>
         <lastmod>2020-08-23T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/jwt/</loc>
+        <loc>/tags/jwt/</loc>
         <lastmod>2020-08-23T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/</loc>
+        <loc>/posts/jwt%E5%92%8Csession-cookies%E4%B8%B4%E6%97%B6cookies/</loc>
         <lastmod>2020-08-23T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/%E4%B8%B4%E6%97%B6cookies/</loc>
+        <loc>/tags/%E4%B8%B4%E6%97%B6cookies/</loc>
         <lastmod>2020-08-23T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/https/</loc>
+        <loc>/tags/https/</loc>
         <lastmod>2020-08-22T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/https/</loc>
+        <loc>/posts/https/</loc>
         <lastmod>2020-08-22T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/htts/</loc>
+        <loc>/tags/htts/</loc>
         <lastmod>2020-08-22T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/http%E4%BC%98%E7%BC%BA%E7%82%B9/</loc>
+        <loc>/posts/http%E4%BC%98%E7%BC%BA%E7%82%B9/</loc>
         <lastmod>2020-08-19T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/http%E8%AE%A4%E8%AF%81/</loc>
+        <loc>/posts/http%E8%AE%A4%E8%AF%81/</loc>
         <lastmod>2020-08-19T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/</loc>
+        <loc>/posts/http%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/</loc>
         <lastmod>2020-08-19T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/6.http%E9%A6%96%E9%83%A8%E8%AF%B7%E6%B1%82%E6%A0%87%E5%A4%B4/</loc>
+        <loc>/posts/6.http%E9%A6%96%E9%83%A8%E8%AF%B7%E6%B1%82%E6%A0%87%E5%A4%B4/</loc>
         <lastmod>2020-08-15T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/5.%E4%B8%8Ehttp%E5%8D%8F%E4%BD%9C%E7%9A%84web%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+        <loc>/posts/5.%E4%B8%8Ehttp%E5%8D%8F%E4%BD%9C%E7%9A%84web%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
         <lastmod>2020-08-10T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/4.%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E7%9A%84http%E7%8A%B6%E6%80%81%E7%A0%81/</loc>
+        <loc>/posts/4.%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E7%9A%84http%E7%8A%B6%E6%80%81%E7%A0%81/</loc>
         <lastmod>2020-08-07T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/3.http%E6%8A%A5%E6%96%87%E4%B8%AD%E7%9A%84http%E4%BF%A1%E6%81%AF/</loc>
+        <loc>/posts/3.http%E6%8A%A5%E6%96%87%E4%B8%AD%E7%9A%84http%E4%BF%A1%E6%81%AF/</loc>
         <lastmod>2020-08-05T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/2.%E7%AE%80%E5%8D%95%E7%9A%84http%E5%8D%8F%E8%AE%AE/</loc>
+        <loc>/posts/2.%E7%AE%80%E5%8D%95%E7%9A%84http%E5%8D%8F%E8%AE%AE/</loc>
         <lastmod>2020-08-02T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/1%E4%BA%86%E8%A7%A3web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</loc>
+        <loc>/posts/1%E4%BA%86%E8%A7%A3web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</loc>
         <lastmod>2020-08-01T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/springmvc/</loc>
+        <loc>/posts/springmvc/</loc>
         <lastmod>2020-03-18T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/springmvc/</loc>
+        <loc>/tags/springmvc/</loc>
         <lastmod>2020-03-18T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/categories/ssm/</loc>
+        <loc>/categories/ssm/</loc>
         <lastmod>2020-03-18T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/categories/python/</loc>
+        <loc>/categories/python/</loc>
         <lastmod>2020-03-04T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/python%E5%9F%BA%E7%A1%80/</loc>
+        <loc>/tags/python%E5%9F%BA%E7%A1%80/</loc>
         <lastmod>2020-03-04T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/pythonbasestudy/</loc>
+        <loc>/posts/pythonbasestudy/</loc>
         <lastmod>2020-03-04T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/posts/frpinnetpass/</loc>
+        <loc>/posts/frpinnetpass/</loc>
         <lastmod>2020-03-03T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/tags/%E5%B1%80%E5%9F%9F%E7%BD%91/</loc>
+        <loc>/tags/%E5%B1%80%E5%9F%9F%E7%BD%91/</loc>
         <lastmod>2020-03-03T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/categories/%E7%BD%91%E7%BB%9C/</loc>
+        <loc>/categories/%E7%BD%91%E7%BB%9C/</loc>
         <lastmod>2020-03-03T22:14:55+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/about/</loc>
+        <loc>/about/</loc>
         <lastmod>2020-01-01T00:00:00+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
-        <loc>https://blog.dpf114.top/archives/</loc>
+        <loc>/archives/</loc>
         <lastmod>2020-01-01T00:00:00+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
