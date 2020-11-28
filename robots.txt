@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://test.blog.dpf114.top/sitemap.xml
+Sitemap: https://blog.dpf114.top/sitemap.xml
