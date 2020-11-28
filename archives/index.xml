@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Archives on eRunn&#39;s Blog</title>
-    <link>/hugoblog/archives/</link>
+    <link>/archives/</link>
     <description>Recent content in Archives on eRunn&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>446933040@qq.com (pikachues)</managingEditor>
     <webMaster>446933040@qq.com (pikachues)</webMaster>
-    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 +0800</lastBuildDate><atom:link href="/hugoblog/archives/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 +0800</lastBuildDate><atom:link href="/archives/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

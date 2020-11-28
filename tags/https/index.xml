@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HTTPS on eRunn&#39;s Blog</title>
-    <link>/hugoblog/tags/https/</link>
+    <link>/tags/https/</link>
     <description>Recent content in HTTPS on eRunn&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>446933040@qq.com (pikachues)</managingEditor>
     <webMaster>446933040@qq.com (pikachues)</webMaster>
-    <lastBuildDate>Sat, 22 Aug 2020 22:14:55 +0800</lastBuildDate><atom:link href="/hugoblog/tags/https/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Aug 2020 22:14:55 +0800</lastBuildDate><atom:link href="/tags/https/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HTTPS</title>
-      <link>/hugoblog/posts/https/</link>
+      <link>/posts/https/</link>
       <pubDate>Sat, 22 Aug 2020 22:14:55 +0800</pubDate>
       <author>446933040@qq.com (pikachues)</author>
-      <guid>/hugoblog/posts/https/</guid>
+      <guid>/posts/https/</guid>
       <description>1.HTTPS为什么会出现 一个新技术的出现必定是为了解决某种问题的。什么问题呢？一个简答的回答就是HTTP的安全性问题。由于HTTP采用明文</description>
     </item>
     

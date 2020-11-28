@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python基础 on eRunn&#39;s Blog</title>
-    <link>/hugoblog/tags/python%E5%9F%BA%E7%A1%80/</link>
+    <link>/tags/python%E5%9F%BA%E7%A1%80/</link>
     <description>Recent content in Python基础 on eRunn&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>446933040@qq.com (pikachues)</managingEditor>
     <webMaster>446933040@qq.com (pikachues)</webMaster>
-    <lastBuildDate>Wed, 04 Mar 2020 22:14:55 +0800</lastBuildDate><atom:link href="/hugoblog/tags/python%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Mar 2020 22:14:55 +0800</lastBuildDate><atom:link href="/tags/python%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python基础学习</title>
-      <link>/hugoblog/posts/pythonbasestudy/</link>
+      <link>/posts/pythonbasestudy/</link>
       <pubDate>Wed, 04 Mar 2020 22:14:55 +0800</pubDate>
       <author>446933040@qq.com (pikachues)</author>
-      <guid>/hugoblog/posts/pythonbasestudy/</guid>
+      <guid>/posts/pythonbasestudy/</guid>
       <description>1.基本语法 1 2 3 4 5 6 1.Python中严格区分大小写 2.Python中的每一行就是一条语句，每条语句以换行结束 3.Python中每一条语</description>
     </item>
     

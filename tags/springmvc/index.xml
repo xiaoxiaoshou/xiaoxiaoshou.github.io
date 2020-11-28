@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SpringMvc on eRunn&#39;s Blog</title>
-    <link>/hugoblog/tags/springmvc/</link>
+    <link>/tags/springmvc/</link>
     <description>Recent content in SpringMvc on eRunn&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>446933040@qq.com (pikachues)</managingEditor>
     <webMaster>446933040@qq.com (pikachues)</webMaster>
-    <lastBuildDate>Wed, 18 Mar 2020 22:14:55 +0800</lastBuildDate><atom:link href="/hugoblog/tags/springmvc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Mar 2020 22:14:55 +0800</lastBuildDate><atom:link href="/tags/springmvc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SpringMVC</title>
-      <link>/hugoblog/posts/springmvc/</link>
+      <link>/posts/springmvc/</link>
       <pubDate>Wed, 18 Mar 2020 22:14:55 +0800</pubDate>
       <author>446933040@qq.com (pikachues)</author>
-      <guid>/hugoblog/posts/springmvc/</guid>
+      <guid>/posts/springmvc/</guid>
       <description>1.什么是SpringMVC?简单的解释一下你对SpringMVC的理解？ SpringMVC是一个基于java实现了MVC设计模式的一个轻量</description>
     </item>
     
