@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: hugoBlog/sitemap.xml
+Sitemap: /sitemap.xml
